@@ -1,17 +1,47 @@
 /* src/components/AboutSlideshow.module.css */
 
+/* Removes default black background from slides */
 .slickOverride :global(.slick-slide) {
-    /* Removes the default black background from slick slides */
     background-color: transparent !important;
   }
   
+  /* Dots: Larger & Gold for active, lighter color for inactive */
   .slickOverride :global(.slick-dots li.slick-active button:before) {
-    /* Make active dot gold */
-    color: #ffd700 !important;
+    color: #ffd700 !important; /* gold */
+    font-size: 16px !important; /* increase dot size for active */
+    line-height: 16px !important;
   }
   
+  /* Inactive dot size & color */
   .slickOverride :global(.slick-dots li button:before) {
-    /* Make inactive dots a lighter color */
     color: #ccc !important;
+    font-size: 14px !important; /* increase dot size for inactive */
+    line-height: 14px !important;
+  }
+  
+  /* Arrows: Increase the size & shift them horizontally */
+  .slickOverride :global(.slick-prev:before),
+  .slickOverride :global(.slick-next:before) {
+    font-size: 30px !important; /* arrow icon size */
+    line-height: 1 !important;
+    color: #ffd700 !important; /* set arrow color to gold if desired */
+  }
+  
+  /* Positioning the arrows away from the edges */
+  .slickOverride :global(.slick-prev),
+  .slickOverride :global(.slick-next) {
+    top: 50% !important; /* ensure arrows are vertically centered */
+    transform: translateY(-50%);
+    z-index: 2; /* keep arrows above the slides */
+  }
+  
+  /* Left arrow spacing */
+  .slickOverride :global(.slick-prev) {
+    left: -35px !important; /* adjust for your desired horizontal padding */
+  }
+  
+  /* Right arrow spacing */
+  .slickOverride :global(.slick-next) {
+    right: -28px !important; /* adjust for your desired horizontal padding */
   }
   

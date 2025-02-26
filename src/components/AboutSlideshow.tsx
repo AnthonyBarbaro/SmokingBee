@@ -38,7 +38,7 @@ export default function AboutSlideshow(){
         "/images/about/23.JPG",
     ];
     const settings = {
-        dots: true,
+        dots: false,
         infinite: true,
         speed: 300,
         slideshowToShow: 1,
