@@ -18,7 +18,8 @@ export default function Footer() {
             <p className="text-sm text-gray-300">
               7584 University Ave Suite B, La Mesa, CA 91942
             </p>
-            <p className="text-sm text-gray-300">Phone: (555) 123-4567</p>
+            <p className="text-sm text-gray-300">Phone: (619) 467-7055</p>
+            <p className="text-sm text-gray-300">Email: info@thesmokingbee.com</p>
           </div>
   
           {/* Social Media */}
