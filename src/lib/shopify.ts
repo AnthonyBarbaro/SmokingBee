@@ -20,8 +20,10 @@ async function shopifyFetch<T = any>(query: string, variables: Record<string, un
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "X-Shopify-Storefront-Access-Token": storefrontAccessToken
-    },
+      // Provide a fallback so the header is always a string
+      "X-Shopify-Storefront-Access-Token": storefrontAccessToken ?? ""
+    } as HeadersInit,
+    
     body: JSON.stringify({ query, variables })
   });
 
