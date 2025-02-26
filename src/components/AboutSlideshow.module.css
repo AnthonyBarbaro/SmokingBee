@@ -1,0 +1,17 @@
+/* src/components/AboutSlideshow.module.css */
+
+.slickOverride :global(.slick-slide) {
+    /* Removes the default black background from slick slides */
+    background-color: transparent !important;
+  }
+  
+  .slickOverride :global(.slick-dots li.slick-active button:before) {
+    /* Make active dot gold */
+    color: #ffd700 !important;
+  }
+  
+  .slickOverride :global(.slick-dots li button:before) {
+    /* Make inactive dots a lighter color */
+    color: #ccc !important;
+  }
+  

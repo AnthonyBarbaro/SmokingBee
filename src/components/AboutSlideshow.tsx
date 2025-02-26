@@ -5,6 +5,7 @@ import Slider from "react-slick";
 import Image from "next/image";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import styles from "./AboutSlideshow.module.css";
 /**
  * A simple slideshow (carousel) for images in `public/images/about/`.
  * Adjust the `images` array to match your actual file names.
@@ -44,13 +45,13 @@ export default function AboutSlideshow(){
         slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 1500,
-        arrows: false,
+        arrows: true,
     };
     return (
-        <div className="w-full max-w-4xl mx-auto my-6">
+        <div className={`${styles.slickOverride} w-full max-w-5xl mx-auto my-8`}>
             <Slider {...settings}>
                 {images.map((src,index) => (
-                <div key={index} className="relative h-[400px]">
+                <div key={index} className="relative h-[500px] md:h-[600px]">
                     <Image
                         src={src}
                         alt={`Slide ${index + 1}`}
