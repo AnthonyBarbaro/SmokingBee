@@ -1,8 +1,5 @@
-// src/lib/shopify.ts
+// lib/shopify.ts
 
-//
-// STEP 1: Load environment variables
-//
 const domain = process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN;
 const storefrontAccessToken = process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESS_TOKEN;
 
@@ -10,10 +7,13 @@ if (!domain || !storefrontAccessToken) {
   throw new Error("Missing Shopify credentials! Check your .env.local file.");
 }
 
-//
-// STEP 2: Define shopifyFetch
-//
-async function shopifyFetch<T = any>(query: string, variables: Record<string, unknown> = {}): Promise<T> {
+/** 
+ * Helper function to call Shopify's Storefront API.
+ */
+async function shopifyFetch<T = any>(
+  query: string,
+  variables: Record<string, unknown> = {}
+): Promise<T> {
   const endpoint = `https://${domain}/api/2023-07/graphql.json`;
 
   const res = await fetch(endpoint, {
@@ -23,8 +23,8 @@ async function shopifyFetch<T = any>(query: string, variables: Record<string, un
       // Provide a fallback so the header is always a string
       "X-Shopify-Storefront-Access-Token": storefrontAccessToken ?? ""
     } as HeadersInit,
-    
-    body: JSON.stringify({ query, variables })
+    body: JSON.stringify({ query, variables }),
+    next: { revalidate: 10 } // optional caching
   });
 
   if (!res.ok) {
@@ -35,9 +35,9 @@ async function shopifyFetch<T = any>(query: string, variables: Record<string, un
   return res.json() as T;
 }
 
-//
-// STEP 3: getAllProducts
-//
+/** 
+ * Fetch up to 6 products with variant IDs.
+ */
 export async function getAllProducts() {
   const query = `
     query {
@@ -48,30 +48,47 @@ export async function getAllProducts() {
             title
             description
             handle
+            variants(first: 1) {
+              edges {
+                node {
+                  id
+                  price {
+                    amount
+                    currencyCode
+                  }
+                }
+              }
+            }
+            images(first: 1) {
+              edges {
+                node {
+                  altText
+                  url: transformedSrc(maxWidth: 400)
+                }
+              }
+            }
           }
         }
       }
     }
   `;
-
   const data = await shopifyFetch<{
     data: {
       products: {
-        edges: Array<{ node: any }>
-      }
-    }
+        edges: Array<{ node: any }>;
+      };
+    };
   }>(query);
-
   return data.data.products.edges;
 }
 
-//
-// STEP 4: getCollections
-//
+/** 
+ * Fetch all collections (for categories).
+ */
 export async function getCollections() {
   const query = `
     query {
-      collections(first: 6) {
+      collections(first: 250) {
         edges {
           node {
             id
@@ -86,17 +103,20 @@ export async function getCollections() {
       }
     }
   `;
-
   const data = await shopifyFetch<{
     data: {
       collections: {
-        edges: Array<{ node: any }>
-      }
-    }
+        edges: Array<{ node: any }>;
+      };
+    };
   }>(query);
 
   return data.data.collections.edges;
 }
+
+/** 
+ * Fetch a single collection by its handle.
+ */
 export async function getCollectionByHandle(handle: string) {
   const query = `
     query getCollectionByHandle($handle: String!) {
@@ -123,31 +143,70 @@ export async function getCollectionByHandle(handle: string) {
                   }
                 }
               }
+              variants(first: 1) {
+                edges {
+                  node {
+                    id
+                    price {
+                      amount
+                      currencyCode
+                    }
+                  }
+                }
+              }
             }
           }
         }
       }
     }
   `;
-
-  // We'll pass the `handle` as a GraphQL variable
   const data = await shopifyFetch<{
     data: {
-      collection: {
-        id: string;
-        title: string;
-        description: string;
-        image?: {
-          altText?: string;
-          url?: string;
-        };
-        products: {
-          edges: Array<{ node: any }>;
-        };
-      } | null;
+      collection: any | null;
     };
   }>(query, { handle });
 
-  // If Shopify can't find a collection for that handle, it returns null
   return data.data.collection;
+}
+
+/** 
+ * Fetch a single product by its handle.
+ */
+export async function getProductByHandle(handle: string) {
+  const query = `
+    query getProductByHandle($handle: String!) {
+      product(handle: $handle) {
+        id
+        title
+        description
+        images(first: 5) {
+          edges {
+            node {
+              altText
+              url: transformedSrc(maxWidth: 800)
+            }
+          }
+        }
+        variants(first: 5) {
+          edges {
+            node {
+              id
+              title
+              price {
+                amount
+                currencyCode
+              }
+            }
+          }
+        }
+      }
+    }
+  `;
+  const data = await shopifyFetch<{
+    data: {
+      product: any | null;
+    };
+  }>(query, { handle });
+
+  return data.data.product;
 }

@@ -7,6 +7,7 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
+    
     <nav className="bg-[#C49A02] text-white px-6 py-4 flex items-center justify-between shadow-lg">
       {/* Logo / Brand */}
       <Link href="/">
@@ -39,5 +40,6 @@ export default function Navbar() {
         ))}
       </div>
     </nav>
+    
   );
 }
