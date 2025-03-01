@@ -1,27 +1,29 @@
+// src/components/HeroSection.tsx
 import Image from "next/image";
+import Link from "next/link";
 
 export default function HeroSection() {
   return (
     <section className="relative h-[80vh] flex items-center justify-center text-center">
-      {/* Background Image */}
       <Image
-        src="/images/hero-bg.png"
-        alt="Smoke shop background"
+        src="/images/about/23.JPG"
+        alt="Premium smoke shop in La Mesa"
         fill
         className="object-cover brightness-50"
         priority
       />
-      {/* Overlay Content */}
-      <div className="relative z-10 px-4 max-w-2xl text-white">
+      <div className="relative z-10 px-4 max-w-3xl text-white">
         <h1 className="text-5xl md:text-6xl font-extrabold mb-4">
-          Discover Your Next Favorite Piece
+          Premium Smoke Shop in La Mesa, CA
         </h1>
         <p className="text-lg md:text-xl mb-6">
-          The Smoking Bee offers premium smoking accessories for every taste.
+          Discover premium glass, vapes, and smoking accessories in La Mesa. Friendly staff, expert advice, and quality products every time.
         </p>
-        <button className="bg-gold text-dark font-bold px-6 py-3 rounded hover:brightness-125 transition">
-          Shop Now
-        </button>
+        <Link href="/shop">
+          <button className="bg-gold text-dark font-bold px-6 py-3 rounded hover:bg-yellow-500 transition">
+            Shop Now
+          </button>
+        </Link>
       </div>
     </section>
   );
