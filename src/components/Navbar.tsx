@@ -1,3 +1,4 @@
+//src/components/Navbar.tsx
 "use client";
 
 import Link from "next/link";
@@ -31,7 +32,7 @@ export default function Navbar() {
         } md:flex md:space-x-8 text-lg mt-4 md:mt-0`}
       >
         {["Home", "About", "Shop", "Contact"].map((item) => (
-          <Link key={item} href={`/${item.toLowerCase()}`}>
+          <Link key={item} href={item === "Home" ? "/" : `/${item.toLowerCase()}`}>
             <span className="block py-2 md:py-0 font-extrabold hover:underline transition">
               {item}
             </span>
