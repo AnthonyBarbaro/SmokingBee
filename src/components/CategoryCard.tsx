@@ -19,20 +19,27 @@ export default function CategoryCard({ category }: CategoryCardProps) {
   const { title, handle, image } = category.node;
 
   return (
-    <div className="bg-white rounded shadow hover:shadow-lg transition p-4">
-      <div className="relative w-full h-40 mb-3">
+    <div className="group bg-white rounded shadow hover:shadow-lg transition overflow-hidden">
+      {/* Image Container with fixed height & hover zoom */}
+      <div className="relative w-full h-48 md:h-60 overflow-hidden">
         {image?.url && (
           <Image
             src={image.url}
             alt={image.altText || title}
             fill
-            className="object-cover rounded"
+            className="object-cover group-hover:scale-110 transition-transform duration-300"
           />
         )}
       </div>
-      <h3 className="text-lg font-semibold">{title}</h3>
-      <p className="text-sm text-gray-500">Explore our {title} collection</p>
-      {/* Link to a dynamic category page (optional) */}
+
+      {/* Text Content */}
+      <div className="p-4">
+        <h3 className="text-lg font-semibold mb-1">{title}</h3>
+        <p className="text-sm text-gray-500">
+          Explore our {title} collection
+        </p>
+        {/* Optionally, add a link to the dynamic category page here */}
+      </div>
     </div>
   );
 }
