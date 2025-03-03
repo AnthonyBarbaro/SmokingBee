@@ -13,7 +13,7 @@ export default function Navbar() {
       <Link href="/">
         {/* Using text-3xl + font-black for extra emphasis */}
         <span className="text-3xl font-black cursor-pointer tracking-wide hover:underline transition">
-          The Smoking Bee
+          THE SMOKING BEE
         </span>
       </Link>
 
