@@ -41,13 +41,28 @@ async function shopifyFetch<T = any>(query: string, variables: Record<string, un
 export async function getAllProducts() {
   const query = `
     query {
-      products(first: 6) {
+      products(first: 10) {
         edges {
           node {
             id
             title
             description
             handle
+            images(first: 5) {
+              edges {
+                node {
+                  url
+                  altText
+                }
+              }
+            }
+            variants(first: 1) {
+              edges {
+                node {
+                  id
+                }
+              }
+            }
           }
         }
       }
