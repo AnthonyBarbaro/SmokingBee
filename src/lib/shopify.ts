@@ -34,7 +34,36 @@ async function shopifyFetch<T = any>(query: string, variables: Record<string, un
 
   return res.json() as T;
 }
+export async function getProductByHandle(handle: string) {
+  const query = `
+    query getProductByHandle($handle: String!) {
+      product(handle: $handle) {
+        id
+        title
+        description
+        images(first: 5) {
+          edges {
+            node {
+              url
+              altText
+            }
+          }
+        }
+        variants(first: 5) {
+          edges {
+            node {
+              id
+              title
+            }
+          }
+        }
+      }
+    }
+  `;
 
+  const data = await shopifyFetch<{ data: { product: any } }>(query, { handle });
+  return data.data.product;
+}
 //
 // STEP 3: getAllProducts
 //

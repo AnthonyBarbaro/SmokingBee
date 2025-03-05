@@ -61,7 +61,7 @@ export default function Testimonials() {
           </div>
         </motion.div>
         <p className="mt-12 text-gray-600 text-sm">
-          Rated as the #1 Smoke Shop in La Mesa for premium glass, vapes, and accessories!
+          Rated as the #1 Smoke Shop in La Mesa for premium glass, dab vapes, and accessories!
         </p>
       </div>
     </section>

@@ -52,7 +52,7 @@ export default function HeroSection() {
           Premium Smoke Shop in La Mesa, CA
         </h1>
         <p className="text-lg md:text-xl mb-6">
-          Discover premium glass, vapes, and smoking accessories in La Mesa. Friendly staff, expert advice, and quality products every time.
+          Discover premium glass, puffco, and smoking accessories in La Mesa. Friendly staff, expert advice, and quality products every time.
         </p>
         <Link href="/shop">
           <button className="bg-gold text-dark font-bold px-6 py-3 rounded hover:bg-yellow-500 transition">

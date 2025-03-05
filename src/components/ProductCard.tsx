@@ -3,6 +3,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import AddToCartButton from "@/components/AddToCartButton";
 
 interface ProductCardProps {
   product: {
@@ -22,9 +23,10 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
-  const { id, title, description, handle, images, variants } = product.node;
+  // We'll just alias `product.node` to `pnode` for clarity
+  const pnode = product.node;
+  const { title, description, handle, images } = pnode;
   const firstImage = images?.edges[0]?.node;
-  const variantId = variants?.edges[0]?.node.id;
 
   return (
     <div className="group bg-white rounded-lg shadow-lg hover:shadow-xl transition p-4 border border-gray-200">
@@ -58,20 +60,9 @@ export default function ProductCard({ product }: ProductCardProps) {
             View Details
           </button>
         </Link>
-        {variantId ? (
-          <button
-            onClick={() => {
-              window.location.href = `https://your-shop.myshopify.com/cart/${variantId}:1`;
-            }}
-            className="bg-dark text-white font-bold px-4 py-2 rounded hover:bg-gray-900 transition"
-          >
-            Add to Cart
-          </button>
-        ) : (
-          <button className="bg-gray-500 text-white font-bold px-4 py-2 rounded cursor-not-allowed" disabled>
-            Out of Stock
-          </button>
-        )}
+
+        {/* Use the dedicated AddToCartButton component */}
+        <AddToCartButton product={pnode} />
       </div>
     </div>
   );

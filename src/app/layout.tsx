@@ -4,13 +4,15 @@ import { ReactNode } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Head from "next/head";
+import { CartProvider } from "@/context/CartContext";
+import FloatingCartButton from "@/components/FloatingCartButton";
 
 export const metadata: Metadata = {
   title: "The Smoking Bee | La Mesa's Premier Smoke Shop",
   description: "Discover premium glassware, vapes, and smoking accessories at The Smoking Bee in La Mesa, CA. Best selection and expert customer service!"
 };
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <Head>
@@ -27,9 +29,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <body className="flex flex-col min-h-screen">
+        <CartProvider>
         <Navbar />
         <main className="flex-grow">{children}</main>
         <Footer />
+        <FloatingCartButton />
+        </CartProvider>
       </body>
     </html>
   );
