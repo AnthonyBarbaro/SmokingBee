@@ -1,8 +1,8 @@
-// src/components/ProductCard.tsx
 "use client";
 
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import AddToCartButton from "@/components/AddToCartButton";
 
 interface ProductCardProps {
@@ -23,21 +23,28 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
-  // We'll just alias `product.node` to `pnode` for clarity
   const pnode = product.node;
   const { title, description, handle, images } = pnode;
   const firstImage = images?.edges[0]?.node;
 
+  // If you prefer direct routing instead of a Link wrapper,
+  // you can do onClick => router.push(...) logic:
+  // const router = useRouter();
+
   return (
-    <div className="group bg-white rounded-lg shadow-lg hover:shadow-xl transition p-4 border border-gray-200">
+    <Link href={`/product/${handle}`} className="relative group bg-white rounded-lg shadow-lg hover:shadow-xl transition border border-gray-200 overflow-hidden">
+      {/* Card Container
+          - We wrap the whole card with <Link> so clicking anywhere navigates.
+          - We'll place the plus button absolutely so it doesn't block the entire card click. 
+      */}
+      
       {/* Product Image */}
-      <div className="relative w-full h-48 md:h-64 overflow-hidden rounded-t-lg">
+      <div className="relative w-full h-48 md:h-64">
         {firstImage?.url ? (
           <Image
             src={firstImage.url}
             alt={firstImage.altText || title}
-            width={500}
-            height={500}
+            fill
             className="object-cover group-hover:scale-105 transition-transform duration-300"
           />
         ) : (
@@ -53,17 +60,26 @@ export default function ProductCard({ product }: ProductCardProps) {
         <p className="text-sm text-gray-600 line-clamp-3 mb-4">{description}</p>
       </div>
 
-      {/* Buttons */}
-      <div className="flex justify-between items-center px-4 pb-4">
-        <Link href={`/product/${handle}`}>
-          <button className="bg-gold text-dark font-bold px-4 py-2 rounded hover:bg-yellow-500 transition">
-            View Details
-          </button>
-        </Link>
-
-        {/* Use the dedicated AddToCartButton component */}
-        <AddToCartButton product={pnode} />
+      {/* Circular “+” Icon in top-right for Add to Cart */}
+      <div 
+        className="absolute top-3 right-3"
+        onClick={(e) => e.stopPropagation()} 
+        /* Stop the Link from firing when clicking the plus */
+      >
+        <PlusAddToCart product={pnode} />
       </div>
+    </Link>
+  );
+}
+
+/** 
+ * A small custom component for the gold plus. 
+ * We wrap the usual AddToCartButton logic in a circle button.
+ */
+function PlusAddToCart({ product }: { product: any }) {
+  return (
+    <div className="bg-gold w-10 h-10 rounded-full flex items-center justify-center cursor-pointer hover:bg-yellow-500 transition">
+      <AddToCartButton product={product} plusIcon />
     </div>
   );
 }

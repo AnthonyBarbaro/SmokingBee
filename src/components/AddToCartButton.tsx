@@ -1,28 +1,30 @@
 // src/components/AddToCartButton.tsx
 "use client";
-
 import { useCart } from "@/context/CartContext";
 
-export default function AddToCartButton({ product }: { product: any }) {
+export default function AddToCartButton({ product, plusIcon }: { product: any, plusIcon?: boolean }) {
   const { addToCart } = useCart();
+  const variantId = product.variants?.edges[0]?.node?.id;
 
-  // We'll assume the first variant is the default
-  const variantId = product.variants?.edges?.[0]?.node?.id;
-
-  async function handleAddToCart() {
-    if (!variantId) {
-      alert("No variant available for this product!");
-      return;
-    }
+  async function handleClick(e: React.MouseEvent) {
+    e.preventDefault(); // if inside a <Link>, we don't want to follow the link
     await addToCart(variantId, 1);
-    // Optionally show a toast: "Added to cart!"
   }
 
+  if (plusIcon) {
+    return (
+      <button
+        onClick={handleClick}
+        className="text-dark font-bold"
+      >
+        +
+      </button>
+    );
+  }
+
+  // fallback normal button
   return (
-    <button
-      onClick={handleAddToCart}
-      className="bg-gold text-dark font-bold py-2 px-4 rounded hover:bg-yellow-500 transition"
-    >
+    <button onClick={handleClick} className="bg-dark text-white px-4 py-2 rounded">
       Add to Cart
     </button>
   );
