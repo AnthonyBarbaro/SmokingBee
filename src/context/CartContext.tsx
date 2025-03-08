@@ -1,16 +1,15 @@
-// src/context/CartContext.tsx
 "use client";
 
 import React, { createContext, useContext, useState, useEffect } from "react";
 
-/** 
- * CART CONTEXT TYPES
- */
+/** CART CONTEXT TYPES */
 interface CartItem {
   id: string;       // Shopify line ID
-  title: string;    // We'll store the *product* name (and optionally variant name)
+  title: string;    // Product/variant title
   quantity: number;
-  variantId: string; 
+  variantId: string;
+  price: number;    // Price for ONE item of this line
+  image?: string;   // Optional: product/variant image URL
 }
 
 interface CartContextValue {
@@ -19,26 +18,24 @@ interface CartContextValue {
   lines: CartItem[];
   totalQuantity: number;
   addToCart: (variantId: string, quantity?: number) => Promise<void>;
+  updateLine: (lineId: string, newQuantity: number) => Promise<void>;
   removeLine: (lineId: string) => Promise<void>;
   goToCheckout: () => void;
 }
 
-/**
- * CREATE CONTEXT
- */
+/** CREATE CONTEXT */
 const CartContext = createContext<CartContextValue>({
   cartId: null,
   checkoutUrl: null,
   lines: [],
   totalQuantity: 0,
   addToCart: async () => {},
+  updateLine: async () => {},
   removeLine: async () => {},
   goToCheckout: () => {},
 });
 
-/**
- * HELPER: Shopify Fetch via /api/shopify
- */
+/** HELPER: /api/shopify GraphQL */
 async function shopifyFetch(query: string, variables: any) {
   const res = await fetch("/api/shopify", {
     method: "POST",
@@ -54,10 +51,7 @@ async function shopifyFetch(query: string, variables: any) {
   return json.data;
 }
 
-/**
- * 1) cartCreate
- *  - Adds `product { title }` in `merchandise`.
- */
+/** 1) cartCreate */
 async function cartCreate(variantId: string, quantity: number) {
   const query = `
     mutation cartCreate($input: CartInput!) {
@@ -65,7 +59,7 @@ async function cartCreate(variantId: string, quantity: number) {
         cart {
           id
           checkoutUrl
-          lines(first: 25) {
+          lines(first:25) {
             edges {
               node {
                 id
@@ -74,8 +68,13 @@ async function cartCreate(variantId: string, quantity: number) {
                   ... on ProductVariant {
                     id
                     title
-                    product {
-                      title
+                    product { title }
+                    price {
+                      amount
+                      currencyCode
+                    }
+                    image {
+                      url
                     }
                   }
                 }
@@ -83,13 +82,10 @@ async function cartCreate(variantId: string, quantity: number) {
             }
           }
         }
-        userErrors {
-          message
-        }
+        userErrors { message }
       }
     }
   `;
-
   const variables = {
     input: {
       lines: [
@@ -105,9 +101,7 @@ async function cartCreate(variantId: string, quantity: number) {
   return data.cartCreate.cart;
 }
 
-/**
- * 2) cartLinesAdd
- */
+/** 2) cartLinesAdd */
 async function cartLinesAdd(cartId: string, variantId: string, quantity: number) {
   const query = `
     mutation cartLinesAdd($cartId: ID!, $lines: [CartLineInput!]!) {
@@ -124,8 +118,13 @@ async function cartLinesAdd(cartId: string, variantId: string, quantity: number)
                   ... on ProductVariant {
                     id
                     title
-                    product {
-                      title
+                    product { title }
+                    price {
+                      amount
+                      currencyCode
+                    }
+                    image {
+                      url
                     }
                   }
                 }
@@ -133,29 +132,20 @@ async function cartLinesAdd(cartId: string, variantId: string, quantity: number)
             }
           }
         }
-        userErrors {
-          message
-        }
+        userErrors { message }
       }
     }
   `;
   const variables = {
     cartId,
-    lines: [
-      {
-        merchandiseId: variantId,
-        quantity,
-      },
-    ],
+    lines: [{ merchandiseId: variantId, quantity }],
   };
 
   const data = await shopifyFetch(query, variables);
   return data.cartLinesAdd.cart;
 }
 
-/**
- * 3) cartLinesRemove
- */
+/** 3) cartLinesRemove */
 async function cartLinesRemove(cartId: string, lineId: string) {
   const query = `
     mutation cartLinesRemove($cartId: ID!, $lineIds: [ID!]!) {
@@ -172,8 +162,13 @@ async function cartLinesRemove(cartId: string, lineId: string) {
                   ... on ProductVariant {
                     id
                     title
-                    product {
-                      title
+                    product { title }
+                    price {
+                      amount
+                      currencyCode
+                    }
+                    image {
+                      url
                     }
                   }
                 }
@@ -181,25 +176,67 @@ async function cartLinesRemove(cartId: string, lineId: string) {
             }
           }
         }
-        userErrors {
-          message
+        userErrors { message }
+      }
+    }
+  `;
+
+  const variables = { cartId, lineIds: [lineId] };
+  const data = await shopifyFetch(query, variables);
+  return data.cartLinesRemove.cart;
+}
+
+/** 4) cartLinesUpdate - For changing quantity */
+async function cartLinesUpdate(cartId: string, lineId: string, newQuantity: number) {
+  const query = `
+    mutation cartLinesUpdate($cartId: ID!, $lines: [CartLineUpdateInput!]!) {
+      cartLinesUpdate(cartId: $cartId, lines: $lines) {
+        cart {
+          id
+          checkoutUrl
+          lines(first:25) {
+            edges {
+              node {
+                id
+                quantity
+                merchandise {
+                  ... on ProductVariant {
+                    id
+                    title
+                    product { title }
+                    price {
+                      amount
+                      currencyCode
+                    }
+                    image {
+                      url
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
+        userErrors { message }
       }
     }
   `;
 
   const variables = {
     cartId,
-    lineIds: [lineId],
+    lines: [
+      {
+        id: lineId,
+        quantity: newQuantity,
+      },
+    ],
   };
 
   const data = await shopifyFetch(query, variables);
-  return data.cartLinesRemove.cart;
+  return data.cartLinesUpdate.cart;
 }
 
-/**
- * CART PROVIDER
- */
+/** CART PROVIDER */
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [cartId, setCartId] = useState<string | null>(null);
   const [checkoutUrl, setCheckoutUrl] = useState<string | null>(null);
@@ -207,23 +244,18 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   // Load from localStorage on mount
   useEffect(() => {
-    const storedCartId = localStorage.getItem("cart_id");
-    const storedCheckoutUrl = localStorage.getItem("checkout_url");
+    const storedId = localStorage.getItem("cart_id");
+    const storedUrl = localStorage.getItem("checkout_url");
     const storedLines = localStorage.getItem("cart_lines");
-
-    if (storedCartId) setCartId(storedCartId);
-    if (storedCheckoutUrl) setCheckoutUrl(storedCheckoutUrl);
+    if (storedId) setCartId(storedId);
+    if (storedUrl) setCheckoutUrl(storedUrl);
     if (storedLines) setLines(JSON.parse(storedLines));
   }, []);
 
-  // Helper: Sync to localStorage
-  function syncLocalStorage(
-    newCartId: string,
-    newCheckoutUrl: string,
-    newLines: CartItem[]
-  ) {
-    localStorage.setItem("cart_id", newCartId);
-    localStorage.setItem("checkout_url", newCheckoutUrl);
+  // Sync localStorage
+  function syncLocalStorage(cartId: string, checkoutUrl: string, newLines: CartItem[]) {
+    localStorage.setItem("cart_id", cartId);
+    localStorage.setItem("checkout_url", checkoutUrl);
     localStorage.setItem("cart_lines", JSON.stringify(newLines));
   }
 
@@ -236,38 +268,50 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       } else {
         cartData = await cartLinesAdd(cartId, variantId, quantity);
       }
-
       if (cartData) {
         setCartId(cartData.id);
         setCheckoutUrl(cartData.checkoutUrl);
-
-        // Map the lines
-        const mappedLines: CartItem[] = cartData.lines.edges.map(({ node }: any) => {
-          // Use the *product's* title if you want the product name,
-          // or combine with the variant title if needed.
-          const productTitle = node.merchandise.product.title;
-          const variantTitle = node.merchandise.title;
-
-          // If the variant title is "Default Title", just use the product name
-          // Otherwise, combine them (e.g. "Product Name - Blue")
-          let displayTitle = productTitle;
-          if (variantTitle && variantTitle !== "Default Title") {
-            displayTitle += ` - ${variantTitle}`;
-          }
-
-          return {
-            id: node.id,
-            title: displayTitle,
-            quantity: node.quantity,
-            variantId: node.merchandise.id,
-          };
-        });
-
-        setLines(mappedLines);
-        syncLocalStorage(cartData.id, cartData.checkoutUrl, mappedLines);
+        const mapped: CartItem[] = cartData.lines.edges.map(({ node }: any) => ({
+          id: node.id,
+          title: node.merchandise.title === "Default Title"
+            ? node.merchandise.product.title
+            : `${node.merchandise.product.title} - ${node.merchandise.title}`,
+          quantity: node.quantity,
+          variantId: node.merchandise.id,
+          price: parseFloat(node.merchandise.price.amount),
+          image: node.merchandise.image?.url,
+        }));
+        setLines(mapped);
+        syncLocalStorage(cartData.id, cartData.checkoutUrl, mapped);
       }
     } catch (err) {
       console.error("Failed to add to cart:", err);
+    }
+  }
+
+  // Update line quantity
+  async function updateLine(lineId: string, newQuantity: number) {
+    if (!cartId) return;
+    try {
+      const cartData = await cartLinesUpdate(cartId, lineId, newQuantity);
+      if (cartData) {
+        setCartId(cartData.id);
+        setCheckoutUrl(cartData.checkoutUrl);
+        const mapped: CartItem[] = cartData.lines.edges.map(({ node }: any) => ({
+          id: node.id,
+          title: node.merchandise.title === "Default Title"
+            ? node.merchandise.product.title
+            : `${node.merchandise.product.title} - ${node.merchandise.title}`,
+          quantity: node.quantity,
+          variantId: node.merchandise.id,
+          price: parseFloat(node.merchandise.price.amount),
+          image: node.merchandise.image?.url,
+        }));
+        setLines(mapped);
+        syncLocalStorage(cartData.id, cartData.checkoutUrl, mapped);
+      }
+    } catch (err) {
+      console.error("Failed to update line:", err);
     }
   }
 
@@ -279,36 +323,28 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       if (cartData) {
         setCartId(cartData.id);
         setCheckoutUrl(cartData.checkoutUrl);
-
-        const mappedLines: CartItem[] = cartData.lines.edges.map(({ node }: any) => {
-          const productTitle = node.merchandise.product.title;
-          const variantTitle = node.merchandise.title;
-
-          let displayTitle = productTitle;
-          if (variantTitle && variantTitle !== "Default Title") {
-            displayTitle += ` - ${variantTitle}`;
-          }
-
-          return {
-            id: node.id,
-            title: displayTitle,
-            quantity: node.quantity,
-            variantId: node.merchandise.id,
-          };
-        });
-
-        setLines(mappedLines);
-        syncLocalStorage(cartData.id, cartData.checkoutUrl, mappedLines);
+        const mapped: CartItem[] = cartData.lines.edges.map(({ node }: any) => ({
+          id: node.id,
+          title: node.merchandise.title === "Default Title"
+            ? node.merchandise.product.title
+            : `${node.merchandise.product.title} - ${node.merchandise.title}`,
+          quantity: node.quantity,
+          variantId: node.merchandise.id,
+          price: parseFloat(node.merchandise.price.amount),
+          image: node.merchandise.image?.url,
+        }));
+        setLines(mapped);
+        syncLocalStorage(cartData.id, cartData.checkoutUrl, mapped);
       }
     } catch (err) {
       console.error("Failed to remove line:", err);
     }
   }
 
-  // Sum of all quantities
+  // totalQuantity
   const totalQuantity = lines.reduce((sum, item) => sum + item.quantity, 0);
 
-  // Go to Shopify checkout
+  // goToCheckout
   function goToCheckout() {
     if (checkoutUrl) {
       window.location.href = checkoutUrl;
@@ -323,6 +359,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         lines,
         totalQuantity,
         addToCart,
+        updateLine,
         removeLine,
         goToCheckout,
       }}
@@ -332,9 +369,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   );
 }
 
-/**
- * Custom hook for using the cart
- */
+/** Custom hook to consume the cart */
 export function useCart() {
   return useContext(CartContext);
 }
