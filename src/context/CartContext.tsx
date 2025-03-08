@@ -7,10 +7,10 @@ import React, { createContext, useContext, useState, useEffect } from "react";
  * CART CONTEXT TYPES
  */
 interface CartItem {
-  id: string;      // Cart line ID
-  title: string;   // Variant title
+  id: string;       // Shopify line ID
+  title: string;    // We'll store the *product* name (and optionally variant name)
   quantity: number;
-  variantId: string; // The variant ID
+  variantId: string; 
 }
 
 interface CartContextValue {
@@ -56,6 +56,7 @@ async function shopifyFetch(query: string, variables: any) {
 
 /**
  * 1) cartCreate
+ *  - Adds `product { title }` in `merchandise`.
  */
 async function cartCreate(variantId: string, quantity: number) {
   const query = `
@@ -73,6 +74,9 @@ async function cartCreate(variantId: string, quantity: number) {
                   ... on ProductVariant {
                     id
                     title
+                    product {
+                      title
+                    }
                   }
                 }
               }
@@ -90,7 +94,7 @@ async function cartCreate(variantId: string, quantity: number) {
     input: {
       lines: [
         {
-          merchandiseId: variantId, // The global variant ID
+          merchandiseId: variantId,
           quantity,
         },
       ],
@@ -120,6 +124,9 @@ async function cartLinesAdd(cartId: string, variantId: string, quantity: number)
                   ... on ProductVariant {
                     id
                     title
+                    product {
+                      title
+                    }
                   }
                 }
               }
@@ -165,6 +172,9 @@ async function cartLinesRemove(cartId: string, lineId: string) {
                   ... on ProductVariant {
                     id
                     title
+                    product {
+                      title
+                    }
                   }
                 }
               }
@@ -195,38 +205,35 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const [checkoutUrl, setCheckoutUrl] = useState<string | null>(null);
   const [lines, setLines] = useState<CartItem[]>([]);
 
-  /**
-   * On mount, load from localStorage
-   */
+  // Load from localStorage on mount
   useEffect(() => {
     const storedCartId = localStorage.getItem("cart_id");
     const storedCheckoutUrl = localStorage.getItem("checkout_url");
     const storedLines = localStorage.getItem("cart_lines");
+
     if (storedCartId) setCartId(storedCartId);
     if (storedCheckoutUrl) setCheckoutUrl(storedCheckoutUrl);
     if (storedLines) setLines(JSON.parse(storedLines));
   }, []);
 
-  /**
-   * Helper to sync to localStorage
-   */
-  function syncLocalStorage(cartId: string, checkoutUrl: string, lines: CartItem[]) {
-    localStorage.setItem("cart_id", cartId);
-    localStorage.setItem("checkout_url", checkoutUrl);
-    localStorage.setItem("cart_lines", JSON.stringify(lines));
+  // Helper: Sync to localStorage
+  function syncLocalStorage(
+    newCartId: string,
+    newCheckoutUrl: string,
+    newLines: CartItem[]
+  ) {
+    localStorage.setItem("cart_id", newCartId);
+    localStorage.setItem("checkout_url", newCheckoutUrl);
+    localStorage.setItem("cart_lines", JSON.stringify(newLines));
   }
 
-  /**
-   * Add to cart
-   */
+  // Add to cart
   async function addToCart(variantId: string, quantity = 1) {
     try {
       let cartData;
       if (!cartId) {
-        // If no cart, create a new one
         cartData = await cartCreate(variantId, quantity);
       } else {
-        // If cart exists, add lines
         cartData = await cartLinesAdd(cartId, variantId, quantity);
       }
 
@@ -234,25 +241,37 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         setCartId(cartData.id);
         setCheckoutUrl(cartData.checkoutUrl);
 
-        // Convert lines from edges
-        const newLines: CartItem[] = cartData.lines.edges.map(({ node }: any) => ({
-          id: node.id,
-          title: node.merchandise.title,
-          quantity: node.quantity,
-          variantId: node.merchandise.id,
-        }));
+        // Map the lines
+        const mappedLines: CartItem[] = cartData.lines.edges.map(({ node }: any) => {
+          // Use the *product's* title if you want the product name,
+          // or combine with the variant title if needed.
+          const productTitle = node.merchandise.product.title;
+          const variantTitle = node.merchandise.title;
 
-        setLines(newLines);
-        syncLocalStorage(cartData.id, cartData.checkoutUrl, newLines);
+          // If the variant title is "Default Title", just use the product name
+          // Otherwise, combine them (e.g. "Product Name - Blue")
+          let displayTitle = productTitle;
+          if (variantTitle && variantTitle !== "Default Title") {
+            displayTitle += ` - ${variantTitle}`;
+          }
+
+          return {
+            id: node.id,
+            title: displayTitle,
+            quantity: node.quantity,
+            variantId: node.merchandise.id,
+          };
+        });
+
+        setLines(mappedLines);
+        syncLocalStorage(cartData.id, cartData.checkoutUrl, mappedLines);
       }
     } catch (err) {
       console.error("Failed to add to cart:", err);
     }
   }
 
-  /**
-   * Remove a line from the cart
-   */
+  // Remove line
   async function removeLine(lineId: string) {
     if (!cartId) return;
     try {
@@ -261,26 +280,35 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         setCartId(cartData.id);
         setCheckoutUrl(cartData.checkoutUrl);
 
-        const newLines: CartItem[] = cartData.lines.edges.map(({ node }: any) => ({
-          id: node.id,
-          title: node.merchandise.title,
-          quantity: node.quantity,
-          variantId: node.merchandise.id,
-        }));
+        const mappedLines: CartItem[] = cartData.lines.edges.map(({ node }: any) => {
+          const productTitle = node.merchandise.product.title;
+          const variantTitle = node.merchandise.title;
 
-        setLines(newLines);
-        syncLocalStorage(cartData.id, cartData.checkoutUrl, newLines);
+          let displayTitle = productTitle;
+          if (variantTitle && variantTitle !== "Default Title") {
+            displayTitle += ` - ${variantTitle}`;
+          }
+
+          return {
+            id: node.id,
+            title: displayTitle,
+            quantity: node.quantity,
+            variantId: node.merchandise.id,
+          };
+        });
+
+        setLines(mappedLines);
+        syncLocalStorage(cartData.id, cartData.checkoutUrl, mappedLines);
       }
     } catch (err) {
       console.error("Failed to remove line:", err);
     }
   }
 
+  // Sum of all quantities
   const totalQuantity = lines.reduce((sum, item) => sum + item.quantity, 0);
 
-  /**
-   * Redirect to Shopify-hosted checkout
-   */
+  // Go to Shopify checkout
   function goToCheckout() {
     if (checkoutUrl) {
       window.location.href = checkoutUrl;
@@ -305,7 +333,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 }
 
 /**
- * useCart Hook
+ * Custom hook for using the cart
  */
 export function useCart() {
   return useContext(CartContext);
