@@ -18,13 +18,14 @@
     "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
+    "@next/eslint-plugin-next": "^15.2.2",
     "@types/node": "^20",
     "@types/nodemailer": "^6.4.17",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@types/react-slick": "^0.23.13",
     "autoprefixer": "^10.4.20",
-    "eslint": "^8",
+    "eslint": "^9.22.0",
     "eslint-config-next": "13.x",
     "postcss": "^8.5.3",
     "tailwindcss": "^3.4.17",
