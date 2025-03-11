@@ -10,11 +10,11 @@ export default function CartPage() {
   // If cart is empty
   if (lines.length < 1) {
     return (
-      <div className="min-h-screen bg-dark text-white flex flex-col items-center justify-center">
-        <h1 className="text-2xl mb-4">Your cart is empty</h1>
+      <div className="min-h-screen bg-white text-gray-900 flex flex-col items-center justify-center text-center">
+        <h1 className="text-3xl font-bold mb-4">Your cart is empty</h1>
         <Link
           href="/shop"
-          className="bg-gold text-dark font-bold py-2 px-4 rounded hover:bg-yellow-500 transition"
+          className="bg-gold text-dark font-bold py-3 px-6 rounded hover:bg-yellow-500 transition"
         >
           Continue Shopping
         </Link>
@@ -22,8 +22,6 @@ export default function CartPage() {
     );
   }
 
-  // We'll compute an overall cart total by summing line item totals
-  // (line total = item.price * item.quantity)
   const cartTotal = lines.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   function handleCheckout() {
@@ -35,94 +33,61 @@ export default function CartPage() {
     }
   }
 
-  // A utility to format money
   function formatPrice(amount: number) {
     return `$${amount.toFixed(2)}`;
   }
 
   return (
-    <div className="min-h-screen bg-dark text-white px-8 py-10">
-      {/* Page Title */}
-      <h1 className="text-3xl font-bold mb-8">Your Cart</h1>
-
-      {/* Cart Container */}
-      <div className="overflow-x-auto bg-gray-800 rounded shadow-lg">
+    <div className="min-h-screen bg-white text-gray-900 flex flex-col items-center px-8 py-16 text-center">
+      <h1 className="text-4xl font-bold mb-8">Your Cart</h1>
+      
+      <div className="w-full max-w-4xl bg-gray-100 rounded-lg shadow-lg overflow-hidden p-6">
         <table className="w-full text-left">
-          <thead className="text-gray-400 uppercase text-sm border-b border-gray-700">
-            <tr className="bg-gray-900/60">
+          <thead className="text-gray-700 uppercase text-sm border-b border-gray-300">
+            <tr className="bg-gray-200">
               <th className="py-3 px-4 font-medium">Product</th>
-              <th className="py-3 px-4 font-medium w-20 text-center">Price</th>
-              <th className="py-3 px-4 font-medium w-32 text-center">Quantity</th>
-              <th className="py-3 px-4 font-medium w-20 text-center">Total</th>
-              <th className="py-3 px-4 font-medium w-16 text-right" />
+              <th className="py-3 px-4 font-medium text-center">Price</th>
+              <th className="py-3 px-4 font-medium text-center">Quantity</th>
+              <th className="py-3 px-4 font-medium text-center">Total</th>
+              <th className="py-3 px-4 font-medium text-right" />
             </tr>
           </thead>
           <tbody>
             {lines.map((item) => {
-              // We'll show line total = item.price * item.quantity
               const lineTotal = item.price * item.quantity;
-
               return (
-                <tr
-                  key={item.id}
-                  className="border-b border-gray-700 hover:bg-gray-900/30 transition-colors"
-                >
-                  {/* Product Info */}
+                <tr key={item.id} className="border-b border-gray-300 hover:bg-gray-200 transition-colors">
                   <td className="py-5 px-4">
                     <div className="flex items-center gap-3">
                       {item.image ? (
-                        <Image
-                          src={item.image}
-                          alt={item.title}
-                          width={60}
-                          height={60}
-                          className="object-cover rounded"
-                        />
+                        <Image src={item.image} alt={item.title} width={60} height={60} className="object-cover rounded" />
                       ) : (
-                        <div className="w-[60px] h-[60px] bg-gray-500 rounded flex items-center justify-center text-xs">
+                        <div className="w-[60px] h-[60px] bg-gray-400 rounded flex items-center justify-center text-xs">
                           No Image
                         </div>
                       )}
-                      <span className="font-bold text-white">{item.title}</span>
+                      <span className="font-bold text-gray-900">{item.title}</span>
                     </div>
                   </td>
-
-                  {/* Price */}
-                  <td className="py-5 px-4 text-center">
-                    {formatPrice(item.price)}
-                  </td>
-
-                  {/* Quantity with +/- controls */}
+                  <td className="py-5 px-4 text-center">{formatPrice(item.price)}</td>
                   <td className="py-5 px-4 text-center">
                     <div className="inline-flex items-center">
                       <button
-                        onClick={() => {
-                          if (item.quantity > 1) {
-                            updateLine(item.id, item.quantity - 1);
-                          }
-                        }}
-                        className="bg-gray-600 text-white px-2 py-1 rounded-l hover:bg-gray-500"
+                        onClick={() => item.quantity > 1 && updateLine(item.id, item.quantity - 1)}
+                        className="bg-gray-400 text-white px-2 py-1 rounded-l hover:bg-gray-500"
                       >
                         -
                       </button>
-                      <span className="bg-gray-700 px-4 py-1">
-                        {item.quantity}
-                      </span>
+                      <span className="bg-gray-300 px-4 py-1">{item.quantity}</span>
                       <button
                         onClick={() => updateLine(item.id, item.quantity + 1)}
-                        className="bg-gray-600 text-white px-2 py-1 rounded-r hover:bg-gray-500"
+                        className="bg-gray-400 text-white px-2 py-1 rounded-r hover:bg-gray-500"
                       >
                         +
                       </button>
                     </div>
                   </td>
-
-                  {/* Line Total */}
-                  <td className="py-5 px-4 text-center">
-                    {formatPrice(lineTotal)}
-                  </td>
-
-                  {/* Remove button */}
+                  <td className="py-5 px-4 text-center">{formatPrice(lineTotal)}</td>
                   <td className="py-5 px-4 text-right">
                     <button
                       onClick={() => removeLine(item.id)}
@@ -138,18 +103,9 @@ export default function CartPage() {
         </table>
       </div>
 
-      {/* Cart summary / checkout */}
-      <div className="mt-10 bg-gray-800 p-6 rounded shadow-lg flex flex-col md:flex-row justify-between items-center">
-        <div className="mb-4 md:mb-0 text-lg space-y-2">
-          <p>
-            <span className="text-gray-300">Total items:</span>{" "}
-            <span className="font-bold text-white">{totalQuantity}</span>
-          </p>
-          <p>
-            <span className="text-gray-300">Cart total:</span>{" "}
-            <span className="font-bold text-white">{formatPrice(cartTotal)}</span>
-          </p>
-        </div>
+      <div className="mt-10 bg-gray-100 p-6 rounded-lg shadow-lg text-lg max-w-3xl w-full text-center">
+        <p className="text-gray-700 mb-2">Total items: <span className="font-bold text-gray-900">{totalQuantity}</span></p>
+        <p className="text-gray-700 mb-4">Cart total: <span className="font-bold text-gray-900">{formatPrice(cartTotal)}</span></p>
         <button
           onClick={handleCheckout}
           className="bg-gold text-dark font-bold py-2 px-6 rounded hover:bg-yellow-500 transition"
@@ -158,7 +114,7 @@ export default function CartPage() {
         </button>
       </div>
 
-      <p className="text-gray-400 mt-6 text-sm max-w-md">
+      <p className="text-gray-600 mt-6 text-sm max-w-md">
         Note: You’ll be redirected to our secure Shopify checkout to complete your purchase. 
         You can update your cart at any time before checkout.
       </p>
