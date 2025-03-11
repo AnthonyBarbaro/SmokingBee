@@ -2,7 +2,7 @@
 import { getProductByHandle } from "@/lib/shopify";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import AddToCartButton from "@/components/AddToCartButton"; // We'll define next
+import AddToCartButton from "@/components/AddToCartButton";
 
 interface ProductPageProps {
   params: { handle: string };
@@ -10,11 +10,10 @@ interface ProductPageProps {
 
 export default async function ProductPage({ params }: ProductPageProps) {
   const product = await getProductByHandle(params.handle);
-
   if (!product) {
     notFound();
   }
-
+  
   const firstImage = product.images?.edges?.[0]?.node;
 
   return (
