@@ -16,7 +16,8 @@ interface CategoryCardProps {
 }
 
 export default function CategoryCard({ category }: CategoryCardProps) {
-  const { title, handle, image } = category.node;
+  //const { title, handle, image } = category.node; when we use handles later
+  const { title, image } = category.node;
 
   return (
     <div className="group bg-white rounded shadow hover:shadow-lg transition overflow-hidden">

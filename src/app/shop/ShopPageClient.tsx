@@ -48,7 +48,8 @@ export default function ShopPageClient({ categories, products }: any) {
   }, []);
 
   const featuredCategories = categories.slice(0, 5);
-  const featuredProducts = products.slice(0, 6);
+  // enable later
+  //const featuredProducts = products.slice(0, 6);
 
   // 2) For the rotating categories:
   const [catIndex, setCatIndex] = useState(0);

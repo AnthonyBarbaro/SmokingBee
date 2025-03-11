@@ -33,7 +33,7 @@ export default function ContactForm() {
         setSuccess("Thanks for reaching out! We’ll get back to you soon.");
         setFormData({ name: "", email: "", message: "" });
       }
-    } catch (err: any) {
+    } catch {
       setError("Something went wrong. Please try again later.");
     } finally {
       setLoading(false);

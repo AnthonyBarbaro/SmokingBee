@@ -1,6 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Head from "next/head";
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   description: "Discover premium glassware, vapes, and smoking accessories at The Smoking Bee in La Mesa, CA. Best selection and expert customer service!"
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }: { children: ReactNode  }) {
   return (
     <html lang="en">
       <Head>
