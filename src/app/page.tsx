@@ -6,7 +6,7 @@ import AnimatedProductSection from "@/components/AnimatedProductSection";
 import CTASection from "@/components/CTASection";
 import { getCollections, getAllProducts } from "@/lib/shopify";
 import Head from "next/head";
-
+import Script from "next/script";
 export default async function HomePage() {
   const [categories, products] = await Promise.all([
     getCollections(),
