@@ -160,7 +160,7 @@ export default function ShopPageClient({ categories, products }: any) {
           </motion.div>
         </section>
 
-        {/* ========== Featured Products (horizontal slider) ========== */}
+        {/* ========== Featured Products (horizontal slider) ========== 
         <section className="mb-14">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -192,7 +192,7 @@ export default function ShopPageClient({ categories, products }: any) {
             ))}
           </motion.div>
         </section>
-
+        */}
         {/* ========== All Products Grid ========== */}
         <section>
           <motion.div

@@ -44,7 +44,7 @@ export default function ContactForm() {
     <form onSubmit={handleSubmit} className="space-y-6 text-left bg-transparent p-6 rounded-md shadow-lg">
       {/* Name Field */}
       <div>
-        <label htmlFor="name" className="block mb-1 font-semibold text-white">
+        <label htmlFor="name" className="block mb-1 font-semibold text-black">
           Name
         </label>
         <input
@@ -52,7 +52,7 @@ export default function ContactForm() {
           id="name"
           name="name"
           required
-          className="w-full p-2 rounded text-dark"
+          className="w-full p-3 rounded bg-gray-200 text-dark border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gold"
           value={formData.name}
           onChange={handleChange}
         />
@@ -60,7 +60,7 @@ export default function ContactForm() {
 
       {/* Email Field */}
       <div>
-        <label htmlFor="email" className="block mb-1 font-semibold text-white">
+        <label htmlFor="email" className="block mb-1 font-semibold text-black">
           Email
         </label>
         <input
@@ -68,7 +68,7 @@ export default function ContactForm() {
           id="email"
           name="email"
           required
-          className="w-full p-2 rounded text-dark"
+          className="w-full p-3 rounded bg-gray-200 text-dark border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gold"
           value={formData.email}
           onChange={handleChange}
         />
@@ -76,7 +76,7 @@ export default function ContactForm() {
 
       {/* Message Field */}
       <div>
-        <label htmlFor="message" className="block mb-1 font-semibold text-white">
+        <label htmlFor="message" className="block mb-1 font-semibold text-black">
           Message
         </label>
         <textarea
@@ -84,7 +84,7 @@ export default function ContactForm() {
           name="message"
           required
           rows={5}
-          className="w-full p-2 rounded text-dark"
+          className="w-full p-3 rounded bg-gray-200 text-dark border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gold"
           value={formData.message}
           onChange={handleChange}
         />
