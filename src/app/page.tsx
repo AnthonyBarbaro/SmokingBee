@@ -35,9 +35,9 @@ export default async function HomePage() {
       {/* Animated Categories */}
       <AnimatedCategorySection categories={categories} />
 
-      {/* Animated Products */}
+      {/* Animated Products 
       <AnimatedProductSection products={products} />
-
+      */}
       {/* Testimonials Section */}
       <section className="py-16 px-6 bg-white">
         <Testimonials />
