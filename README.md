@@ -33,8 +33,9 @@ cd SmokingBee
  
  
 npm install
-# or
+or
 yarn install
+
 3️⃣ Set Up Environment Variables
 Create a .env.local file and add your Shopify credentials:
 
