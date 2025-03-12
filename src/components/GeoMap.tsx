@@ -12,8 +12,7 @@ export default function GeoMap() {
   useEffect(() => {
     if (typeof window !== "undefined") { // ✅ Ensures it's running only in the client
       const googleApiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
-      console.log("🔍 Google API Key:", googleApiKey); // ✅ Debugging line
-      
+    
       if (googleApiKey) {
         const testMapUrl = `https://www.google.com/maps/embed/v1/place?q=7584+University+Ave+Suite+B,+La+Mesa,+CA+91942&key=${googleApiKey}`;
 
