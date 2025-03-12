@@ -11,7 +11,6 @@ export default function Navbar() {
     <nav className="bg-[#C49A02] text-white px-6 py-4 flex items-center justify-between shadow-lg">
       {/* Logo / Brand */}
       <Link href="/">
-        {/* Using text-3xl + font-black for extra emphasis */}
         <span className="text-3xl font-black cursor-pointer tracking-wide hover:underline transition">
           THE SMOKING BEE
         </span>
@@ -25,19 +24,42 @@ export default function Navbar() {
         ☰
       </button>
 
-      {/* Menu Items */}
+      {/* Mobile Menu Overlay */}
       <div
-        className={`${
+        className={`fixed inset-0 bg-black bg-opacity-50 z-40 ${
           menuOpen ? "block" : "hidden"
-        } md:flex md:space-x-8 text-lg mt-4 md:mt-0`}
+        } md:hidden`}
+        onClick={() => setMenuOpen(false)}
+      />
+
+      {/* Mobile & Desktop Menu */}
+      <div
+        className={`fixed top-0 right-0 w-3/4 h-full bg-[#C49A02] text-white z-50 shadow-lg transform ${
+          menuOpen ? "translate-x-0" : "translate-x-full"
+        } transition-transform duration-300 md:relative md:w-auto md:h-auto md:bg-transparent md:shadow-none md:transform-none`}
       >
-        {["Home", "About", "Shop", "Contact"].map((item) => (
-          <Link key={item} href={item === "Home" ? "/" : `/${item.toLowerCase()}`}>
-            <span className="block py-2 md:py-0 font-extrabold hover:underline transition">
-              {item}
-            </span>
-          </Link>
-        ))}
+        {/* Close Button for Mobile */}
+        <button
+          className="absolute top-4 right-4 text-3xl md:hidden"
+          onClick={() => setMenuOpen(false)}
+        >
+          ✕
+        </button>
+
+        {/* Menu Items */}
+        <ul className="flex flex-col items-center mt-16 space-y-6 md:flex-row md:space-y-0 md:space-x-8 md:mt-0 text-lg">
+          {["Home", "About", "Shop", "Contact"].map((item) => (
+            <li key={item}>
+              <Link
+                href={item === "Home" ? "/" : `/${item.toLowerCase()}`}
+                className="block py-2 font-extrabold hover:underline transition text-center"
+                onClick={() => setMenuOpen(false)}
+              >
+                {item}
+              </Link>
+            </li>
+          ))}
+        </ul>
       </div>
     </nav>
   );
