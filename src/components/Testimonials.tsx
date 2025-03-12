@@ -11,7 +11,7 @@ const reviews = [
   { text: "Great prices and an amazing variety of smoking accessories!", author: "Samantha W." },
   { text: "I love the friendly atmosphere and the knowledgeable staff!", author: "Chris M." },
   { text: "Best smoke shop in town! They always have the latest products.", author: "Lisa K." },
-  { text: "My go-to place for quality glassware and vapes.", author: "David P." }
+  { text: "My go-to place for quality glassware and dab-pen batteries.", author: "David P." }
 ];
 
 export default function Testimonials() {
