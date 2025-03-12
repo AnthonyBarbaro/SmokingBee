@@ -2,10 +2,11 @@
 import HeroSection from "@/components/HeroSection";
 import Testimonials from "@/components/Testimonials";
 import AnimatedCategorySection from "@/components/AnimatedCategorySection";
-import AnimatedProductSection from "@/components/AnimatedProductSection";
+//import AnimatedProductSection from "@/components/AnimatedProductSection";
 import CTASection from "@/components/CTASection";
 import { getCollections, getAllProducts } from "@/lib/shopify";
 import Head from "next/head";
+import GeoMap from "@/components/GeoMap";
 
 export default async function HomePage() {
   const [categories, products] = await Promise.all([
@@ -38,6 +39,8 @@ export default async function HomePage() {
       {/* Animated Products 
       <AnimatedProductSection products={products} />
       */}
+      {/* Google Map Section */}
+      <GeoMap />
       {/* Testimonials Section */}
       <section className="py-16 px-6 bg-white">
         <Testimonials />
@@ -45,6 +48,7 @@ export default async function HomePage() {
 
       {/* About & Contact CTA Section */}
       <CTASection />
+
     </>
   );
 }

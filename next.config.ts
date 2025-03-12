@@ -5,7 +5,12 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "cdn.shopify.com",
-        pathname: "/**",
+        pathname: "/**", // ✅ Allows all Shopify images
+      },
+      {
+        protocol: "https",
+        hostname: "maps.googleapis.com", // ✅ Allows Google Maps Static API
+        pathname: "/maps/api/**"
       },
     ],
   },
