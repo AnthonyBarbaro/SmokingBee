@@ -12,6 +12,18 @@ interface AnimatedCategorySectionProps {
 
 export default function AnimatedCategorySection({ categories }: AnimatedCategorySectionProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect screen size for mobile adjustments
+  useEffect(() => {
+    function handleResize() {
+      setIsMobile(window.innerWidth < 768); // Mobile if width < 768px
+    }
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -39,17 +51,35 @@ export default function AnimatedCategorySection({ categories }: AnimatedCategory
       </motion.h2>
 
       <div className="max-w-6xl mx-auto overflow-hidden">
-        <motion.div
-          key={currentIndex}
-          initial={{ x: "33.33%" }}
-          animate={{ x: 0 }}
-          transition={{ duration: 0.8, ease: "easeInOut" }}
-          className="grid grid-cols-3 gap-8"
-        >
-          {visibleCategories.map((category) => (
-            <CategoryCard key={category.node.id} category={category} />
-          ))}
-        </motion.div>
+        {isMobile ? (
+          // ✅ Mobile View: Horizontal Scroll
+          <div className="flex overflow-x-auto gap-6 snap-x snap-mandatory pb-4 px-2">
+            {categories.map((category, index) => (
+              <motion.div
+                key={category.node.id}
+                className="snap-start flex-shrink-0 w-3/4 sm:w-1/2 md:w-1/3"
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: index * 0.2 }}
+              >
+                <CategoryCard category={category} />
+              </motion.div>
+            ))}
+          </div>
+        ) : (
+          // ✅ Desktop View: Grid Animation
+          <motion.div
+            key={currentIndex}
+            initial={{ x: "33.33%" }}
+            animate={{ x: 0 }}
+            transition={{ duration: 0.8, ease: "easeInOut" }}
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8"
+          >
+            {visibleCategories.map((category) => (
+              <CategoryCard key={category.node.id} category={category} />
+            ))}
+          </motion.div>
+        )}
       </div>
 
       <Link href="/shop">
