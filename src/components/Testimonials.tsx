@@ -52,7 +52,7 @@ export default function Testimonials() {
           transition={{ duration: 0.8, ease: "easeInOut" }}
           className="bg-white p-8 rounded shadow-lg text-left border-l-4 border-gold relative"
         >
-          <p className="italic text-gray-700 mb-4 text-lg">"{reviews[currentIndex].text}"</p>
+          <p className="italic text-gray-700 mb-4 text-lg">&quot;{reviews[currentIndex].text}&quot;</p>
           <p className="font-semibold text-gold">- {reviews[currentIndex].author}</p>
           <div className="absolute bottom-4 right-4 text-yellow-500 flex space-x-1">
             {[...Array(5)].map((_, i) => (

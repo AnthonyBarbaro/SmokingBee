@@ -16,7 +16,7 @@ export default async function HomePage() {
   return (
     <>
       <Head>
-        <title>The Smoking Bee | La Mesa's Premier Smoke Shop</title>
+        <title>The Smoking Bee | La Mesa&apos;s Premier Smoke Shop</title>
         <meta name="description" content="The Smoking Bee is the best smoke shop in La Mesa, CA, offering premium glassware, vapes, and smoking accessories. Visit us today!" />
         <meta name="keywords" content="smoke shop La Mesa, best smoke shop in La Mesa, vapes, glass pipes, smoking accessories, premium glassware, smoke shop near me, puffco" />
         <meta name="author" content="The Smoking Bee" />

@@ -21,7 +21,7 @@ export default function CTASection() {
         transition={{ duration: 0.6, delay: 0.2 }}
         className="max-w-3xl mx-auto mb-10 text-lg"
       >
-        Proudly serving La Mesa and surrounding areas, The Smoking Bee is your destination for premium glassware, vapes, smoking accessories, and exceptional customer service. Discover why we're La Mesa's favorite smoke shop.
+        Proudly serving La Mesa and surrounding areas, The Smoking Bee is your destination for premium glassware, vapes, smoking accessories, and exceptional customer service. Discover why we&apos;re La Mesa&apos;s favorite smoke shop.
       </motion.p>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
