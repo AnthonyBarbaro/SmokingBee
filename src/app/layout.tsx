@@ -4,7 +4,7 @@ import type { ReactNode } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { CartProvider } from "@/context/CartContext";
-import FloatingCartButton from "@/components/FloatingCartButton";
+//import FloatingCartButton from "@/components/FloatingCartButton";
 import ClientMetadata from "@/components/ClientMetadata"; // ✅ Import Client Component
 
 export const metadata: Metadata = {
@@ -14,14 +14,14 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className="flex flex-col min-h-screen">
         <CartProvider>
           <ClientMetadata /> {/* ✅ Render Metadata Client-Side */}
           <Navbar />
           <main className="flex-grow">{children}</main>
           <Footer />
-          <FloatingCartButton />
+         {/* <FloatingCartButton />*/}
         </CartProvider>
       </body>
     </html>
