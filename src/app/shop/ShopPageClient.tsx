@@ -194,7 +194,7 @@ export default function ShopPageClient({ categories, products }: any) {
           </motion.div>
         </section>
         */}
-        {/* ========== All Products Grid ========== */}
+        {/* ========== All Products Grid ========== 
         <section>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -216,8 +216,9 @@ export default function ShopPageClient({ categories, products }: any) {
               <ProductCard key={product.node.id} product={product} />
             ))}
           </motion.div>
-        </section>
+        </section>    */}
       </div>
+  
 
       {/* Bottom CTA */}
       <section className="bg-gold text-dark text-center py-8 mt-10">

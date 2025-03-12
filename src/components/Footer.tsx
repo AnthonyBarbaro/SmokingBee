@@ -22,16 +22,19 @@ export default function Footer() {
             <p className="text-sm text-gray-300">Email: info@thesmokingbee.com</p>
           </div>
   
-          {/* Social Media */}
+          {/* Social Media*/}
           <div>
             <h4 className="font-semibold mb-2">Follow Us</h4>
             <div className="flex space-x-4">
-              <a href="#" className="hover:text-gold transition">Instagram</a>
+            <a href="#" className="hover:text-gold transition">Social Media Coming Soon </a>
+                {/* Social Media 
+              <a href="#" className="hover:text-gold transition">Instagram </a>
               <a href="#" className="hover:text-gold transition">Facebook</a>
               <a href="#" className="hover:text-gold transition">Twitter</a>
+              */}
             </div>
           </div>
-        </div>
+        </div> 
   
         <div className="border-t border-white/20 pt-4 text-center text-sm">
           <p>© {currentYear} The Smoking Bee. All rights reserved.</p>

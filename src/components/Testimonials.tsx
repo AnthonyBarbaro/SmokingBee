@@ -29,7 +29,7 @@ export default function Testimonials() {
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
-          src="/images/about/14.JPG"
+          src="/images/about/4.JPG"
           alt="Background"
           fill
           className="object-cover opacity-20"
