@@ -9,7 +9,8 @@ import Link from "next/link";
 const images = [
   "/images/about/23.JPG",
   "/images/about/1.JPG",
-  "/images/about/12.JPG",
+  "/images/about/11.JPG",
+  "/images/about/20.JPG",
   "/images/about/16.JPG",
   "/images/about/4.JPG"
 ];
