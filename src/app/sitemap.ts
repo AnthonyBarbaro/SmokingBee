@@ -2,7 +2,7 @@
 import { MetadataRoute } from "next";
 import { getAllProductHandles, getCollections } from "@/lib/shopify";
 import path from "path";
-import fsPromises from "fs/promises"; 
+import fsPromises from "fs/promises";
 import fs from "fs";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
