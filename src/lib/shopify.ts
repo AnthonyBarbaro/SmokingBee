@@ -195,3 +195,26 @@ export async function getCollectionByHandle(handle: string) {
   // If Shopify can't find a collection for that handle, it returns null
   return data.data.collection;
 }
+export async function getAllProductHandles() {
+  const query = `
+    query {
+      products(first: 100) {
+        edges {
+          node {
+            handle
+          }
+        }
+      }
+    }
+  `;
+
+  const data = await shopifyFetch<{
+    data: {
+      products: {
+        edges: Array<{ node: { handle: string } }>;
+      };
+    };
+  }>(query);
+
+  return data.data.products.edges.map(({ node }) => node.handle);
+}
