@@ -20,6 +20,10 @@ const nextConfig = {
         source: "/sitemap.xml",
         destination: "/api/sitemap",
       },
+      {
+        source: "/:slug",
+        destination: "/seo/:slug"
+      }
     ];
   },
 };
