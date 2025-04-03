@@ -9,11 +9,11 @@ import GeoMap from "@/components/GeoMap";
 export async function generateMetadata() {
   return {
     title: "Best Rolling Trays for Sale | The Smoking Bee",
-    description: "Shop the best rolling trays for smoking at The Smoking Bee. Find premium rolling trays, grinders, and accessories.",
-    keywords: "best rolling trays, rolling trays for sale, premium smoking accessories, head shop near me",
+    description: "Elevate your rolling game with premium trays from The Smoking Bee. Shop top-quality rolling trays and accessories.",
+    keywords: "best rolling trays, rolling trays for sale, premium smoking accessories, head shop",
     openGraph: {
       title: "Best Rolling Trays for Sale | The Smoking Bee",
-      description: "Shop the best rolling trays for smoking at The Smoking Bee. Find premium rolling trays, grinders, and accessories.",
+      description: "Elevate your rolling game with premium trays from The Smoking Bee. Shop top-quality rolling trays and accessories.",
       url: "https://thesmokingbee.com/best-rolling-trays",
       images: [
         {
@@ -25,7 +25,7 @@ export async function generateMetadata() {
     twitter: {
       card: "summary_large_image",
       title: "Best Rolling Trays for Sale | The Smoking Bee",
-      description: "Shop the best rolling trays for smoking at The Smoking Bee. Find premium rolling trays, grinders, and accessories.",
+      description: "Elevate your rolling game with premium trays from The Smoking Bee. Shop top-quality rolling trays and accessories.",
       images: ["https://thesmokingbee.com/images/about/1.JPG"]
     }
   };
@@ -37,29 +37,39 @@ export default async function best_rolling_trays_Page() {
     getAllProducts(),
   ]);
 
+  const safeCategories = (categories ?? []).filter(cat => cat?.node?.id);
+
   return (
     <>
       <Head>
         <title>Best Rolling Trays for Sale | The Smoking Bee</title>
-        <meta name="description" content="Shop the best rolling trays for smoking at The Smoking Bee. Find premium rolling trays, grinders, and accessories." />
-        <meta name="keywords" content="best rolling trays, rolling trays for sale, premium smoking accessories, head shop near me" />
+        <meta name="description" content="Elevate your rolling game with premium trays from The Smoking Bee. Shop top-quality rolling trays and accessories." />
+        <meta name="keywords" content="best rolling trays, rolling trays for sale, premium smoking accessories, head shop" />
         <meta name="author" content="The Smoking Bee" />
 
         <meta property="og:title" content="Best Rolling Trays for Sale | The Smoking Bee" />
-        <meta property="og:description" content="Shop the best rolling trays for smoking at The Smoking Bee. Find premium rolling trays, grinders, and accessories." />
+        <meta property="og:description" content="Elevate your rolling game with premium trays from The Smoking Bee. Shop top-quality rolling trays and accessories." />
         <meta property="og:image" content="https://thesmokingbee.com/images/about/1.JPG" />
         <meta property="og:url" content="https://thesmokingbee.com/best-rolling-trays" />
         <meta property="og:type" content="website" />
 
         <meta name="twitter:title" content="Best Rolling Trays for Sale | The Smoking Bee" />
-        <meta name="twitter:description" content="Shop the best rolling trays for smoking at The Smoking Bee. Find premium rolling trays, grinders, and accessories." />
+        <meta name="twitter:description" content="Elevate your rolling game with premium trays from The Smoking Bee. Shop top-quality rolling trays and accessories." />
         <meta name="twitter:image" content="https://thesmokingbee.com/images/about/1.JPG" />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
 
       <HeroSection />
-      <AnimatedCategorySection categories={categories} />
+      <AnimatedCategorySection categories={safeCategories} />
       <GeoMap />
+
+      <section className="py-8 px-6">
+        <div style={{ maxWidth: "800px", margin: "auto" }}>
+          <p>
+            Check out our stylish, functional rolling trays for a cleaner, smoother experience every time. From minimalist metal trays to vibrant art prints, The Smoking Bee has designs to match any preference. Keep your herb organized and your surfaces tidy with the best trays on the market.
+          </p>
+        </div>
+      </section>
 
       <section className="py-16 px-6 bg-white">
         <Testimonials />

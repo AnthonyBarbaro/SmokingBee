@@ -8,24 +8,24 @@ import GeoMap from "@/components/GeoMap";
 
 export async function generateMetadata() {
   return {
-    title: "Smoke Shop 92139 | Paradise Hills’ Favorite",
-    description: "Paradise Hills (92139) smokers rely on The Smoking Bee for kratom, hookah tobacco, and premium accessories.",
-    keywords: "smoke shop 92139, paradise hills, hookah tobacco, kratom near me",
+    title: "Smoke Shop 92139 | Paradise Hills",
+    description: "Paradise Hills (92139) trusts The Smoking Bee for kratom, hookah tobacco, and quality smoking accessories.",
+    keywords: "smoke shop 92139, paradise hills, hookah tobacco, kratom, accessories",
     openGraph: {
-      title: "Smoke Shop 92139 | Paradise Hills’ Favorite",
-      description: "Paradise Hills (92139) smokers rely on The Smoking Bee for kratom, hookah tobacco, and premium accessories.",
+      title: "Smoke Shop 92139 | Paradise Hills",
+      description: "Paradise Hills (92139) trusts The Smoking Bee for kratom, hookah tobacco, and quality smoking accessories.",
       url: "https://thesmokingbee.com/smoke-shop-92139-san-diego",
       images: [
         {
           url: "https://thesmokingbee.com/images/about/1.JPG",
-          alt: "Smoke Shop 92139 | Paradise Hills’ Favorite"
+          alt: "Smoke Shop 92139 | Paradise Hills"
         }
       ]
     },
     twitter: {
       card: "summary_large_image",
-      title: "Smoke Shop 92139 | Paradise Hills’ Favorite",
-      description: "Paradise Hills (92139) smokers rely on The Smoking Bee for kratom, hookah tobacco, and premium accessories.",
+      title: "Smoke Shop 92139 | Paradise Hills",
+      description: "Paradise Hills (92139) trusts The Smoking Bee for kratom, hookah tobacco, and quality smoking accessories.",
       images: ["https://thesmokingbee.com/images/about/1.JPG"]
     }
   };
@@ -37,29 +37,39 @@ export default async function smoke_shop_92139_san_diego_Page() {
     getAllProducts(),
   ]);
 
+  const safeCategories = (categories ?? []).filter(cat => cat?.node?.id);
+
   return (
     <>
       <Head>
-        <title>Smoke Shop 92139 | Paradise Hills’ Favorite</title>
-        <meta name="description" content="Paradise Hills (92139) smokers rely on The Smoking Bee for kratom, hookah tobacco, and premium accessories." />
-        <meta name="keywords" content="smoke shop 92139, paradise hills, hookah tobacco, kratom near me" />
+        <title>Smoke Shop 92139 | Paradise Hills</title>
+        <meta name="description" content="Paradise Hills (92139) trusts The Smoking Bee for kratom, hookah tobacco, and quality smoking accessories." />
+        <meta name="keywords" content="smoke shop 92139, paradise hills, hookah tobacco, kratom, accessories" />
         <meta name="author" content="The Smoking Bee" />
 
-        <meta property="og:title" content="Smoke Shop 92139 | Paradise Hills’ Favorite" />
-        <meta property="og:description" content="Paradise Hills (92139) smokers rely on The Smoking Bee for kratom, hookah tobacco, and premium accessories." />
+        <meta property="og:title" content="Smoke Shop 92139 | Paradise Hills" />
+        <meta property="og:description" content="Paradise Hills (92139) trusts The Smoking Bee for kratom, hookah tobacco, and quality smoking accessories." />
         <meta property="og:image" content="https://thesmokingbee.com/images/about/1.JPG" />
         <meta property="og:url" content="https://thesmokingbee.com/smoke-shop-92139-san-diego" />
         <meta property="og:type" content="website" />
 
-        <meta name="twitter:title" content="Smoke Shop 92139 | Paradise Hills’ Favorite" />
-        <meta name="twitter:description" content="Paradise Hills (92139) smokers rely on The Smoking Bee for kratom, hookah tobacco, and premium accessories." />
+        <meta name="twitter:title" content="Smoke Shop 92139 | Paradise Hills" />
+        <meta name="twitter:description" content="Paradise Hills (92139) trusts The Smoking Bee for kratom, hookah tobacco, and quality smoking accessories." />
         <meta name="twitter:image" content="https://thesmokingbee.com/images/about/1.JPG" />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
 
       <HeroSection />
-      <AnimatedCategorySection categories={categories} />
+      <AnimatedCategorySection categories={safeCategories} />
       <GeoMap />
+
+      <section className="py-8 px-6">
+        <div style={{ maxWidth: "800px", margin: "auto" }}>
+          <p>
+            We proudly supply 92139 with fresh hookah tobacco and potent kratom, ensuring a complete smoking experience. Explore our diverse collection of glass from small hand pipes to statement water pipes. Plus, discover new hemp wraps or delta-8 cartridges that suit your personal taste.
+          </p>
+        </div>
+      </section>
 
       <section className="py-16 px-6 bg-white">
         <Testimonials />

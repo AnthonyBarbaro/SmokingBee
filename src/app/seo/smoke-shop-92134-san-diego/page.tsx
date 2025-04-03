@@ -9,11 +9,11 @@ import GeoMap from "@/components/GeoMap";
 export async function generateMetadata() {
   return {
     title: "Smoke Shop 92134 | Near Naval Base",
-    description: "Located near 92134? The Smoking Bee has the best smoking accessories, vapes, and rolling papers.",
-    keywords: "smoke shop 92134, naval base, best vapes, rolling papers near me",
+    description: "Serving 92134 near the naval base with premium vapes, glass pipes, and rolling papers at The Smoking Bee.",
+    keywords: "smoke shop 92134, naval base, vapes, rolling papers, glass pipes",
     openGraph: {
       title: "Smoke Shop 92134 | Near Naval Base",
-      description: "Located near 92134? The Smoking Bee has the best smoking accessories, vapes, and rolling papers.",
+      description: "Serving 92134 near the naval base with premium vapes, glass pipes, and rolling papers at The Smoking Bee.",
       url: "https://thesmokingbee.com/smoke-shop-92134-san-diego",
       images: [
         {
@@ -25,7 +25,7 @@ export async function generateMetadata() {
     twitter: {
       card: "summary_large_image",
       title: "Smoke Shop 92134 | Near Naval Base",
-      description: "Located near 92134? The Smoking Bee has the best smoking accessories, vapes, and rolling papers.",
+      description: "Serving 92134 near the naval base with premium vapes, glass pipes, and rolling papers at The Smoking Bee.",
       images: ["https://thesmokingbee.com/images/about/1.JPG"]
     }
   };
@@ -37,29 +37,39 @@ export default async function smoke_shop_92134_san_diego_Page() {
     getAllProducts(),
   ]);
 
+  const safeCategories = (categories ?? []).filter(cat => cat?.node?.id);
+
   return (
     <>
       <Head>
         <title>Smoke Shop 92134 | Near Naval Base</title>
-        <meta name="description" content="Located near 92134? The Smoking Bee has the best smoking accessories, vapes, and rolling papers." />
-        <meta name="keywords" content="smoke shop 92134, naval base, best vapes, rolling papers near me" />
+        <meta name="description" content="Serving 92134 near the naval base with premium vapes, glass pipes, and rolling papers at The Smoking Bee." />
+        <meta name="keywords" content="smoke shop 92134, naval base, vapes, rolling papers, glass pipes" />
         <meta name="author" content="The Smoking Bee" />
 
         <meta property="og:title" content="Smoke Shop 92134 | Near Naval Base" />
-        <meta property="og:description" content="Located near 92134? The Smoking Bee has the best smoking accessories, vapes, and rolling papers." />
+        <meta property="og:description" content="Serving 92134 near the naval base with premium vapes, glass pipes, and rolling papers at The Smoking Bee." />
         <meta property="og:image" content="https://thesmokingbee.com/images/about/1.JPG" />
         <meta property="og:url" content="https://thesmokingbee.com/smoke-shop-92134-san-diego" />
         <meta property="og:type" content="website" />
 
         <meta name="twitter:title" content="Smoke Shop 92134 | Near Naval Base" />
-        <meta name="twitter:description" content="Located near 92134? The Smoking Bee has the best smoking accessories, vapes, and rolling papers." />
+        <meta name="twitter:description" content="Serving 92134 near the naval base with premium vapes, glass pipes, and rolling papers at The Smoking Bee." />
         <meta name="twitter:image" content="https://thesmokingbee.com/images/about/1.JPG" />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
 
       <HeroSection />
-      <AnimatedCategorySection categories={categories} />
+      <AnimatedCategorySection categories={safeCategories} />
       <GeoMap />
+
+      <section className="py-8 px-6">
+        <div style={{ maxWidth: "800px", margin: "auto" }}>
+          <p>
+            Near 92134’s naval base? We offer high-quality glass, vapes, and everything you need for a satisfying session. Our store features top-tier rolling papers, Delta-8 gummies, and discreet portable devices. Whether you’re active duty or a local resident, count on The Smoking Bee for top-notch service.
+          </p>
+        </div>
+      </section>
 
       <section className="py-16 px-6 bg-white">
         <Testimonials />

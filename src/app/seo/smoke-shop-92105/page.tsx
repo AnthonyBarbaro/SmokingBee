@@ -8,24 +8,24 @@ import GeoMap from "@/components/GeoMap";
 
 export async function generateMetadata() {
   return {
-    title: "Smoke Shop 92105 | San Diego's Best in City Heights",
-    description: "City Heights top smoke shop! Find premium rolling papers, kratom, and more in the 92105 zip code area.",
-    keywords: "smoke shop 92105, city heights smoke shop, best rolling papers 92105, kratom near me",
+    title: "Smoke Shop 92105 | City Heights",
+    description: "City Heights’ best smoke shop for rolling papers, kratom, and more in 92105. Discover premium products at The Smoking Bee.",
+    keywords: "smoke shop 92105, city heights, rolling papers, kratom near me",
     openGraph: {
-      title: "Smoke Shop 92105 | San Diego's Best in City Heights",
-      description: "City Heights top smoke shop! Find premium rolling papers, kratom, and more in the 92105 zip code area.",
+      title: "Smoke Shop 92105 | City Heights",
+      description: "City Heights’ best smoke shop for rolling papers, kratom, and more in 92105. Discover premium products at The Smoking Bee.",
       url: "https://thesmokingbee.com/smoke-shop-92105",
       images: [
         {
           url: "https://thesmokingbee.com/images/about/1.JPG",
-          alt: "Smoke Shop 92105 | San Diego's Best in City Heights"
+          alt: "Smoke Shop 92105 | City Heights"
         }
       ]
     },
     twitter: {
       card: "summary_large_image",
-      title: "Smoke Shop 92105 | San Diego's Best in City Heights",
-      description: "City Heights top smoke shop! Find premium rolling papers, kratom, and more in the 92105 zip code area.",
+      title: "Smoke Shop 92105 | City Heights",
+      description: "City Heights’ best smoke shop for rolling papers, kratom, and more in 92105. Discover premium products at The Smoking Bee.",
       images: ["https://thesmokingbee.com/images/about/1.JPG"]
     }
   };
@@ -37,29 +37,39 @@ export default async function smoke_shop_92105_Page() {
     getAllProducts(),
   ]);
 
+  const safeCategories = (categories ?? []).filter(cat => cat?.node?.id);
+
   return (
     <>
       <Head>
-        <title>Smoke Shop 92105 | San Diego's Best in City Heights</title>
-        <meta name="description" content="City Heights top smoke shop! Find premium rolling papers, kratom, and more in the 92105 zip code area." />
-        <meta name="keywords" content="smoke shop 92105, city heights smoke shop, best rolling papers 92105, kratom near me" />
+        <title>Smoke Shop 92105 | City Heights</title>
+        <meta name="description" content="City Heights’ best smoke shop for rolling papers, kratom, and more in 92105. Discover premium products at The Smoking Bee." />
+        <meta name="keywords" content="smoke shop 92105, city heights, rolling papers, kratom near me" />
         <meta name="author" content="The Smoking Bee" />
 
-        <meta property="og:title" content="Smoke Shop 92105 | San Diego's Best in City Heights" />
-        <meta property="og:description" content="City Heights top smoke shop! Find premium rolling papers, kratom, and more in the 92105 zip code area." />
+        <meta property="og:title" content="Smoke Shop 92105 | City Heights" />
+        <meta property="og:description" content="City Heights’ best smoke shop for rolling papers, kratom, and more in 92105. Discover premium products at The Smoking Bee." />
         <meta property="og:image" content="https://thesmokingbee.com/images/about/1.JPG" />
         <meta property="og:url" content="https://thesmokingbee.com/smoke-shop-92105" />
         <meta property="og:type" content="website" />
 
-        <meta name="twitter:title" content="Smoke Shop 92105 | San Diego's Best in City Heights" />
-        <meta name="twitter:description" content="City Heights top smoke shop! Find premium rolling papers, kratom, and more in the 92105 zip code area." />
+        <meta name="twitter:title" content="Smoke Shop 92105 | City Heights" />
+        <meta name="twitter:description" content="City Heights’ best smoke shop for rolling papers, kratom, and more in 92105. Discover premium products at The Smoking Bee." />
         <meta name="twitter:image" content="https://thesmokingbee.com/images/about/1.JPG" />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
 
       <HeroSection />
-      <AnimatedCategorySection categories={categories} />
+      <AnimatedCategorySection categories={safeCategories} />
       <GeoMap />
+
+      <section className="py-8 px-6">
+        <div style={{ maxWidth: "800px", margin: "auto" }}>
+          <p>
+            In 92105 City Heights, our store offers top rolling options, potent kratom strains, and friendly service. Check out our variety of vape pens, local glass pipes, and sweet wrap flavors. We’re here to help you customize your smoke in a way that fits your lifestyle and budget.
+          </p>
+        </div>
+      </section>
 
       <section className="py-16 px-6 bg-white">
         <Testimonials />

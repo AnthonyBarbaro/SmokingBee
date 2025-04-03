@@ -9,11 +9,11 @@ import GeoMap from "@/components/GeoMap";
 export async function generateMetadata() {
   return {
     title: "Glass Bongs for Sale | The Smoking Bee",
-    description: "Shop premium glass bongs, water pipes, and dab rigs at The Smoking Bee. Find the perfect smoking setup for your needs.",
-    keywords: "glass bongs for sale, water pipes, dab rigs, best bongs near me, head shop for bongs",
+    description: "Shop premium glass bongs, water pipes, and dab rigs at The Smoking Bee. Elevate your smoking setup today.",
+    keywords: "glass bongs for sale, water pipes, dab rigs, head shop, premium bongs",
     openGraph: {
       title: "Glass Bongs for Sale | The Smoking Bee",
-      description: "Shop premium glass bongs, water pipes, and dab rigs at The Smoking Bee. Find the perfect smoking setup for your needs.",
+      description: "Shop premium glass bongs, water pipes, and dab rigs at The Smoking Bee. Elevate your smoking setup today.",
       url: "https://thesmokingbee.com/glass-bongs-for-sale",
       images: [
         {
@@ -25,7 +25,7 @@ export async function generateMetadata() {
     twitter: {
       card: "summary_large_image",
       title: "Glass Bongs for Sale | The Smoking Bee",
-      description: "Shop premium glass bongs, water pipes, and dab rigs at The Smoking Bee. Find the perfect smoking setup for your needs.",
+      description: "Shop premium glass bongs, water pipes, and dab rigs at The Smoking Bee. Elevate your smoking setup today.",
       images: ["https://thesmokingbee.com/images/about/1.JPG"]
     }
   };
@@ -37,29 +37,39 @@ export default async function glass_bongs_for_sale_Page() {
     getAllProducts(),
   ]);
 
+  const safeCategories = (categories ?? []).filter(cat => cat?.node?.id);
+
   return (
     <>
       <Head>
         <title>Glass Bongs for Sale | The Smoking Bee</title>
-        <meta name="description" content="Shop premium glass bongs, water pipes, and dab rigs at The Smoking Bee. Find the perfect smoking setup for your needs." />
-        <meta name="keywords" content="glass bongs for sale, water pipes, dab rigs, best bongs near me, head shop for bongs" />
+        <meta name="description" content="Shop premium glass bongs, water pipes, and dab rigs at The Smoking Bee. Elevate your smoking setup today." />
+        <meta name="keywords" content="glass bongs for sale, water pipes, dab rigs, head shop, premium bongs" />
         <meta name="author" content="The Smoking Bee" />
 
         <meta property="og:title" content="Glass Bongs for Sale | The Smoking Bee" />
-        <meta property="og:description" content="Shop premium glass bongs, water pipes, and dab rigs at The Smoking Bee. Find the perfect smoking setup for your needs." />
+        <meta property="og:description" content="Shop premium glass bongs, water pipes, and dab rigs at The Smoking Bee. Elevate your smoking setup today." />
         <meta property="og:image" content="https://thesmokingbee.com/images/about/1.JPG" />
         <meta property="og:url" content="https://thesmokingbee.com/glass-bongs-for-sale" />
         <meta property="og:type" content="website" />
 
         <meta name="twitter:title" content="Glass Bongs for Sale | The Smoking Bee" />
-        <meta name="twitter:description" content="Shop premium glass bongs, water pipes, and dab rigs at The Smoking Bee. Find the perfect smoking setup for your needs." />
+        <meta name="twitter:description" content="Shop premium glass bongs, water pipes, and dab rigs at The Smoking Bee. Elevate your smoking setup today." />
         <meta name="twitter:image" content="https://thesmokingbee.com/images/about/1.JPG" />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
 
       <HeroSection />
-      <AnimatedCategorySection categories={categories} />
+      <AnimatedCategorySection categories={safeCategories} />
       <GeoMap />
+
+      <section className="py-8 px-6">
+        <div style={{ maxWidth: "800px", margin: "auto" }}>
+          <p>
+            Whether you’re into water pipes or dab rigs, The Smoking Bee has a curated selection for the perfect smoking session. Find thick borosilicate glass, intricate designs, and respected artisan brands. With multiple sizes and styles, we’ll help you pick the ideal bong for cool, satisfying hits each time.
+          </p>
+        </div>
+      </section>
 
       <section className="py-16 px-6 bg-white">
         <Testimonials />

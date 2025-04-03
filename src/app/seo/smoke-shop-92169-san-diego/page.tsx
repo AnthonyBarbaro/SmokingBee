@@ -9,11 +9,11 @@ import GeoMap from "@/components/GeoMap";
 export async function generateMetadata() {
   return {
     title: "Smoke Shop 92169 | Pacific Beach",
-    description: "PB (92169) locals trust The Smoking Bee for the best disposable vapes, glass, and hookah accessories.",
-    keywords: "smoke shop 92169, pacific beach, disposable vapes, hookah accessories",
+    description: "PB (92169) locals rely on The Smoking Bee for disposable vapes, glass accessories, and premium hookah supplies.",
+    keywords: "smoke shop 92169, pacific beach, disposable vapes, glass accessories, hookah",
     openGraph: {
       title: "Smoke Shop 92169 | Pacific Beach",
-      description: "PB (92169) locals trust The Smoking Bee for the best disposable vapes, glass, and hookah accessories.",
+      description: "PB (92169) locals rely on The Smoking Bee for disposable vapes, glass accessories, and premium hookah supplies.",
       url: "https://thesmokingbee.com/smoke-shop-92169-san-diego",
       images: [
         {
@@ -25,7 +25,7 @@ export async function generateMetadata() {
     twitter: {
       card: "summary_large_image",
       title: "Smoke Shop 92169 | Pacific Beach",
-      description: "PB (92169) locals trust The Smoking Bee for the best disposable vapes, glass, and hookah accessories.",
+      description: "PB (92169) locals rely on The Smoking Bee for disposable vapes, glass accessories, and premium hookah supplies.",
       images: ["https://thesmokingbee.com/images/about/1.JPG"]
     }
   };
@@ -37,29 +37,39 @@ export default async function smoke_shop_92169_san_diego_Page() {
     getAllProducts(),
   ]);
 
+  const safeCategories = (categories ?? []).filter(cat => cat?.node?.id);
+
   return (
     <>
       <Head>
         <title>Smoke Shop 92169 | Pacific Beach</title>
-        <meta name="description" content="PB (92169) locals trust The Smoking Bee for the best disposable vapes, glass, and hookah accessories." />
-        <meta name="keywords" content="smoke shop 92169, pacific beach, disposable vapes, hookah accessories" />
+        <meta name="description" content="PB (92169) locals rely on The Smoking Bee for disposable vapes, glass accessories, and premium hookah supplies." />
+        <meta name="keywords" content="smoke shop 92169, pacific beach, disposable vapes, glass accessories, hookah" />
         <meta name="author" content="The Smoking Bee" />
 
         <meta property="og:title" content="Smoke Shop 92169 | Pacific Beach" />
-        <meta property="og:description" content="PB (92169) locals trust The Smoking Bee for the best disposable vapes, glass, and hookah accessories." />
+        <meta property="og:description" content="PB (92169) locals rely on The Smoking Bee for disposable vapes, glass accessories, and premium hookah supplies." />
         <meta property="og:image" content="https://thesmokingbee.com/images/about/1.JPG" />
         <meta property="og:url" content="https://thesmokingbee.com/smoke-shop-92169-san-diego" />
         <meta property="og:type" content="website" />
 
         <meta name="twitter:title" content="Smoke Shop 92169 | Pacific Beach" />
-        <meta name="twitter:description" content="PB (92169) locals trust The Smoking Bee for the best disposable vapes, glass, and hookah accessories." />
+        <meta name="twitter:description" content="PB (92169) locals rely on The Smoking Bee for disposable vapes, glass accessories, and premium hookah supplies." />
         <meta name="twitter:image" content="https://thesmokingbee.com/images/about/1.JPG" />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
 
       <HeroSection />
-      <AnimatedCategorySection categories={categories} />
+      <AnimatedCategorySection categories={safeCategories} />
       <GeoMap />
+
+      <section className="py-8 px-6">
+        <div style={{ maxWidth: "800px", margin: "auto" }}>
+          <p>
+            Make the most of Pacific Beach living with our top-quality disposables, glass gear, and hookah products. From bright, fruity e-liquids to robust delta-8 edibles, you can find it here. Swing by after catching the sunset on the beach to refresh your collection with the latest arrivals.
+          </p>
+        </div>
+      </section>
 
       <section className="py-16 px-6 bg-white">
         <Testimonials />
