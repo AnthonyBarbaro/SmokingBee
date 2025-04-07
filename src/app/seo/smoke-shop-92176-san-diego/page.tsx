@@ -9,11 +9,11 @@ import GeoMap from "@/components/GeoMap";
 export async function generateMetadata() {
   return {
     title: "Smoke Shop 92176 | Normal Heights / Kensington",
-    description: "Between Normal Heights & Kensington? The Smoking Bee (92176) has the best glass, vapes, and kratom.",
-    keywords: "smoke shop 92176, normal heights, best glass, kratom near me",
+    description: "Between Normal Heights and Kensington? The Smoking Bee (92176) has the best glass, vapes, and kratom for your needs.",
+    keywords: "smoke shop 92176, normal heights, kensington, glass, vapes, kratom",
     openGraph: {
       title: "Smoke Shop 92176 | Normal Heights / Kensington",
-      description: "Between Normal Heights & Kensington? The Smoking Bee (92176) has the best glass, vapes, and kratom.",
+      description: "Between Normal Heights and Kensington? The Smoking Bee (92176) has the best glass, vapes, and kratom for your needs.",
       url: "https://thesmokingbee.com/smoke-shop-92176-san-diego",
       images: [
         {
@@ -25,7 +25,7 @@ export async function generateMetadata() {
     twitter: {
       card: "summary_large_image",
       title: "Smoke Shop 92176 | Normal Heights / Kensington",
-      description: "Between Normal Heights & Kensington? The Smoking Bee (92176) has the best glass, vapes, and kratom.",
+      description: "Between Normal Heights and Kensington? The Smoking Bee (92176) has the best glass, vapes, and kratom for your needs.",
       images: ["https://thesmokingbee.com/images/about/1.JPG"]
     }
   };
@@ -37,29 +37,39 @@ export default async function smoke_shop_92176_san_diego_Page() {
     getAllProducts(),
   ]);
 
+  const safeCategories = (categories ?? []).filter(cat => cat?.node?.id);
+
   return (
     <>
       <Head>
         <title>Smoke Shop 92176 | Normal Heights / Kensington</title>
-        <meta name="description" content="Between Normal Heights & Kensington? The Smoking Bee (92176) has the best glass, vapes, and kratom." />
-        <meta name="keywords" content="smoke shop 92176, normal heights, best glass, kratom near me" />
+        <meta name="description" content="Between Normal Heights and Kensington? The Smoking Bee (92176) has the best glass, vapes, and kratom for your needs." />
+        <meta name="keywords" content="smoke shop 92176, normal heights, kensington, glass, vapes, kratom" />
         <meta name="author" content="The Smoking Bee" />
 
         <meta property="og:title" content="Smoke Shop 92176 | Normal Heights / Kensington" />
-        <meta property="og:description" content="Between Normal Heights & Kensington? The Smoking Bee (92176) has the best glass, vapes, and kratom." />
+        <meta property="og:description" content="Between Normal Heights and Kensington? The Smoking Bee (92176) has the best glass, vapes, and kratom for your needs." />
         <meta property="og:image" content="https://thesmokingbee.com/images/about/1.JPG" />
         <meta property="og:url" content="https://thesmokingbee.com/smoke-shop-92176-san-diego" />
         <meta property="og:type" content="website" />
 
         <meta name="twitter:title" content="Smoke Shop 92176 | Normal Heights / Kensington" />
-        <meta name="twitter:description" content="Between Normal Heights & Kensington? The Smoking Bee (92176) has the best glass, vapes, and kratom." />
+        <meta name="twitter:description" content="Between Normal Heights and Kensington? The Smoking Bee (92176) has the best glass, vapes, and kratom for your needs." />
         <meta name="twitter:image" content="https://thesmokingbee.com/images/about/1.JPG" />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
 
       <HeroSection />
-      <AnimatedCategorySection categories={categories} />
+      <AnimatedCategorySection categories={safeCategories} />
       <GeoMap />
+
+      <section className="py-8 px-6">
+        <div style={{ maxWidth: "800px", margin: "auto" }}>
+          <p>
+            Explore our diverse lineup of glass pipes, vapes, and kratom tailored for the 92176 community. Whether you’re exploring broad-spectrum CBD or a new brand of delta-8 gummies, we have you covered. Make The Smoking Bee your trusted stop for all things smoking, rolled, or vaporized.
+          </p>
+        </div>
+      </section>
 
       <section className="py-16 px-6 bg-white">
         <Testimonials />

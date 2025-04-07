@@ -9,11 +9,11 @@ import GeoMap from "@/components/GeoMap";
 export async function generateMetadata() {
   return {
     title: "Smoke Shop 92166 | Roseville/Fleetridge",
-    description: "Near 92166 in Point Loma’s Roseville area? Check out The Smoking Bee for top-tier smoking accessories.",
-    keywords: "smoke shop 92166, roseville, point loma, best accessories near me",
+    description: "Roseville/Fleetridge (92166) smokers find top-tier accessories at The Smoking Bee. Shop glass, vapes, and more.",
+    keywords: "smoke shop 92166, roseville, fleetridge, glass, vapes, accessories",
     openGraph: {
       title: "Smoke Shop 92166 | Roseville/Fleetridge",
-      description: "Near 92166 in Point Loma’s Roseville area? Check out The Smoking Bee for top-tier smoking accessories.",
+      description: "Roseville/Fleetridge (92166) smokers find top-tier accessories at The Smoking Bee. Shop glass, vapes, and more.",
       url: "https://thesmokingbee.com/smoke-shop-92166-san-diego",
       images: [
         {
@@ -25,7 +25,7 @@ export async function generateMetadata() {
     twitter: {
       card: "summary_large_image",
       title: "Smoke Shop 92166 | Roseville/Fleetridge",
-      description: "Near 92166 in Point Loma’s Roseville area? Check out The Smoking Bee for top-tier smoking accessories.",
+      description: "Roseville/Fleetridge (92166) smokers find top-tier accessories at The Smoking Bee. Shop glass, vapes, and more.",
       images: ["https://thesmokingbee.com/images/about/1.JPG"]
     }
   };
@@ -37,29 +37,39 @@ export default async function smoke_shop_92166_san_diego_Page() {
     getAllProducts(),
   ]);
 
+  const safeCategories = (categories ?? []).filter(cat => cat?.node?.id);
+
   return (
     <>
       <Head>
         <title>Smoke Shop 92166 | Roseville/Fleetridge</title>
-        <meta name="description" content="Near 92166 in Point Loma’s Roseville area? Check out The Smoking Bee for top-tier smoking accessories." />
-        <meta name="keywords" content="smoke shop 92166, roseville, point loma, best accessories near me" />
+        <meta name="description" content="Roseville/Fleetridge (92166) smokers find top-tier accessories at The Smoking Bee. Shop glass, vapes, and more." />
+        <meta name="keywords" content="smoke shop 92166, roseville, fleetridge, glass, vapes, accessories" />
         <meta name="author" content="The Smoking Bee" />
 
         <meta property="og:title" content="Smoke Shop 92166 | Roseville/Fleetridge" />
-        <meta property="og:description" content="Near 92166 in Point Loma’s Roseville area? Check out The Smoking Bee for top-tier smoking accessories." />
+        <meta property="og:description" content="Roseville/Fleetridge (92166) smokers find top-tier accessories at The Smoking Bee. Shop glass, vapes, and more." />
         <meta property="og:image" content="https://thesmokingbee.com/images/about/1.JPG" />
         <meta property="og:url" content="https://thesmokingbee.com/smoke-shop-92166-san-diego" />
         <meta property="og:type" content="website" />
 
         <meta name="twitter:title" content="Smoke Shop 92166 | Roseville/Fleetridge" />
-        <meta name="twitter:description" content="Near 92166 in Point Loma’s Roseville area? Check out The Smoking Bee for top-tier smoking accessories." />
+        <meta name="twitter:description" content="Roseville/Fleetridge (92166) smokers find top-tier accessories at The Smoking Bee. Shop glass, vapes, and more." />
         <meta name="twitter:image" content="https://thesmokingbee.com/images/about/1.JPG" />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
 
       <HeroSection />
-      <AnimatedCategorySection categories={categories} />
+      <AnimatedCategorySection categories={safeCategories} />
       <GeoMap />
+
+      <section className="py-8 px-6">
+        <div style={{ maxWidth: "800px", margin: "auto" }}>
+          <p>
+            Serving 92166 with a wide array of glass options, from bongs to vapes, plus must-have accessories. Whether you need a new torch for dabbing or a stylish rolling tray, we stock items chosen for quality. Swing by for friendly advice or to explore the latest local glass artistry.
+          </p>
+        </div>
+      </section>
 
       <section className="py-16 px-6 bg-white">
         <Testimonials />

@@ -3,6 +3,7 @@
 
 import { motion } from "framer-motion";
 import ContactForm from "./ContactForm";
+import GeoMap from "@/components/GeoMap";
 
 export default function ContactContent() {
   return (
@@ -57,16 +58,8 @@ export default function ContactContent() {
         >
           <ContactForm />
         </motion.div>
-
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          className="text-lg md:text-xl text-gray-700 mt-10"
-        >
-          Or visit us at our La Mesa location for premium smoking accessories.
-        </motion.p>
       </div>
+      <GeoMap />
     </section>
   );
 }

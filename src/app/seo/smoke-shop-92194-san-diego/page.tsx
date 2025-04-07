@@ -10,7 +10,7 @@ export async function generateMetadata() {
   return {
     title: "Smoke Shop 92194 | East Mira Mesa",
     description: "East Mira Mesa’s top source for disposable vapes, rolling papers, and quality kratom at The Smoking Bee.",
-    keywords: "smoke shop 92194, east mira mesa, disposable vapes, kratom near me",
+    keywords: "smoke shop 92194, east mira mesa, disposable vapes, rolling papers, kratom",
     openGraph: {
       title: "Smoke Shop 92194 | East Mira Mesa",
       description: "East Mira Mesa’s top source for disposable vapes, rolling papers, and quality kratom at The Smoking Bee.",
@@ -37,12 +37,14 @@ export default async function smoke_shop_92194_san_diego_Page() {
     getAllProducts(),
   ]);
 
+  const safeCategories = (categories ?? []).filter(cat => cat?.node?.id);
+
   return (
     <>
       <Head>
         <title>Smoke Shop 92194 | East Mira Mesa</title>
         <meta name="description" content="East Mira Mesa’s top source for disposable vapes, rolling papers, and quality kratom at The Smoking Bee." />
-        <meta name="keywords" content="smoke shop 92194, east mira mesa, disposable vapes, kratom near me" />
+        <meta name="keywords" content="smoke shop 92194, east mira mesa, disposable vapes, rolling papers, kratom" />
         <meta name="author" content="The Smoking Bee" />
 
         <meta property="og:title" content="Smoke Shop 92194 | East Mira Mesa" />
@@ -58,8 +60,16 @@ export default async function smoke_shop_92194_san_diego_Page() {
       </Head>
 
       <HeroSection />
-      <AnimatedCategorySection categories={categories} />
+      <AnimatedCategorySection categories={safeCategories} />
       <GeoMap />
+
+      <section className="py-8 px-6">
+        <div style={{ maxWidth: "800px", margin: "auto" }}>
+          <p>
+            We proudly serve East Mira Mesa with convenient disposables, top rolling brands, and well-sourced kratom. Looking to experiment with delta-8 or dab rigs? Our knowledgeable staff can recommend a product that matches your taste. Expect a comfortable, no-pressure environment designed for discovery.
+          </p>
+        </div>
+      </section>
 
       <section className="py-16 px-6 bg-white">
         <Testimonials />

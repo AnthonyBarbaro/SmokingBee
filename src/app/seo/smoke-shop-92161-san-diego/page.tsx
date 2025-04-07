@@ -9,11 +9,11 @@ import GeoMap from "@/components/GeoMap";
 export async function generateMetadata() {
   return {
     title: "Smoke Shop 92161 | North San Diego",
-    description: "Find top-tier Delta-8, rolling papers, and hookah tobacco in 92161 at The Smoking Bee.",
-    keywords: "smoke shop 92161, north san diego, delta-8 near me, hookah tobacco",
+    description: "Find Delta-8, rolling papers, and hookah tobacco in 92161 at The Smoking Bee, your north SD smoke shop.",
+    keywords: "smoke shop 92161, north san diego, delta-8, rolling papers, hookah tobacco",
     openGraph: {
       title: "Smoke Shop 92161 | North San Diego",
-      description: "Find top-tier Delta-8, rolling papers, and hookah tobacco in 92161 at The Smoking Bee.",
+      description: "Find Delta-8, rolling papers, and hookah tobacco in 92161 at The Smoking Bee, your north SD smoke shop.",
       url: "https://thesmokingbee.com/smoke-shop-92161-san-diego",
       images: [
         {
@@ -25,7 +25,7 @@ export async function generateMetadata() {
     twitter: {
       card: "summary_large_image",
       title: "Smoke Shop 92161 | North San Diego",
-      description: "Find top-tier Delta-8, rolling papers, and hookah tobacco in 92161 at The Smoking Bee.",
+      description: "Find Delta-8, rolling papers, and hookah tobacco in 92161 at The Smoking Bee, your north SD smoke shop.",
       images: ["https://thesmokingbee.com/images/about/1.JPG"]
     }
   };
@@ -37,29 +37,39 @@ export default async function smoke_shop_92161_san_diego_Page() {
     getAllProducts(),
   ]);
 
+  const safeCategories = (categories ?? []).filter(cat => cat?.node?.id);
+
   return (
     <>
       <Head>
         <title>Smoke Shop 92161 | North San Diego</title>
-        <meta name="description" content="Find top-tier Delta-8, rolling papers, and hookah tobacco in 92161 at The Smoking Bee." />
-        <meta name="keywords" content="smoke shop 92161, north san diego, delta-8 near me, hookah tobacco" />
+        <meta name="description" content="Find Delta-8, rolling papers, and hookah tobacco in 92161 at The Smoking Bee, your north SD smoke shop." />
+        <meta name="keywords" content="smoke shop 92161, north san diego, delta-8, rolling papers, hookah tobacco" />
         <meta name="author" content="The Smoking Bee" />
 
         <meta property="og:title" content="Smoke Shop 92161 | North San Diego" />
-        <meta property="og:description" content="Find top-tier Delta-8, rolling papers, and hookah tobacco in 92161 at The Smoking Bee." />
+        <meta property="og:description" content="Find Delta-8, rolling papers, and hookah tobacco in 92161 at The Smoking Bee, your north SD smoke shop." />
         <meta property="og:image" content="https://thesmokingbee.com/images/about/1.JPG" />
         <meta property="og:url" content="https://thesmokingbee.com/smoke-shop-92161-san-diego" />
         <meta property="og:type" content="website" />
 
         <meta name="twitter:title" content="Smoke Shop 92161 | North San Diego" />
-        <meta name="twitter:description" content="Find top-tier Delta-8, rolling papers, and hookah tobacco in 92161 at The Smoking Bee." />
+        <meta name="twitter:description" content="Find Delta-8, rolling papers, and hookah tobacco in 92161 at The Smoking Bee, your north SD smoke shop." />
         <meta name="twitter:image" content="https://thesmokingbee.com/images/about/1.JPG" />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
 
       <HeroSection />
-      <AnimatedCategorySection categories={categories} />
+      <AnimatedCategorySection categories={safeCategories} />
       <GeoMap />
+
+      <section className="py-8 px-6">
+        <div style={{ maxWidth: "800px", margin: "auto" }}>
+          <p>
+            In 92161, we stock top-tier Delta-8, specialty papers, and hookah supplies so you can enjoy a superior experience. Chat with our staff about new arrivals or special promotions. Our mission is to connect each smoker with products that suit their taste, whether mild or bold.
+          </p>
+        </div>
+      </section>
 
       <section className="py-16 px-6 bg-white">
         <Testimonials />
