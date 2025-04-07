@@ -1,45 +1,45 @@
+import FooterLinks from "@/components/FooterLinks";
 export default function Footer() {
-    const currentYear = new Date().getFullYear();
-  
-    return (
-      <footer className="bg-dark text-white py-8">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-6 px-6">
-          {/* Store Info */}
-          <div>
-            <h3 className="text-xl font-bold mb-2">The Smoking Bee</h3>
-            <p className="text-sm text-gray-300">
-              La Mesa’s premier smoke shop with top-quality products and service.
-            </p>
-          </div>
-  
-          {/* Contact */}
-          <div>
-            <h4 className="font-semibold mb-2">Contact</h4>
-            <p className="text-sm text-gray-300">
-              7584 University Ave Suite B, La Mesa, CA 91942
-            </p>
-            <p className="text-sm text-gray-300">Phone: (619) 467-7055</p>
-            <p className="text-sm text-gray-300">Email: info@thesmokingbee.com</p>
-          </div>
-  
-          {/* Social Media*/}
-          <div>
-            <h4 className="font-semibold mb-2">Follow Us</h4>
-            <div className="flex space-x-4">
-            <a href="#" className="hover:text-gold transition">Social Media Coming Soon </a>
-                {/* Social Media 
-              <a href="#" className="hover:text-gold transition">Instagram </a>
-              <a href="#" className="hover:text-gold transition">Facebook</a>
-              <a href="#" className="hover:text-gold transition">Twitter</a>
-              */}
-            </div>
-          </div>
-        </div> 
-  
-        <div className="border-t border-white/20 pt-4 text-center text-sm">
-          <p>© {currentYear} The Smoking Bee. All rights reserved.</p>
+  const currentYear = new Date().getFullYear();
+
+  return (
+    <footer className="bg-dark text-white py-8">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-6 px-6">
+        {/* Store Info */}
+        <div>
+          <h3 className="text-xl font-bold mb-2">The Smoking Bee</h3>
+          <p className="text-sm text-gray-300">
+            La Mesa’s premier smoke shop with top-quality products and service.
+          </p>
         </div>
-      </footer>
-    );
-  }
-  
+
+        {/* Contact */}
+        <div>
+          <h4 className="font-semibold mb-2">Contact</h4>
+          <p className="text-sm text-gray-300">
+            7584 University Ave Suite B, La Mesa, CA 91942
+          </p>
+          <p className="text-sm text-gray-300">Phone: (619) 467-7055</p>
+          <p className="text-sm text-gray-300">Email: info@thesmokingbee.com</p>
+        </div>
+
+        {/* Social or Additional Info */}
+        <div>
+          <h4 className="font-semibold mb-2">Follow Us</h4>
+          <div className="flex space-x-4">
+            <a href="#" className="hover:text-gold transition">Social Media Coming Soon</a>
+          </div>
+        </div>
+
+        {/* Our new Link Bag Section */}
+        <div className="sm:col-span-3">
+          <FooterLinks />
+        </div>
+      </div>
+
+      <div className="border-t border-white/20 pt-4 text-center text-sm">
+        <p>© {currentYear} The Smoking Bee. All rights reserved.</p>
+      </div>
+    </footer>
+  );
+}
