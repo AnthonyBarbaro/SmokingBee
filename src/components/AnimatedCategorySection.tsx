@@ -17,19 +17,18 @@ export default function AnimatedCategorySection({ categories }: AnimatedCategory
   // Detect screen size for mobile adjustments
   useEffect(() => {
     function handleResize() {
-      setIsMobile(window.innerWidth < 768); // Mobile if width < 768px
+      setIsMobile(window.innerWidth < 768);
     }
-
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  // Auto-rotate categories on desktop view
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % categories.length);
-    }, 5000); // Adjusted interval to 5 seconds for smooth UX
-
+    }, 5000);
     return () => clearInterval(interval);
   }, [categories.length]);
 
@@ -52,22 +51,26 @@ export default function AnimatedCategorySection({ categories }: AnimatedCategory
 
       <div className="max-w-6xl mx-auto overflow-hidden">
         {isMobile ? (
-          // ✅ Mobile View: Horizontal Scroll
+          // Mobile View: Horizontal Scroll
           <div className="flex overflow-x-auto gap-6 snap-x snap-mandatory pb-4 px-2">
             {categories.map((category, index) => (
-              <motion.div
+              <Link
                 key={category.node.id}
+                href={`/shop/${category.node.handle}`}
                 className="snap-start flex-shrink-0 w-3/4 sm:w-1/2 md:w-1/3"
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.2 }}
               >
-                <CategoryCard category={category} />
-              </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.8, delay: index * 0.2 }}
+                >
+                  <CategoryCard category={category} />
+                </motion.div>
+              </Link>
             ))}
           </div>
         ) : (
-          // ✅ Desktop View: Grid Animation
+          // Desktop View: Grid Animation
           <motion.div
             key={currentIndex}
             initial={{ x: "33.33%" }}
@@ -76,7 +79,13 @@ export default function AnimatedCategorySection({ categories }: AnimatedCategory
             className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8"
           >
             {visibleCategories.map((category) => (
-              <CategoryCard key={category.node.id} category={category} />
+              <Link
+                key={category.node.id}
+                href={`/shop/${category.node.handle}`}
+                className="block"
+              >
+                <CategoryCard category={category} />
+              </Link>
             ))}
           </motion.div>
         )}

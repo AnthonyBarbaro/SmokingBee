@@ -156,7 +156,13 @@ export default function ShopPageClient({ categories, products }: any) {
             className="flex flex-wrap justify-center gap-6"
           >
             {visibleCats.map((cat: any) => (
-              <CategoryCard key={cat.node.id} category={cat} />
+            <Link
+              key={cat.node.id}
+              href={`/shop/${cat.node.handle}`}
+              className="block" // ensures the link spans the whole card
+            >
+              <CategoryCard category={cat} />
+            </Link>
             ))}
           </motion.div>
         </section>
