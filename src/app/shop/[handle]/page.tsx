@@ -1,6 +1,7 @@
 // src/app/shop/[handle]/page.tsx
 import { getCollectionByHandle } from "@/lib/shopify";
 import Image from "next/image";
+import BreadcrumbClientWrapper from "@/components/SEO/BreadcrumbClientWrapper";
 import Link from "next/link";
 
 export default async function CollectionPage({ params }: any) {
@@ -20,6 +21,13 @@ export default async function CollectionPage({ params }: any) {
 
   return (
     <section className="w-full min-h-screen p-8 bg-white flex flex-col items-center">
+      <BreadcrumbClientWrapper
+        crumbs={[
+          { name: "Home", path: "/" },
+          { name: "Shop", path: "/shop" },
+          { name: collection.title, path: `/shop/${handle}` },
+        ]}
+      />
       {/* Centered container */}
       <div className="max-w-7xl w-full">
         <h1 className="text-3xl font-bold text-gold mb-6 text-center">

@@ -49,7 +49,7 @@ export default function ShopPageClient({ categories, products }: any) {
 
   const featuredCategories = categories.slice(0, 5);
   // enable later
-  //const featuredProducts = products.slice(0, 6);
+  const featuredProducts = products.slice(0, 6);
 
   // 2) For the rotating categories:
   const [catIndex, setCatIndex] = useState(0);
@@ -167,7 +167,7 @@ export default function ShopPageClient({ categories, products }: any) {
           </motion.div>
         </section>
 
-        {/* ========== Featured Products (horizontal slider) ========== 
+        {/* ========== Featured Products (horizontal slider) ==========      
         <section className="mb-14">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -199,8 +199,8 @@ export default function ShopPageClient({ categories, products }: any) {
             ))}
           </motion.div>
         </section>
-        */}
-        {/* ========== All Products Grid ========== 
+          */}
+        {/* ========== All Products Grid ========== */}
         <section>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -222,7 +222,7 @@ export default function ShopPageClient({ categories, products }: any) {
               <ProductCard key={product.node.id} product={product} />
             ))}
           </motion.div>
-        </section>    */}
+        </section>    
       </div>
   
 
