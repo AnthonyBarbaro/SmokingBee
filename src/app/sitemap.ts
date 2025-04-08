@@ -18,6 +18,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${baseUrl}/shop`, lastModified: new Date().toISOString(), changeFrequency: "weekly" as const, priority: 0.9 },
     { url: `${baseUrl}/about`, lastModified: new Date().toISOString(), changeFrequency: "monthly" as const, priority: 0.6 },
     { url: `${baseUrl}/contact`, lastModified: new Date().toISOString(), changeFrequency: "monthly" as const, priority: 0.6 },
+    { url: `${baseUrl}/locations`, lastModified: new Date().toISOString(), changeFrequency: "monthly" as const, priority: 0.6 },
   ];
 
   // ✅ Load SEO Pages safely
