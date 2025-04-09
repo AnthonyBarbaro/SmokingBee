@@ -1,11 +1,12 @@
-// src/app/products/[handle]/page.tsx
+// src/app/product/[handle]/page.tsx
 export const dynamic = "force-dynamic";
 import { getProductByHandle } from "@/lib/shopify";
 import ProductPageClient from "./ProductPageClient";
 import BreadcrumbClientWrapper from "@/components/SEO/BreadcrumbClientWrapper";
 
-export default async function ProductPage({ params }: { params: { handle: string } }) {
-  const product = await getProductByHandle(params.handle);
+export default async function ProductPage({ params }: { params: Promise<{ handle: string }> }) {
+  const { handle } = await params;
+  const product = await getProductByHandle(handle);
 
   if (!product) {
     return (
@@ -22,7 +23,7 @@ export default async function ProductPage({ params }: { params: { handle: string
         crumbs={[
           { name: "Home", path: "/" },
           { name: "Shop", path: "/shop" },
-          { name: product.title, path: `/products/${params.handle}` },
+          { name: product.title, path: `/product/${handle}` },
         ]}
       />
       <ProductPageClient product={product} />
