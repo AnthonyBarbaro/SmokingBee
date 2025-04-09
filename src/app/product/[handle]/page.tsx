@@ -1,4 +1,5 @@
 // src/app/products/[handle]/page.tsx
+export const dynamic = "force-dynamic";
 import { getProductByHandle } from "@/lib/shopify";
 import ProductPageClient from "./ProductPageClient";
 import BreadcrumbClientWrapper from "@/components/SEO/BreadcrumbClientWrapper";
