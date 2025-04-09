@@ -5,7 +5,7 @@ import BreadcrumbClientWrapper from "@/components/SEO/BreadcrumbClientWrapper";
 import Link from "next/link";
 
 export default async function CollectionPage({ params }: any) {
-  const { handle } = params;
+  const { handle } = await params;
   const collection = await getCollectionByHandle(handle);
 
   if (!collection) {
