@@ -4,6 +4,7 @@
 import { useCart } from "@/context/CartContext";
 import Link from "next/link";
 import Image from "next/image";
+import BreadcrumbClientWrapper from "@/components/SEO/BreadcrumbClientWrapper";
 
 export default function CartPage() {
   const { lines, removeLine, updateLine, totalQuantity, goToCheckout } = useCart();
@@ -12,6 +13,13 @@ export default function CartPage() {
   if (lines.length < 1) {
     return (
       <div className="min-h-screen bg-white text-gray-900 flex flex-col items-center justify-center text-center">
+        {/* ✅ Breadcrumbs */}
+        <BreadcrumbClientWrapper
+          crumbs={[
+            { name: "Home", path: "/" },
+            { name: "Cart", path: "/cart" },
+          ]}
+        />
         <h1 className="text-3xl font-bold mb-4">Your cart is empty</h1>
         <Link
           href="/shop"
