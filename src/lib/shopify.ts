@@ -54,6 +54,10 @@ export async function getProductByHandle(handle: string) {
             node {
               id
               title
+              price {
+                amount
+                currencyCode
+              }
             }
           }
         }
@@ -64,6 +68,7 @@ export async function getProductByHandle(handle: string) {
   const data = await shopifyFetch<{ data: { product: any } }>(query, { handle });
   return data.data.product;
 }
+
 //
 // STEP 3: getAllProducts
 //

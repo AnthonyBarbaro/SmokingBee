@@ -66,7 +66,7 @@ export default async function CollectionPage({ params }: any) {
                 <p className="text-sm text-gray-700 line-clamp-3 text-center">
                   {product.description}
                 </p>
-                <Link href={`/products/${product.id}`}>
+                <Link href={`/product/${product.handle}`}>
                   <button className="mt-4 bg-gold text-dark font-bold px-4 py-2 rounded hover:bg-yellow-600 transition block mx-auto">
                     View Product
                   </button>
