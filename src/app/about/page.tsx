@@ -3,10 +3,17 @@
 
 import { motion } from "framer-motion";
 import AboutSlideshow from "@/components/AboutSlideshow";
+import BreadcrumbClientWrapper from "@/components/SEO/BreadcrumbClientWrapper";
 
 export default function AboutPage() {
   return (
     <section className="bg-white text-gray-900 min-h-screen py-16 px-6">
+      <BreadcrumbClientWrapper
+        crumbs={[
+          { name: "Home", path: "/" },
+          { name: "About", path: "/about" },
+        ]}
+      />
       <div className="max-w-6xl mx-auto text-center">
         <motion.h1
           initial={{ opacity: 0, y: 20 }}

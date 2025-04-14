@@ -6,6 +6,7 @@ import AnimatedCategorySection from "@/components/AnimatedCategorySection";
 import CTASection from "@/components/CTASection";
 import { getCollections, getAllProducts } from "@/lib/shopify";
 import GeoMapWrapper from "@/components/GeoMapWrapper";
+import BreadcrumbClientWrapper from "@/components/SEO/BreadcrumbClientWrapper";
 import type { Metadata } from "next";
 
 // metadata export here
@@ -40,6 +41,10 @@ export default async function HomePage() {
 
   return (
     <>
+      {/* ✅ Breadcrumb JSON-LD */}
+      <BreadcrumbClientWrapper
+          crumbs={[{ name: "Home", path: "/" }]}
+        />
       <HeroSection />
 
       {/* Animated Categories */}
