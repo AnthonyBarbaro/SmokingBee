@@ -115,12 +115,14 @@ export default function CartPage() {
       <div className="mt-10 bg-gray-100 p-6 rounded-lg shadow-lg text-lg max-w-3xl w-full text-center">
         <p className="text-gray-700 mb-2">Total items: <span className="font-bold text-gray-900">{totalQuantity}</span></p>
         <p className="text-gray-700 mb-4">Cart total: <span className="font-bold text-gray-900">{formatPrice(cartTotal)}</span></p>
+        {/*
         <button
           onClick={handleCheckout}
           className="bg-gold text-dark font-bold py-2 px-6 rounded hover:bg-yellow-500 transition"
         >
           Checkout
         </button>
+         */}
       </div>
 
       <p className="text-gray-600 mt-6 text-sm max-w-md">
