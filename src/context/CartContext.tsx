@@ -243,6 +243,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const [lines, setLines] = useState<CartItem[]>([]);
 
   // Load from localStorage on mount
+  const [loaded, setLoaded] = useState(false);
   useEffect(() => {
     const storedId = localStorage.getItem("cart_id");
     const storedUrl = localStorage.getItem("checkout_url");
@@ -250,8 +251,9 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     if (storedId) setCartId(storedId);
     if (storedUrl) setCheckoutUrl(storedUrl);
     if (storedLines) setLines(JSON.parse(storedLines));
+    setLoaded(true);
   }, []);
-
+  
   // Sync localStorage
   function syncLocalStorage(cartId: string, checkoutUrl: string, newLines: CartItem[]) {
     localStorage.setItem("cart_id", cartId);
@@ -350,6 +352,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       window.location.href = checkoutUrl;
     }
   }
+  if (!loaded) return null;
 
   return (
     <CartContext.Provider

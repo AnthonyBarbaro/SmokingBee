@@ -75,7 +75,7 @@ export async function getProductByHandle(handle: string) {
 export async function getAllProducts() {
   const query = `
     query {
-      products(first: 10) {
+      products(first: 200) {
         edges {
           node {
             id
@@ -94,6 +94,10 @@ export async function getAllProducts() {
               edges {
                 node {
                   id
+                  price {
+                    amount
+                    currencyCode
+                  }
                 }
               }
             }
