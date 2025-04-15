@@ -2,7 +2,7 @@
 import { getCollectionByHandle } from "@/lib/shopify";
 import Image from "next/image";
 import BreadcrumbClientWrapper from "@/components/SEO/BreadcrumbClientWrapper";
-import Link from "next/link";
+import ProductCard from "@/components/ProductCard"; // ✅ Import your client component
 
 export default async function CollectionPage({ params }: any) {
   const { handle } = await params;
@@ -28,6 +28,7 @@ export default async function CollectionPage({ params }: any) {
           { name: collection.title, path: `/shop/${handle}` },
         ]}
       />
+
       {/* Centered container */}
       <div className="max-w-7xl w-full">
         <h1 className="text-3xl font-bold text-gold mb-6 text-center">
@@ -53,27 +54,9 @@ export default async function CollectionPage({ params }: any) {
 
         {/* Product grid */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 justify-items-center">
-          {collection.products.edges.map((prod: any) => {
-            const product = prod.node;
-            return (
-              <div
-                key={product.id}
-                className="bg-white rounded shadow-lg border border-gold p-4 w-full sm:w-auto"
-              >
-                <h3 className="text-lg font-bold text-gold mb-2 text-center">
-                  {product.title}
-                </h3>
-                <p className="text-sm text-gray-700 line-clamp-3 text-center">
-                  {product.description}
-                </p>
-                <Link href={`/product/${product.handle}`}>
-                  <button className="mt-4 bg-gold text-dark font-bold px-4 py-2 rounded hover:bg-yellow-600 transition block mx-auto">
-                    View Product
-                  </button>
-                </Link>
-              </div>
-            );
-          })}
+          {collection.products.edges.map((prod: any) => (
+            <ProductCard key={prod.node.id} product={prod} />
+          ))}
         </div>
       </div>
     </section>

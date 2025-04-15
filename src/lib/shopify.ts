@@ -150,9 +150,9 @@ export async function getCollections() {
 
   return data.data.collections.edges;
 }
-export async function getCollectionByHandle(handle: string) {
+export async function getCollectionByHandle(handle: string, first = 100, after?: string) {
   const query = `
-    query getCollectionByHandle($handle: String!) {
+    query getCollectionByHandle($handle: String!, $first: Int!, $after: String) {
       collection(handle: $handle) {
         id
         title
@@ -161,8 +161,9 @@ export async function getCollectionByHandle(handle: string) {
           altText
           url: transformedSrc(maxWidth: 500)
         }
-        products(first: 12) {
+        products(first: $first, after: $after) {
           edges {
+            cursor
             node {
               id
               title
@@ -176,38 +177,58 @@ export async function getCollectionByHandle(handle: string) {
                   }
                 }
               }
+              variants(first: 1) {
+                edges {
+                  node {
+                    id
+                    price {
+                      amount
+                      currencyCode
+                    }
+                  }
+                }
+              }
             }
+          }
+          pageInfo {
+            hasNextPage
+            endCursor
           }
         }
       }
     }
   `;
 
-  // We'll pass the `handle` as a GraphQL variable
+  const variables: Record<string, any> = {
+    handle,
+    first,
+  };
+  if (after) variables.after = after;
+
   const data = await shopifyFetch<{
     data: {
       collection: {
         id: string;
         title: string;
         description: string;
-        image?: {
-          altText?: string;
-          url?: string;
-        };
+        image?: { altText?: string; url?: string };
         products: {
-          edges: Array<{ node: any }>;
+          edges: Array<{ node: any; cursor: string }>;
+          pageInfo: {
+            hasNextPage: boolean;
+            endCursor: string;
+          };
         };
       } | null;
     };
-  }>(query, { handle });
+  }>(query, variables);
 
-  // If Shopify can't find a collection for that handle, it returns null
   return data.data.collection;
 }
 export async function getAllProductHandles() {
   const query = `
     query {
-      products(first: 100) {
+      products(first: 200) {
         edges {
           node {
             handle
