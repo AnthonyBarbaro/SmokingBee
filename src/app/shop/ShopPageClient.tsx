@@ -131,7 +131,7 @@ export default function ShopPageClient({ categories, products }: any) {
       </section>
 
       <div className="max-w-7xl mx-auto px-6 py-10">
-        {/* ========== Featured Category Carousel ========== */}
+        {/* ========== Featured Categories (Horizontal Scroll) ========== */}
         <section className="mb-14">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -139,30 +139,25 @@ export default function ShopPageClient({ categories, products }: any) {
             transition={{ duration: 0.6 }}
             className="text-center mb-6"
           >
-            <h2 className="text-3xl font-bold text-gold mb-2">
-              Featured Categories
-            </h2>
-            <p className="text-gray-600">
-              Auto-rotating selection of our top categories
-            </p>
+            <h2 className="text-3xl font-bold text-gold mb-2">Our Categories</h2>
+            <p className="text-gray-600">A selection of our top categories</p>
           </motion.div>
 
-          {/* The "slide" container */}
           <motion.div
-            key={catIndex} // re-render on index change
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
-            className="flex flex-wrap justify-center gap-6"
+            // Key classes: flex-nowrap + overflow-x-auto for horizontal scrolling
+            className="flex flex-nowrap gap-6 overflow-x-auto px-4 py-2 scrollbar-hide"
           >
-            {visibleCats.map((cat: any) => (
-            <Link
-              key={cat.node.id}
-              href={`/shop/${cat.node.handle}`}
-              className="block" // ensures the link spans the whole card
-            >
-              <CategoryCard category={cat} />
-            </Link>
+            {categories.slice(0, 6).map((cat: any) => (
+              <Link
+                key={cat.node.id}
+                href={`/shop/${cat.node.handle}`}
+                className="block flex-shrink-0 w-60"
+              >
+                <CategoryCard category={cat} />
+              </Link>
             ))}
           </motion.div>
         </section>
