@@ -1,7 +1,18 @@
 import { NextRequest, NextResponse } from "next/server";
 import { shopifySearchProducts, getAllProducts } from "@/lib/shopify";
 import Fuse from "fuse.js";
+let cachedProducts: any[] = [];
+let lastFetched = 0;
 
+async function getCachedProducts() {
+  const now = Date.now();
+  if (cachedProducts.length === 0 || now - lastFetched > 5 * 60 * 1000) {
+    const raw = await getAllProducts(); // existing function
+    cachedProducts = raw.map((p) => p.node); // flatten immediately
+    lastFetched = now;
+  }
+  return cachedProducts;
+}
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const query = searchParams.get("q")?.trim();
@@ -14,7 +25,7 @@ export async function GET(request: NextRequest) {
 
     // 2. Fallback to fuzzy search if weak results
     if (results.length < 3) {
-      const allProducts = await getAllProducts();
+      const allProducts = await getCachedProducts();
       const fuse = new Fuse(allProducts.map((p) => p.node), {
         keys: ["title", "vendor", "productType", "description", "tags"],
         threshold: 0.3,
