@@ -4,6 +4,7 @@
 import { useCart } from "@/context/CartContext";
 import Link from "next/link";
 import Image from "next/image";
+import BreadcrumbClientWrapper from "@/components/SEO/BreadcrumbClientWrapper";
 
 export default function CartPage() {
   const { lines, removeLine, updateLine, totalQuantity, goToCheckout } = useCart();
@@ -12,6 +13,13 @@ export default function CartPage() {
   if (lines.length < 1) {
     return (
       <div className="min-h-screen bg-white text-gray-900 flex flex-col items-center justify-center text-center">
+        {/* ✅ Breadcrumbs */}
+        <BreadcrumbClientWrapper
+          crumbs={[
+            { name: "Home", path: "/" },
+            { name: "Cart", path: "/cart" },
+          ]}
+        />
         <h1 className="text-3xl font-bold mb-4">Your cart is empty</h1>
         <Link
           href="/shop"
@@ -107,12 +115,14 @@ export default function CartPage() {
       <div className="mt-10 bg-gray-100 p-6 rounded-lg shadow-lg text-lg max-w-3xl w-full text-center">
         <p className="text-gray-700 mb-2">Total items: <span className="font-bold text-gray-900">{totalQuantity}</span></p>
         <p className="text-gray-700 mb-4">Cart total: <span className="font-bold text-gray-900">{formatPrice(cartTotal)}</span></p>
+        {/*
         <button
           onClick={handleCheckout}
           className="bg-gold text-dark font-bold py-2 px-6 rounded hover:bg-yellow-500 transition"
         >
           Checkout
         </button>
+         */}
       </div>
 
       <p className="text-gray-600 mt-6 text-sm max-w-md">

@@ -11,41 +11,61 @@ export default function ProductPageClient({ product }: { product: any }) {
   const currency = product?.variants?.edges?.[0]?.node?.price?.currencyCode ?? "USD";
 
   return (
-    <section className="bg-dark text-white min-h-screen p-8">
-      <div className="max-w-3xl mx-auto">
-        <h1 className="text-4xl font-bold text-gold mb-4">{product.title}</h1>
-
+    <section className="bg-white text-gray-900 min-h-screen p-8">
+      <div className="max-w-4xl mx-auto flex flex-col md:flex-row gap-10 items-start">
         {/* Product Image */}
-        {firstImage ? (
-          <div className="relative w-full h-[500px] mb-6">
-            <Image
-              src={firstImage.url}
-              alt={firstImage.altText || product.title}
-              width={500}
-              height={500}
-              className="object-cover w-full h-full rounded-lg"
-              priority
-            />
+        <div className="w-full md:w-1/2">
+          <div className="relative w-full aspect-square bg-gray-100 rounded-lg overflow-hidden shadow-md">
+            {firstImage ? (
+              <Image
+                src={firstImage.url}
+                alt={firstImage.altText || product.title}
+                fill
+                className="object-contain p-6"
+                priority
+              />
+            ) : (
+              <div className="w-full h-full flex items-center justify-center text-gray-500 text-center">
+                No Image Available
+              </div>
+            )}
           </div>
-        ) : (
-          <div className="w-full h-[500px] bg-gray-700 flex items-center justify-center text-gray-300 rounded-lg">
-            No Image Available
-          </div>
-        )}
+        </div>
 
-        {/* Product Price & Stock */}
-        <p className="mb-4 text-lg font-bold">
-          Price: {currency} ${price}
-        </p>
+        {/* Product Info */}
+        <div className="w-full md:w-1/2">
+          <h1 className="text-3xl md:text-4xl font-bold mb-4 text-gold">
+            {product.title}
+          </h1>
 
-        {/* Add to Cart Button (Hide if Out of Stock) */}
-        {hasVariants ? (
-          <div className="mt-6 flex justify-end">
+          {/* Description */}
+          {product.description && (
+            <p className="text-base text-gray-700 mb-40">{product.description}</p>
+          )}
+
+          {/* Price */}
+          <p className="text-3xl font-bold text-black mb-4 flex items-baseline leading-none">
+            <span className="text-4xl tracking-tight">
+              ${Number(price).toFixed(2).split(".")[0]}
+            </span>
+            <span className="text-sm font-medium text-black ml-0.5 align-super">
+              .{Number(price).toFixed(2).split(".")[1]}
+            </span>
+            <span className="text-sm font-medium text-black ml-1 align-super">
+              {currency}
+            </span>
+          </p>
+
+
+          {/* Add to Cart or Out of Stock */}
+          {hasVariants ? (
             <AddToCartButton product={product} />
-          </div>
-        ) : (
-          <p className="text-lg text-red-500 font-semibold">Out of Stock</p>
-        )}
+          ) : (
+            <p className="text-lg text-red-500 font-semibold">
+              Out of Stock
+            </p>
+          )}
+        </div>
       </div>
     </section>
   );

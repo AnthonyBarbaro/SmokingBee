@@ -12,7 +12,15 @@ interface ProductCardProps {
       description: string;
       handle: string;
       variants?: {
-        edges: Array<{ node: { id: string } }>;
+        edges: Array<{
+          node: {
+            id: string;
+            price?: {
+              amount: string;
+              currencyCode: string;
+            };
+          };
+        }>;
       };
       images?: {
         edges: Array<{ node: { url?: string; altText?: string } }>;
@@ -23,20 +31,15 @@ interface ProductCardProps {
 
 export default function ProductCard({ product }: ProductCardProps) {
   const pnode = product.node;
-  const { title, description, handle, images } = pnode;
+  const { title, description, handle, images, variants } = pnode;
   const firstImage = images?.edges[0]?.node;
-
-  // If you prefer direct routing instead of a Link wrapper,
-  // you can do onClick => router.push(...) logic:
-  // const router = useRouter();
+  const firstVariant = variants?.edges[0]?.node;
 
   return (
-    <Link href={`/product/${handle}`} className="relative group bg-white rounded-lg shadow-lg hover:shadow-xl transition border border-gray-200 overflow-hidden">
-      {/* Card Container
-          - We wrap the whole card with <Link> so clicking anywhere navigates.
-          - We'll place the plus button absolutely so it doesn't block the entire card click. 
-      */}
-      
+    <Link
+      href={`/product/${handle}`}
+      className="relative group bg-white rounded-lg shadow-lg hover:shadow-xl transition border border-gray-200 overflow-hidden"
+    >
       {/* Product Image */}
       <div className="relative w-full h-48 md:h-64">
         {firstImage?.url ? (
@@ -44,7 +47,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             src={firstImage.url}
             alt={firstImage.altText || title}
             fill
-            className="object-cover group-hover:scale-105 transition-transform duration-300"
+            className="object-contain group-hover:scale-105 transition-transform duration-300 p-4"
           />
         ) : (
           <div className="w-full h-full bg-gray-300 flex items-center justify-center text-gray-500">
@@ -55,15 +58,21 @@ export default function ProductCard({ product }: ProductCardProps) {
 
       {/* Product Details */}
       <div className="p-4 text-center">
-        <h3 className="text-xl font-semibold text-dark mb-2">{title}</h3>
-        <p className="text-sm text-gray-600 line-clamp-3 mb-4">{description}</p>
+        <h3 className="text-xl font-semibold text-dark mb-1">{title}</h3>
+        {firstVariant?.price?.amount && (
+          <p className="text-lg text-gold font-semibold mb-2">
+            ${parseFloat(firstVariant.price.amount).toFixed(2)}
+          </p>
+        )}
+        <p className="text-sm text-gray-600 line-clamp-3 mb-4">
+          {description}
+        </p>
       </div>
 
       {/* Circular “+” Icon in top-right for Add to Cart */}
-      <div 
+      <div
         className="absolute top-3 right-3"
-        onClick={(e) => e.stopPropagation()} 
-        /* Stop the Link from firing when clicking the plus */
+        onClick={(e) => e.stopPropagation()}
       >
         <PlusAddToCart product={pnode} />
       </div>
@@ -71,9 +80,8 @@ export default function ProductCard({ product }: ProductCardProps) {
   );
 }
 
-/** 
- * A small custom component for the gold plus. 
- * We wrap the usual AddToCartButton logic in a circle button.
+/**
+ * A small custom component for the gold plus.
  */
 function PlusAddToCart({ product }: { product: any }) {
   return (

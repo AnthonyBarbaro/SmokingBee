@@ -5,7 +5,8 @@ import AnimatedCategorySection from "@/components/AnimatedCategorySection";
 //import AnimatedProductSection from "@/components/AnimatedProductSection";
 import CTASection from "@/components/CTASection";
 import { getCollections, getAllProducts } from "@/lib/shopify";
-import GeoMap from "@/components/GeoMap";
+import GeoMapWrapper from "@/components/GeoMapWrapper";
+import BreadcrumbClientWrapper from "@/components/SEO/BreadcrumbClientWrapper";
 import type { Metadata } from "next";
 
 // metadata export here
@@ -40,6 +41,10 @@ export default async function HomePage() {
 
   return (
     <>
+      {/* ✅ Breadcrumb JSON-LD */}
+      <BreadcrumbClientWrapper
+          crumbs={[{ name: "Home", path: "/" }]}
+        />
       <HeroSection />
 
       {/* Animated Categories */}
@@ -49,7 +54,7 @@ export default async function HomePage() {
       <AnimatedProductSection products={products} />
       */}
       {/* Google Map Section */}
-      <GeoMap />
+      <GeoMapWrapper />
       {/* Testimonials Section */}
       <section className="py-16 px-6 bg-white">
         <Testimonials />

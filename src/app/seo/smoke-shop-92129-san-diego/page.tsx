@@ -4,7 +4,7 @@ import AnimatedCategorySection from "@/components/AnimatedCategorySection";
 import CTASection from "@/components/CTASection";
 import { getCollections, getAllProducts } from "@/lib/shopify";
 import Head from "next/head";
-import GeoMap from "@/components/GeoMap";
+import GeoMapWrapper from "@/components/GeoMapWrapper";
 
 export async function generateMetadata() {
   return {
@@ -61,7 +61,7 @@ export default async function smoke_shop_92129_san_diego_Page() {
 
       <HeroSection />
       <AnimatedCategorySection categories={safeCategories} />
-      <GeoMap />
+      <GeoMapWrapper />
 
       <section className="py-8 px-6">
         <div style={{ maxWidth: "800px", margin: "auto" }}>

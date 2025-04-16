@@ -2,7 +2,7 @@
 import fs from "fs";
 import path from "path";
 import Link from "next/link";
-
+import BreadcrumbClientWrapper from "@/components/SEO/BreadcrumbClientWrapper";
 export const dynamic = "force-dynamic";
 
 type SEOPage = {
@@ -25,6 +25,12 @@ export default function LocationsPage() {
   // 3) Render them all
   return (
     <div className="min-h-screen bg-white text-gray-800">
+      <BreadcrumbClientWrapper
+        crumbs={[
+          { name: "Home", path: "/" },
+          { name: "Locations", path: "/locations" },
+        ]}
+      />
       <div className="max-w-4xl mx-auto py-12 px-6">
         <h1 className="text-2xl font-bold mb-4 text-center">All Pages</h1>
         <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
