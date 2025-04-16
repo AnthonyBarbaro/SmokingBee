@@ -248,3 +248,70 @@ export async function getAllProductHandles() {
 
   return data.data.products.edges.map(({ node }) => node.handle);
 }
+// src/lib/shopify.ts
+export async function shopifySearchProducts(query: string, first = 10) {
+  const gqlQuery = `
+    query searchProducts($search: String!, $first: Int!) {
+      products(first: $first, query: $search) {
+        edges {
+          node {
+            id
+            handle
+            title
+            productType
+            vendor
+            tags
+            description
+            images(first: 1) {
+              edges {
+                node {
+                  url
+                  altText
+                }
+              }
+            }
+            variants(first: 1) {
+              edges {
+                node {
+                  id
+                  price {
+                    amount
+                    currencyCode
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  `;
+
+  const filter = [
+    `title:*${query}*`,
+    `product_type:*${query}*`,
+    `tag:*${query}*`,
+    `vendor:*${query}*`,
+  ].join(" OR ");
+
+  const variables = { search: filter, first };
+
+  const data = await shopifyFetch<{ data: { products: { edges: any[] } } }>(
+    gqlQuery,
+    variables
+  );
+
+  return data?.data?.products?.edges.map((edge) => {
+    const product = edge.node;
+    const image = product.images?.edges?.[0]?.node;
+    const variant = product.variants?.edges?.[0]?.node;
+
+    return {
+      id: product.id,
+      handle: product.handle,
+      title: product.title,
+      image: image ? { url: image.url, altText: image.altText } : null,
+      price: variant?.price ?? null,
+    };
+  }) || [];
+}
