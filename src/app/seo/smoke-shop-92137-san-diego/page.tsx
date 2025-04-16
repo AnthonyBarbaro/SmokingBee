@@ -3,8 +3,8 @@ import Testimonials from "@/components/Testimonials";
 import AnimatedCategorySection from "@/components/AnimatedCategorySection";
 import CTASection from "@/components/CTASection";
 import { getCollections, getAllProducts } from "@/lib/shopify";
-import Head from "next/head";
 import GeoMapWrapper from "@/components/GeoMapWrapper";
+import BreadcrumbClientWrapper from "@/components/SEO/BreadcrumbClientWrapper";
 
 export async function generateMetadata() {
   return {
@@ -27,6 +27,9 @@ export async function generateMetadata() {
       title: "Smoke Shop 92137 | Clairemont/Bay Park",
       description: "Bay Park’s top spot for rolling papers, glass bongs, and kratom. Visit The Smoking Bee at 92137 today.",
       images: ["https://thesmokingbee.com/images/about/1.JPG"]
+    },
+    other: {
+      "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Smoke Shop 92137 | Clairemont/Bay Park", "item": "https://thesmokingbee.com/smoke-shop-92137-san-diego"}]}`
     }
   };
 }
@@ -41,24 +44,12 @@ export default async function smoke_shop_92137_san_diego_Page() {
 
   return (
     <>
-      <Head>
-        <title>Smoke Shop 92137 | Clairemont/Bay Park</title>
-        <meta name="description" content="Bay Park’s top spot for rolling papers, glass bongs, and kratom. Visit The Smoking Bee at 92137 today." />
-        <meta name="keywords" content="smoke shop 92137, bay park, rolling papers, glass bongs, kratom" />
-        <meta name="author" content="The Smoking Bee" />
-
-        <meta property="og:title" content="Smoke Shop 92137 | Clairemont/Bay Park" />
-        <meta property="og:description" content="Bay Park’s top spot for rolling papers, glass bongs, and kratom. Visit The Smoking Bee at 92137 today." />
-        <meta property="og:image" content="https://thesmokingbee.com/images/about/1.JPG" />
-        <meta property="og:url" content="https://thesmokingbee.com/smoke-shop-92137-san-diego" />
-        <meta property="og:type" content="website" />
-
-        <meta name="twitter:title" content="Smoke Shop 92137 | Clairemont/Bay Park" />
-        <meta name="twitter:description" content="Bay Park’s top spot for rolling papers, glass bongs, and kratom. Visit The Smoking Bee at 92137 today." />
-        <meta name="twitter:image" content="https://thesmokingbee.com/images/about/1.JPG" />
-        <meta name="twitter:card" content="summary_large_image" />
-      </Head>
-
+       <BreadcrumbClientWrapper
+        crumbs={[
+          { "name": "Home", "path": "/" },
+          { "name": "Smoke Shop 92137 | Clairemont/Bay Park", "path": "/smoke-shop-92137-san-diego" }
+        ]}
+      />
       <HeroSection />
       <AnimatedCategorySection categories={safeCategories} />
       <GeoMapWrapper />

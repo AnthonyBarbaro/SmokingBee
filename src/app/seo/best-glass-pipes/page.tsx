@@ -3,8 +3,8 @@ import Testimonials from "@/components/Testimonials";
 import AnimatedCategorySection from "@/components/AnimatedCategorySection";
 import CTASection from "@/components/CTASection";
 import { getCollections, getAllProducts } from "@/lib/shopify";
-import Head from "next/head";
 import GeoMapWrapper from "@/components/GeoMapWrapper";
+import BreadcrumbClientWrapper from "@/components/SEO/BreadcrumbClientWrapper";
 
 export async function generateMetadata() {
   return {
@@ -27,6 +27,9 @@ export async function generateMetadata() {
       title: "Best Glass Pipes for Sale | The Smoking Bee",
       description: "Shop handcrafted glass pipes and water bongs at The Smoking Bee. Experience the highest quality in smoking glassware.",
       images: ["https://thesmokingbee.com/images/about/1.JPG"]
+    },
+    other: {
+      "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Best Glass Pipes for Sale | The Smoking Bee", "item": "https://thesmokingbee.com/best-glass-pipes"}]}`
     }
   };
 }
@@ -41,24 +44,12 @@ export default async function best_glass_pipes_Page() {
 
   return (
     <>
-      <Head>
-        <title>Best Glass Pipes for Sale | The Smoking Bee</title>
-        <meta name="description" content="Shop handcrafted glass pipes and water bongs at The Smoking Bee. Experience the highest quality in smoking glassware." />
-        <meta name="keywords" content="best glass pipes, buy glass pipes, water bongs, premium glassware, smoke shop" />
-        <meta name="author" content="The Smoking Bee" />
-
-        <meta property="og:title" content="Best Glass Pipes for Sale | The Smoking Bee" />
-        <meta property="og:description" content="Shop handcrafted glass pipes and water bongs at The Smoking Bee. Experience the highest quality in smoking glassware." />
-        <meta property="og:image" content="https://thesmokingbee.com/images/about/1.JPG" />
-        <meta property="og:url" content="https://thesmokingbee.com/best-glass-pipes" />
-        <meta property="og:type" content="website" />
-
-        <meta name="twitter:title" content="Best Glass Pipes for Sale | The Smoking Bee" />
-        <meta name="twitter:description" content="Shop handcrafted glass pipes and water bongs at The Smoking Bee. Experience the highest quality in smoking glassware." />
-        <meta name="twitter:image" content="https://thesmokingbee.com/images/about/1.JPG" />
-        <meta name="twitter:card" content="summary_large_image" />
-      </Head>
-
+       <BreadcrumbClientWrapper
+        crumbs={[
+          { "name": "Home", "path": "/" },
+          { "name": "Best Glass Pipes for Sale | The Smoking Bee", "path": "/best-glass-pipes" }
+        ]}
+      />
       <HeroSection />
       <AnimatedCategorySection categories={safeCategories} />
       <GeoMapWrapper />

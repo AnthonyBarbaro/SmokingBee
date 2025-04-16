@@ -9,9 +9,36 @@ export default function ProductPageClient({ product }: { product: any }) {
   const hasVariants = product?.variants?.edges?.length > 0;
   const price = product?.variants?.edges?.[0]?.node?.price?.amount ?? "N/A";
   const currency = product?.variants?.edges?.[0]?.node?.price?.currencyCode ?? "USD";
-
+  const productSchema = {
+    "@context": "https://schema.org/",
+    "@type": "Product",
+    name: product.title,
+    image: firstImage?.url ? [firstImage.url] : [],
+    description: product.description,
+    sku: product.variants?.edges?.[0]?.node?.id ?? undefined,
+    brand: {
+      "@type": "Brand",
+      name: product.vendor || "The Smoking Bee"
+    },
+    offers: {
+      "@type": "Offer",
+      url: `https://thesmokingbee.com/product/${product.handle}`,
+      priceCurrency: currency,
+      price: parseFloat(price).toFixed(2),
+      availability: hasVariants
+        ? "https://schema.org/InStock"
+        : "https://schema.org/OutOfStock",
+      itemCondition: "https://schema.org/NewCondition"
+    }
+  };
   return (
     <section className="bg-white text-gray-900 min-h-screen p-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(productSchema),
+        }}
+      />
       <div className="max-w-4xl mx-auto flex flex-col md:flex-row gap-10 items-start">
         {/* Product Image */}
         <div className="w-full md:w-1/2">

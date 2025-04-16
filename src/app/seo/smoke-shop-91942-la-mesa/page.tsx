@@ -3,8 +3,8 @@ import Testimonials from "@/components/Testimonials";
 import AnimatedCategorySection from "@/components/AnimatedCategorySection";
 import CTASection from "@/components/CTASection";
 import { getCollections, getAllProducts } from "@/lib/shopify";
-import Head from "next/head";
 import GeoMapWrapper from "@/components/GeoMapWrapper";
+import BreadcrumbClientWrapper from "@/components/SEO/BreadcrumbClientWrapper";
 
 export async function generateMetadata() {
   return {
@@ -27,6 +27,9 @@ export async function generateMetadata() {
       title: "Smoke Shop 91942 | Top La Mesa Essentials",
       description: "In 91942? The Smoking Bee is your go-to shop for quality kratom, glass pipes, and smoking accessories in La Mesa.",
       images: ["https://thesmokingbee.com/images/about/1.JPG"]
+    },
+    other: {
+      "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Smoke Shop 91942 | Top La Mesa Essentials", "item": "https://thesmokingbee.com/smoke-shop-91942-la-mesa"}]}`
     }
   };
 }
@@ -41,24 +44,12 @@ export default async function smoke_shop_91942_la_mesa_Page() {
 
   return (
     <>
-      <Head>
-        <title>Smoke Shop 91942 | Top La Mesa Essentials</title>
-        <meta name="description" content="In 91942? The Smoking Bee is your go-to shop for quality kratom, glass pipes, and smoking accessories in La Mesa." />
-        <meta name="keywords" content="smoke shop 91942, la mesa smoke shop, kratom near 91942, glass pipes" />
-        <meta name="author" content="The Smoking Bee" />
-
-        <meta property="og:title" content="Smoke Shop 91942 | Top La Mesa Essentials" />
-        <meta property="og:description" content="In 91942? The Smoking Bee is your go-to shop for quality kratom, glass pipes, and smoking accessories in La Mesa." />
-        <meta property="og:image" content="https://thesmokingbee.com/images/about/1.JPG" />
-        <meta property="og:url" content="https://thesmokingbee.com/smoke-shop-91942-la-mesa" />
-        <meta property="og:type" content="website" />
-
-        <meta name="twitter:title" content="Smoke Shop 91942 | Top La Mesa Essentials" />
-        <meta name="twitter:description" content="In 91942? The Smoking Bee is your go-to shop for quality kratom, glass pipes, and smoking accessories in La Mesa." />
-        <meta name="twitter:image" content="https://thesmokingbee.com/images/about/1.JPG" />
-        <meta name="twitter:card" content="summary_large_image" />
-      </Head>
-
+       <BreadcrumbClientWrapper
+        crumbs={[
+          { "name": "Home", "path": "/" },
+          { "name": "Smoke Shop 91942 | Top La Mesa Essentials", "path": "/smoke-shop-91942-la-mesa" }
+        ]}
+      />
       <HeroSection />
       <AnimatedCategorySection categories={safeCategories} />
       <GeoMapWrapper />

@@ -75,7 +75,7 @@ export async function getProductByHandle(handle: string) {
 export async function getAllProducts() {
   const query = `
     query {
-      products(first: 200) {
+      products(first: 200, sortKey: TITLE, reverse: false) {
         edges {
           node {
             id

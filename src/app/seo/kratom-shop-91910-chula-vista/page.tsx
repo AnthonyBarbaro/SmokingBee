@@ -3,8 +3,8 @@ import Testimonials from "@/components/Testimonials";
 import AnimatedCategorySection from "@/components/AnimatedCategorySection";
 import CTASection from "@/components/CTASection";
 import { getCollections, getAllProducts } from "@/lib/shopify";
-import Head from "next/head";
 import GeoMapWrapper from "@/components/GeoMapWrapper";
+import BreadcrumbClientWrapper from "@/components/SEO/BreadcrumbClientWrapper";
 
 export async function generateMetadata() {
   return {
@@ -27,6 +27,9 @@ export async function generateMetadata() {
       title: "Kratom Shop 91910 | Premium in Chula Vista",
       description: "Need kratom near 91910? The Smoking Bee provides top-quality kratom, plus vapes and glass accessories in Chula Vista.",
       images: ["https://thesmokingbee.com/images/about/1.JPG"]
+    },
+    other: {
+      "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Kratom Shop 91910 | Premium in Chula Vista", "item": "https://thesmokingbee.com/kratom-shop-91910-chula-vista"}]}`
     }
   };
 }
@@ -41,24 +44,12 @@ export default async function kratom_shop_91910_chula_vista_Page() {
 
   return (
     <>
-      <Head>
-        <title>Kratom Shop 91910 | Premium in Chula Vista</title>
-        <meta name="description" content="Need kratom near 91910? The Smoking Bee provides top-quality kratom, plus vapes and glass accessories in Chula Vista." />
-        <meta name="keywords" content="kratom shop 91910, chula vista kratom, vapes near me, glass accessories" />
-        <meta name="author" content="The Smoking Bee" />
-
-        <meta property="og:title" content="Kratom Shop 91910 | Premium in Chula Vista" />
-        <meta property="og:description" content="Need kratom near 91910? The Smoking Bee provides top-quality kratom, plus vapes and glass accessories in Chula Vista." />
-        <meta property="og:image" content="https://thesmokingbee.com/images/about/1.JPG" />
-        <meta property="og:url" content="https://thesmokingbee.com/kratom-shop-91910-chula-vista" />
-        <meta property="og:type" content="website" />
-
-        <meta name="twitter:title" content="Kratom Shop 91910 | Premium in Chula Vista" />
-        <meta name="twitter:description" content="Need kratom near 91910? The Smoking Bee provides top-quality kratom, plus vapes and glass accessories in Chula Vista." />
-        <meta name="twitter:image" content="https://thesmokingbee.com/images/about/1.JPG" />
-        <meta name="twitter:card" content="summary_large_image" />
-      </Head>
-
+       <BreadcrumbClientWrapper
+        crumbs={[
+          { "name": "Home", "path": "/" },
+          { "name": "Kratom Shop 91910 | Premium in Chula Vista", "path": "/kratom-shop-91910-chula-vista" }
+        ]}
+      />
       <HeroSection />
       <AnimatedCategorySection categories={safeCategories} />
       <GeoMapWrapper />

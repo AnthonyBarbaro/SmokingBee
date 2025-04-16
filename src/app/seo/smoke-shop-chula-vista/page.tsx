@@ -3,8 +3,8 @@ import Testimonials from "@/components/Testimonials";
 import AnimatedCategorySection from "@/components/AnimatedCategorySection";
 import CTASection from "@/components/CTASection";
 import { getCollections, getAllProducts } from "@/lib/shopify";
-import Head from "next/head";
 import GeoMapWrapper from "@/components/GeoMapWrapper";
+import BreadcrumbClientWrapper from "@/components/SEO/BreadcrumbClientWrapper";
 
 export async function generateMetadata() {
   return {
@@ -27,6 +27,9 @@ export async function generateMetadata() {
       title: "Top Smoke Shop in Chula Vista | The Smoking Bee",
       description: "Chula Vista’s go-to smoke shop for vapes, glass, kratom, and rolling accessories. Visit The Smoking Bee for quality smoking products.",
       images: ["https://thesmokingbee.com/images/about/1.JPG"]
+    },
+    other: {
+      "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Top Smoke Shop in Chula Vista | The Smoking Bee", "item": "https://thesmokingbee.com/smoke-shop-chula-vista"}]}`
     }
   };
 }
@@ -41,24 +44,12 @@ export default async function smoke_shop_chula_vista_Page() {
 
   return (
     <>
-      <Head>
-        <title>Top Smoke Shop in Chula Vista | The Smoking Bee</title>
-        <meta name="description" content="Chula Vista’s go-to smoke shop for vapes, glass, kratom, and rolling accessories. Visit The Smoking Bee for quality smoking products." />
-        <meta name="keywords" content="smoke shop chula vista, kratom near me, vapes, rolling accessories, glass pipes" />
-        <meta name="author" content="The Smoking Bee" />
-
-        <meta property="og:title" content="Top Smoke Shop in Chula Vista | The Smoking Bee" />
-        <meta property="og:description" content="Chula Vista’s go-to smoke shop for vapes, glass, kratom, and rolling accessories. Visit The Smoking Bee for quality smoking products." />
-        <meta property="og:image" content="https://thesmokingbee.com/images/about/1.JPG" />
-        <meta property="og:url" content="https://thesmokingbee.com/smoke-shop-chula-vista" />
-        <meta property="og:type" content="website" />
-
-        <meta name="twitter:title" content="Top Smoke Shop in Chula Vista | The Smoking Bee" />
-        <meta name="twitter:description" content="Chula Vista’s go-to smoke shop for vapes, glass, kratom, and rolling accessories. Visit The Smoking Bee for quality smoking products." />
-        <meta name="twitter:image" content="https://thesmokingbee.com/images/about/1.JPG" />
-        <meta name="twitter:card" content="summary_large_image" />
-      </Head>
-
+       <BreadcrumbClientWrapper
+        crumbs={[
+          { "name": "Home", "path": "/" },
+          { "name": "Top Smoke Shop in Chula Vista | The Smoking Bee", "path": "/smoke-shop-chula-vista" }
+        ]}
+      />
       <HeroSection />
       <AnimatedCategorySection categories={safeCategories} />
       <GeoMapWrapper />

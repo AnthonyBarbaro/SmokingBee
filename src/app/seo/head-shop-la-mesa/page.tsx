@@ -3,8 +3,8 @@ import Testimonials from "@/components/Testimonials";
 import AnimatedCategorySection from "@/components/AnimatedCategorySection";
 import CTASection from "@/components/CTASection";
 import { getCollections, getAllProducts } from "@/lib/shopify";
-import Head from "next/head";
 import GeoMapWrapper from "@/components/GeoMapWrapper";
+import BreadcrumbClientWrapper from "@/components/SEO/BreadcrumbClientWrapper";
 
 export async function generateMetadata() {
   return {
@@ -27,6 +27,9 @@ export async function generateMetadata() {
       title: "La Mesa’s #1 Head Shop | The Smoking Bee",
       description: "Explore premium glass bongs, rolling trays, and smoking accessories at The Smoking Bee—La Mesa’s top head shop.",
       images: ["https://thesmokingbee.com/images/about/1.JPG"]
+    },
+    other: {
+      "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "La Mesa\u2019s #1 Head Shop | The Smoking Bee", "item": "https://thesmokingbee.com/head-shop-la-mesa"}]}`
     }
   };
 }
@@ -41,24 +44,12 @@ export default async function head_shop_la_mesa_Page() {
 
   return (
     <>
-      <Head>
-        <title>La Mesa’s #1 Head Shop | The Smoking Bee</title>
-        <meta name="description" content="Explore premium glass bongs, rolling trays, and smoking accessories at The Smoking Bee—La Mesa’s top head shop." />
-        <meta name="keywords" content="head shop la mesa, glass bongs, rolling trays, smoking accessories, smoke shop" />
-        <meta name="author" content="The Smoking Bee" />
-
-        <meta property="og:title" content="La Mesa’s #1 Head Shop | The Smoking Bee" />
-        <meta property="og:description" content="Explore premium glass bongs, rolling trays, and smoking accessories at The Smoking Bee—La Mesa’s top head shop." />
-        <meta property="og:image" content="https://thesmokingbee.com/images/about/1.JPG" />
-        <meta property="og:url" content="https://thesmokingbee.com/head-shop-la-mesa" />
-        <meta property="og:type" content="website" />
-
-        <meta name="twitter:title" content="La Mesa’s #1 Head Shop | The Smoking Bee" />
-        <meta name="twitter:description" content="Explore premium glass bongs, rolling trays, and smoking accessories at The Smoking Bee—La Mesa’s top head shop." />
-        <meta name="twitter:image" content="https://thesmokingbee.com/images/about/1.JPG" />
-        <meta name="twitter:card" content="summary_large_image" />
-      </Head>
-
+       <BreadcrumbClientWrapper
+        crumbs={[
+          { "name": "Home", "path": "/" },
+          { "name": "La Mesa’s #1 Head Shop | The Smoking Bee", "path": "/head-shop-la-mesa" }
+        ]}
+      />
       <HeroSection />
       <AnimatedCategorySection categories={safeCategories} />
       <GeoMapWrapper />

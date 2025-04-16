@@ -3,8 +3,8 @@ import Testimonials from "@/components/Testimonials";
 import AnimatedCategorySection from "@/components/AnimatedCategorySection";
 import CTASection from "@/components/CTASection";
 import { getCollections, getAllProducts } from "@/lib/shopify";
-import Head from "next/head";
 import GeoMapWrapper from "@/components/GeoMapWrapper";
+import BreadcrumbClientWrapper from "@/components/SEO/BreadcrumbClientWrapper";
 
 export async function generateMetadata() {
   return {
@@ -27,6 +27,9 @@ export async function generateMetadata() {
       title: "San Diego’s Best Head Shop | The Smoking Bee",
       description: "Looking for a top head shop in San Diego? Visit The Smoking Bee for quality bongs, grinders, trays, and more.",
       images: ["https://thesmokingbee.com/images/about/1.JPG"]
+    },
+    other: {
+      "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "San Diego\u2019s Best Head Shop | The Smoking Bee", "item": "https://thesmokingbee.com/head-shop-san-diego"}]}`
     }
   };
 }
@@ -41,24 +44,12 @@ export default async function head_shop_san_diego_Page() {
 
   return (
     <>
-      <Head>
-        <title>San Diego’s Best Head Shop | The Smoking Bee</title>
-        <meta name="description" content="Looking for a top head shop in San Diego? Visit The Smoking Bee for quality bongs, grinders, trays, and more." />
-        <meta name="keywords" content="head shop san diego, premium bongs, grinders, rolling trays, smoking accessories" />
-        <meta name="author" content="The Smoking Bee" />
-
-        <meta property="og:title" content="San Diego’s Best Head Shop | The Smoking Bee" />
-        <meta property="og:description" content="Looking for a top head shop in San Diego? Visit The Smoking Bee for quality bongs, grinders, trays, and more." />
-        <meta property="og:image" content="https://thesmokingbee.com/images/about/1.JPG" />
-        <meta property="og:url" content="https://thesmokingbee.com/head-shop-san-diego" />
-        <meta property="og:type" content="website" />
-
-        <meta name="twitter:title" content="San Diego’s Best Head Shop | The Smoking Bee" />
-        <meta name="twitter:description" content="Looking for a top head shop in San Diego? Visit The Smoking Bee for quality bongs, grinders, trays, and more." />
-        <meta name="twitter:image" content="https://thesmokingbee.com/images/about/1.JPG" />
-        <meta name="twitter:card" content="summary_large_image" />
-      </Head>
-
+       <BreadcrumbClientWrapper
+        crumbs={[
+          { "name": "Home", "path": "/" },
+          { "name": "San Diego’s Best Head Shop | The Smoking Bee", "path": "/head-shop-san-diego" }
+        ]}
+      />
       <HeroSection />
       <AnimatedCategorySection categories={safeCategories} />
       <GeoMapWrapper />

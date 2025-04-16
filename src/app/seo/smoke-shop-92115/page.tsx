@@ -3,8 +3,8 @@ import Testimonials from "@/components/Testimonials";
 import AnimatedCategorySection from "@/components/AnimatedCategorySection";
 import CTASection from "@/components/CTASection";
 import { getCollections, getAllProducts } from "@/lib/shopify";
-import Head from "next/head";
 import GeoMapWrapper from "@/components/GeoMapWrapper";
+import BreadcrumbClientWrapper from "@/components/SEO/BreadcrumbClientWrapper";
 
 export async function generateMetadata() {
   return {
@@ -27,6 +27,9 @@ export async function generateMetadata() {
       title: "Smoke Shop 92115 | Near SDSU",
       description: "The Smoking Bee serves 92115 with top-tier glass bongs, vapes, and Delta-8. Perfect for SDSU students and locals.",
       images: ["https://thesmokingbee.com/images/about/1.JPG"]
+    },
+    other: {
+      "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Smoke Shop 92115 | Near SDSU", "item": "https://thesmokingbee.com/smoke-shop-92115"}]}`
     }
   };
 }
@@ -41,24 +44,12 @@ export default async function smoke_shop_92115_Page() {
 
   return (
     <>
-      <Head>
-        <title>Smoke Shop 92115 | Near SDSU</title>
-        <meta name="description" content="The Smoking Bee serves 92115 with top-tier glass bongs, vapes, and Delta-8. Perfect for SDSU students and locals." />
-        <meta name="keywords" content="smoke shop 92115, sdsu, glass bongs, vapes near me, delta-8" />
-        <meta name="author" content="The Smoking Bee" />
-
-        <meta property="og:title" content="Smoke Shop 92115 | Near SDSU" />
-        <meta property="og:description" content="The Smoking Bee serves 92115 with top-tier glass bongs, vapes, and Delta-8. Perfect for SDSU students and locals." />
-        <meta property="og:image" content="https://thesmokingbee.com/images/about/1.JPG" />
-        <meta property="og:url" content="https://thesmokingbee.com/smoke-shop-92115" />
-        <meta property="og:type" content="website" />
-
-        <meta name="twitter:title" content="Smoke Shop 92115 | Near SDSU" />
-        <meta name="twitter:description" content="The Smoking Bee serves 92115 with top-tier glass bongs, vapes, and Delta-8. Perfect for SDSU students and locals." />
-        <meta name="twitter:image" content="https://thesmokingbee.com/images/about/1.JPG" />
-        <meta name="twitter:card" content="summary_large_image" />
-      </Head>
-
+       <BreadcrumbClientWrapper
+        crumbs={[
+          { "name": "Home", "path": "/" },
+          { "name": "Smoke Shop 92115 | Near SDSU", "path": "/smoke-shop-92115" }
+        ]}
+      />
       <HeroSection />
       <AnimatedCategorySection categories={safeCategories} />
       <GeoMapWrapper />

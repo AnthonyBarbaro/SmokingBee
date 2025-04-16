@@ -3,8 +3,8 @@ import Testimonials from "@/components/Testimonials";
 import AnimatedCategorySection from "@/components/AnimatedCategorySection";
 import CTASection from "@/components/CTASection";
 import { getCollections, getAllProducts } from "@/lib/shopify";
-import Head from "next/head";
 import GeoMapWrapper from "@/components/GeoMapWrapper";
+import BreadcrumbClientWrapper from "@/components/SEO/BreadcrumbClientWrapper";
 
 export async function generateMetadata() {
   return {
@@ -27,6 +27,9 @@ export async function generateMetadata() {
       title: "Find Kratom Near You | The Smoking Bee",
       description: "Looking for top-quality kratom powders or capsules? Discover The Smoking Bee for premium kratom solutions.",
       images: ["https://thesmokingbee.com/images/about/1.JPG"]
+    },
+    other: {
+      "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Find Kratom Near You | The Smoking Bee", "item": "https://thesmokingbee.com/kratom-shop-near-me"}]}`
     }
   };
 }
@@ -41,24 +44,12 @@ export default async function kratom_shop_near_me_Page() {
 
   return (
     <>
-      <Head>
-        <title>Find Kratom Near You | The Smoking Bee</title>
-        <meta name="description" content="Looking for top-quality kratom powders or capsules? Discover The Smoking Bee for premium kratom solutions." />
-        <meta name="keywords" content="kratom shop near me, kratom powder, kratom capsules, best kratom, smoke shop" />
-        <meta name="author" content="The Smoking Bee" />
-
-        <meta property="og:title" content="Find Kratom Near You | The Smoking Bee" />
-        <meta property="og:description" content="Looking for top-quality kratom powders or capsules? Discover The Smoking Bee for premium kratom solutions." />
-        <meta property="og:image" content="https://thesmokingbee.com/images/about/1.JPG" />
-        <meta property="og:url" content="https://thesmokingbee.com/kratom-shop-near-me" />
-        <meta property="og:type" content="website" />
-
-        <meta name="twitter:title" content="Find Kratom Near You | The Smoking Bee" />
-        <meta name="twitter:description" content="Looking for top-quality kratom powders or capsules? Discover The Smoking Bee for premium kratom solutions." />
-        <meta name="twitter:image" content="https://thesmokingbee.com/images/about/1.JPG" />
-        <meta name="twitter:card" content="summary_large_image" />
-      </Head>
-
+       <BreadcrumbClientWrapper
+        crumbs={[
+          { "name": "Home", "path": "/" },
+          { "name": "Find Kratom Near You | The Smoking Bee", "path": "/kratom-shop-near-me" }
+        ]}
+      />
       <HeroSection />
       <AnimatedCategorySection categories={safeCategories} />
       <GeoMapWrapper />

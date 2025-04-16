@@ -3,8 +3,8 @@ import Testimonials from "@/components/Testimonials";
 import AnimatedCategorySection from "@/components/AnimatedCategorySection";
 import CTASection from "@/components/CTASection";
 import { getCollections, getAllProducts } from "@/lib/shopify";
-import Head from "next/head";
 import GeoMapWrapper from "@/components/GeoMapWrapper";
+import BreadcrumbClientWrapper from "@/components/SEO/BreadcrumbClientWrapper";
 
 export async function generateMetadata() {
   return {
@@ -27,6 +27,9 @@ export async function generateMetadata() {
       title: "Best Delta-8 Products | The Smoking Bee",
       description: "Shop Delta-8 edibles, vapes, and tinctures at The Smoking Bee. Discover why we’re your go-to for quality Delta-8.",
       images: ["https://thesmokingbee.com/images/about/1.JPG"]
+    },
+    other: {
+      "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Best Delta-8 Products | The Smoking Bee", "item": "https://thesmokingbee.com/best-delta-8-products"}]}`
     }
   };
 }
@@ -41,24 +44,12 @@ export default async function best_delta_8_products_Page() {
 
   return (
     <>
-      <Head>
-        <title>Best Delta-8 Products | The Smoking Bee</title>
-        <meta name="description" content="Shop Delta-8 edibles, vapes, and tinctures at The Smoking Bee. Discover why we’re your go-to for quality Delta-8." />
-        <meta name="keywords" content="best delta-8 products, delta-8 edibles, delta-8 vapes, delta-8 near me" />
-        <meta name="author" content="The Smoking Bee" />
-
-        <meta property="og:title" content="Best Delta-8 Products | The Smoking Bee" />
-        <meta property="og:description" content="Shop Delta-8 edibles, vapes, and tinctures at The Smoking Bee. Discover why we’re your go-to for quality Delta-8." />
-        <meta property="og:image" content="https://thesmokingbee.com/images/about/1.JPG" />
-        <meta property="og:url" content="https://thesmokingbee.com/best-delta-8-products" />
-        <meta property="og:type" content="website" />
-
-        <meta name="twitter:title" content="Best Delta-8 Products | The Smoking Bee" />
-        <meta name="twitter:description" content="Shop Delta-8 edibles, vapes, and tinctures at The Smoking Bee. Discover why we’re your go-to for quality Delta-8." />
-        <meta name="twitter:image" content="https://thesmokingbee.com/images/about/1.JPG" />
-        <meta name="twitter:card" content="summary_large_image" />
-      </Head>
-
+       <BreadcrumbClientWrapper
+        crumbs={[
+          { "name": "Home", "path": "/" },
+          { "name": "Best Delta-8 Products | The Smoking Bee", "path": "/best-delta-8-products" }
+        ]}
+      />
       <HeroSection />
       <AnimatedCategorySection categories={safeCategories} />
       <GeoMapWrapper />

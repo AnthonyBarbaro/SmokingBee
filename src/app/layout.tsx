@@ -1,11 +1,12 @@
-//src/app/layout.tsx
+// src/app/layout.tsx
+
 import "./globals.css";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
+import Script from "next/script"; // <-- Add next/script for injecting JSON-LD
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { CartProvider } from "@/context/CartContext";
-//import FloatingCartButton from "@/components/FloatingCartButton";
 import ClientMetadata from "@/components/ClientMetadata"; // ✅ Import Client Component
 
 export const metadata: Metadata = {
@@ -29,49 +30,77 @@ export const metadata: Metadata = {
       "Find high-quality smoking accessories, glassware, and vapes at The Smoking Bee. The best smoke shop in La Mesa and San Diego!",
     images: "https://thesmokingbee.com/images/about/1.JPG",
   },
-  other: {
-    // ✅ Add Schema Markup for Local Business SEO
-    "application/ld+json": JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "name": "The Smoking Bee",
-      "alternateName": "Smoking Bee",
-      "url": "https://thesmokingbee.com",
-      "image": "https://thesmokingbee.com/images/about/1.JPG",
-      "description":
-        "The Smoking Bee, also known as Smoking Bee, is La Mesa's top smoke shop for premium glassware, vapes, and smoking accessories.",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "7584 University Ave Suite B",
-        "addressLocality": "La Mesa",
-        "addressRegion": "CA",
-        "postalCode": "91942",
-        "addressCountry": "US",
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": "32.7601",
-        "longitude": "-117.0222",
-      },
-      "sameAs": [
-        "https://www.instagram.com/thesmokingbee",
-        "https://www.facebook.com/thesmokingbee",
-      ],
-    }),
-  },
-};
 
+};
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        {/* 
+          Inject LocalBusiness JSON-LD via a <script> tag so Google can parse it properly.
+          The openingHoursSpecification array ensures each day is listed. 
+        */}
+        <Script
+          id="localbusiness-schema"
+          type="application/ld+json"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "LocalBusiness",
+              name: "The Smoking Bee",
+              alternateName: "Smoking Bee",
+              url: "https://thesmokingbee.com",
+              image: "https://thesmokingbee.com/images/about/1.JPG",
+              description:
+                "The Smoking Bee, also known as Smoking Bee, is La Mesa's top smoke shop for premium glassware, vapes, and smoking accessories.",
+              telephone: "(619) 467-7055",
+              priceRange: "$$",
+              address: {
+                "@type": "PostalAddress",
+                streetAddress: "7584 University Ave Suite B",
+                addressLocality: "La Mesa",
+                addressRegion: "CA",
+                postalCode: "91942",
+                addressCountry: "US",
+              },
+              geo: {
+                "@type": "GeoCoordinates",
+                latitude: "32.7601",
+                longitude: "-117.0222",
+              },
+              sameAs: [
+                "https://www.instagram.com/thesmokingbee",
+                "https://www.facebook.com/thesmokingbee",
+              ],
+              openingHoursSpecification: [
+                {
+                  "@type": "OpeningHoursSpecification",
+                  "dayOfWeek": [
+                    "Monday",
+                    "Tuesday",
+                    "Wednesday",
+                    "Thursday",
+                    "Friday",
+                    "Saturday",
+                    "Sunday",
+                  ],
+                  "opens": "09:00",
+                  "closes": "21:00",
+                },
+              ],
+            }),
+          }}
+        />
+      </head>
       <body className="flex flex-col min-h-screen">
         <CartProvider>
           <ClientMetadata /> {/* ✅ Handles SpeedInsights in the client */}
           <Navbar />
           <main className="flex-grow">{children}</main>
           <Footer />
-         {/* <FloatingCartButton />*/}
+          {/* <FloatingCartButton /> */}
         </CartProvider>
       </body>
     </html>

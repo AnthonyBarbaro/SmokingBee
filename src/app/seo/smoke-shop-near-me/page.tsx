@@ -3,8 +3,8 @@ import Testimonials from "@/components/Testimonials";
 import AnimatedCategorySection from "@/components/AnimatedCategorySection";
 import CTASection from "@/components/CTASection";
 import { getCollections, getAllProducts } from "@/lib/shopify";
-import Head from "next/head";
 import GeoMapWrapper from "@/components/GeoMapWrapper";
+import BreadcrumbClientWrapper from "@/components/SEO/BreadcrumbClientWrapper";
 
 export async function generateMetadata() {
   return {
@@ -27,6 +27,9 @@ export async function generateMetadata() {
       title: "Find a Smoke Shop Near You | The Smoking Bee",
       description: "Searching for a great smoke shop near you? Explore The Smoking Bee for premium vapes, glass pipes, and smoking essentials in San Diego.",
       images: ["https://thesmokingbee.com/images/about/1.JPG"]
+    },
+    other: {
+      "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Find a Smoke Shop Near You | The Smoking Bee", "item": "https://thesmokingbee.com/smoke-shop-near-me"}]}`
     }
   };
 }
@@ -41,24 +44,12 @@ export default async function smoke_shop_near_me_Page() {
 
   return (
     <>
-      <Head>
-        <title>Find a Smoke Shop Near You | The Smoking Bee</title>
-        <meta name="description" content="Searching for a great smoke shop near you? Explore The Smoking Bee for premium vapes, glass pipes, and smoking essentials in San Diego." />
-        <meta name="keywords" content="smoke shop near me, head shop near me, best smoke shop, premium glass, vapes" />
-        <meta name="author" content="The Smoking Bee" />
-
-        <meta property="og:title" content="Find a Smoke Shop Near You | The Smoking Bee" />
-        <meta property="og:description" content="Searching for a great smoke shop near you? Explore The Smoking Bee for premium vapes, glass pipes, and smoking essentials in San Diego." />
-        <meta property="og:image" content="https://thesmokingbee.com/images/about/1.JPG" />
-        <meta property="og:url" content="https://thesmokingbee.com/smoke-shop-near-me" />
-        <meta property="og:type" content="website" />
-
-        <meta name="twitter:title" content="Find a Smoke Shop Near You | The Smoking Bee" />
-        <meta name="twitter:description" content="Searching for a great smoke shop near you? Explore The Smoking Bee for premium vapes, glass pipes, and smoking essentials in San Diego." />
-        <meta name="twitter:image" content="https://thesmokingbee.com/images/about/1.JPG" />
-        <meta name="twitter:card" content="summary_large_image" />
-      </Head>
-
+       <BreadcrumbClientWrapper
+        crumbs={[
+          { "name": "Home", "path": "/" },
+          { "name": "Find a Smoke Shop Near You | The Smoking Bee", "path": "/smoke-shop-near-me" }
+        ]}
+      />
       <HeroSection />
       <AnimatedCategorySection categories={safeCategories} />
       <GeoMapWrapper />

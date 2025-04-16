@@ -3,8 +3,8 @@ import Testimonials from "@/components/Testimonials";
 import AnimatedCategorySection from "@/components/AnimatedCategorySection";
 import CTASection from "@/components/CTASection";
 import { getCollections, getAllProducts } from "@/lib/shopify";
-import Head from "next/head";
 import GeoMapWrapper from "@/components/GeoMapWrapper";
+import BreadcrumbClientWrapper from "@/components/SEO/BreadcrumbClientWrapper";
 
 export async function generateMetadata() {
   return {
@@ -27,6 +27,9 @@ export async function generateMetadata() {
       title: "Smoke Shop 92160 | Central SD",
       description: "In 92160? The Smoking Bee provides premium smoking supplies—vapes, kratom, glass, and more for central San Diego.",
       images: ["https://thesmokingbee.com/images/about/1.JPG"]
+    },
+    other: {
+      "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Smoke Shop 92160 | Central SD", "item": "https://thesmokingbee.com/smoke-shop-92160-san-diego"}]}`
     }
   };
 }
@@ -41,24 +44,12 @@ export default async function smoke_shop_92160_san_diego_Page() {
 
   return (
     <>
-      <Head>
-        <title>Smoke Shop 92160 | Central SD</title>
-        <meta name="description" content="In 92160? The Smoking Bee provides premium smoking supplies—vapes, kratom, glass, and more for central San Diego." />
-        <meta name="keywords" content="smoke shop 92160, central sd, premium smoking supplies, vapes, kratom" />
-        <meta name="author" content="The Smoking Bee" />
-
-        <meta property="og:title" content="Smoke Shop 92160 | Central SD" />
-        <meta property="og:description" content="In 92160? The Smoking Bee provides premium smoking supplies—vapes, kratom, glass, and more for central San Diego." />
-        <meta property="og:image" content="https://thesmokingbee.com/images/about/1.JPG" />
-        <meta property="og:url" content="https://thesmokingbee.com/smoke-shop-92160-san-diego" />
-        <meta property="og:type" content="website" />
-
-        <meta name="twitter:title" content="Smoke Shop 92160 | Central SD" />
-        <meta name="twitter:description" content="In 92160? The Smoking Bee provides premium smoking supplies—vapes, kratom, glass, and more for central San Diego." />
-        <meta name="twitter:image" content="https://thesmokingbee.com/images/about/1.JPG" />
-        <meta name="twitter:card" content="summary_large_image" />
-      </Head>
-
+       <BreadcrumbClientWrapper
+        crumbs={[
+          { "name": "Home", "path": "/" },
+          { "name": "Smoke Shop 92160 | Central SD", "path": "/smoke-shop-92160-san-diego" }
+        ]}
+      />
       <HeroSection />
       <AnimatedCategorySection categories={safeCategories} />
       <GeoMapWrapper />

@@ -3,8 +3,8 @@ import Testimonials from "@/components/Testimonials";
 import AnimatedCategorySection from "@/components/AnimatedCategorySection";
 import CTASection from "@/components/CTASection";
 import { getCollections, getAllProducts } from "@/lib/shopify";
-import Head from "next/head";
 import GeoMapWrapper from "@/components/GeoMapWrapper";
+import BreadcrumbClientWrapper from "@/components/SEO/BreadcrumbClientWrapper";
 
 export async function generateMetadata() {
   return {
@@ -27,6 +27,9 @@ export async function generateMetadata() {
       title: "Best Smoke Shop in La Mesa | The Smoking Bee",
       description: "Discover La Mesa's best smoke shop at The Smoking Bee. Shop premium glass, vapes, Delta-8, kratom, and more.",
       images: ["https://thesmokingbee.com/images/about/1.JPG"]
+    },
+    other: {
+      "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Best Smoke Shop in La Mesa | The Smoking Bee", "item": "https://thesmokingbee.com/smoke-shop-la-mesa"}]}`
     }
   };
 }
@@ -41,24 +44,12 @@ export default async function smoke_shop_la_mesa_Page() {
 
   return (
     <>
-      <Head>
-        <title>Best Smoke Shop in La Mesa | The Smoking Bee</title>
-        <meta name="description" content="Discover La Mesa's best smoke shop at The Smoking Bee. Shop premium glass, vapes, Delta-8, kratom, and more." />
-        <meta name="keywords" content="smoke shop la mesa, glass pipes la mesa, delta-8, kratom, best vapes" />
-        <meta name="author" content="The Smoking Bee" />
-
-        <meta property="og:title" content="Best Smoke Shop in La Mesa | The Smoking Bee" />
-        <meta property="og:description" content="Discover La Mesa's best smoke shop at The Smoking Bee. Shop premium glass, vapes, Delta-8, kratom, and more." />
-        <meta property="og:image" content="https://thesmokingbee.com/images/about/1.JPG" />
-        <meta property="og:url" content="https://thesmokingbee.com/smoke-shop-la-mesa" />
-        <meta property="og:type" content="website" />
-
-        <meta name="twitter:title" content="Best Smoke Shop in La Mesa | The Smoking Bee" />
-        <meta name="twitter:description" content="Discover La Mesa's best smoke shop at The Smoking Bee. Shop premium glass, vapes, Delta-8, kratom, and more." />
-        <meta name="twitter:image" content="https://thesmokingbee.com/images/about/1.JPG" />
-        <meta name="twitter:card" content="summary_large_image" />
-      </Head>
-
+       <BreadcrumbClientWrapper
+        crumbs={[
+          { "name": "Home", "path": "/" },
+          { "name": "Best Smoke Shop in La Mesa | The Smoking Bee", "path": "/smoke-shop-la-mesa" }
+        ]}
+      />
       <HeroSection />
       <AnimatedCategorySection categories={safeCategories} />
       <GeoMapWrapper />

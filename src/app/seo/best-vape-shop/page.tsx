@@ -3,8 +3,8 @@ import Testimonials from "@/components/Testimonials";
 import AnimatedCategorySection from "@/components/AnimatedCategorySection";
 import CTASection from "@/components/CTASection";
 import { getCollections, getAllProducts } from "@/lib/shopify";
-import Head from "next/head";
 import GeoMapWrapper from "@/components/GeoMapWrapper";
+import BreadcrumbClientWrapper from "@/components/SEO/BreadcrumbClientWrapper";
 
 export async function generateMetadata() {
   return {
@@ -27,6 +27,9 @@ export async function generateMetadata() {
       title: "Best Vape Shop Near You | The Smoking Bee",
       description: "Get premium disposable vapes, e-liquids, and accessories at The Smoking Bee, your best local vape shop.",
       images: ["https://thesmokingbee.com/images/about/1.JPG"]
+    },
+    other: {
+      "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Best Vape Shop Near You | The Smoking Bee", "item": "https://thesmokingbee.com/best-vape-shop"}]}`
     }
   };
 }
@@ -41,24 +44,12 @@ export default async function best_vape_shop_Page() {
 
   return (
     <>
-      <Head>
-        <title>Best Vape Shop Near You | The Smoking Bee</title>
-        <meta name="description" content="Get premium disposable vapes, e-liquids, and accessories at The Smoking Bee, your best local vape shop." />
-        <meta name="keywords" content="best vape shop, disposable vapes, e-liquids, vape store, vapes near me" />
-        <meta name="author" content="The Smoking Bee" />
-
-        <meta property="og:title" content="Best Vape Shop Near You | The Smoking Bee" />
-        <meta property="og:description" content="Get premium disposable vapes, e-liquids, and accessories at The Smoking Bee, your best local vape shop." />
-        <meta property="og:image" content="https://thesmokingbee.com/images/about/1.JPG" />
-        <meta property="og:url" content="https://thesmokingbee.com/best-vape-shop" />
-        <meta property="og:type" content="website" />
-
-        <meta name="twitter:title" content="Best Vape Shop Near You | The Smoking Bee" />
-        <meta name="twitter:description" content="Get premium disposable vapes, e-liquids, and accessories at The Smoking Bee, your best local vape shop." />
-        <meta name="twitter:image" content="https://thesmokingbee.com/images/about/1.JPG" />
-        <meta name="twitter:card" content="summary_large_image" />
-      </Head>
-
+       <BreadcrumbClientWrapper
+        crumbs={[
+          { "name": "Home", "path": "/" },
+          { "name": "Best Vape Shop Near You | The Smoking Bee", "path": "/best-vape-shop" }
+        ]}
+      />
       <HeroSection />
       <AnimatedCategorySection categories={safeCategories} />
       <GeoMapWrapper />

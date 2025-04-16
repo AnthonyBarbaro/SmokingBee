@@ -3,8 +3,8 @@ import Testimonials from "@/components/Testimonials";
 import AnimatedCategorySection from "@/components/AnimatedCategorySection";
 import CTASection from "@/components/CTASection";
 import { getCollections, getAllProducts } from "@/lib/shopify";
-import Head from "next/head";
 import GeoMapWrapper from "@/components/GeoMapWrapper";
+import BreadcrumbClientWrapper from "@/components/SEO/BreadcrumbClientWrapper";
 
 export async function generateMetadata() {
   return {
@@ -27,6 +27,9 @@ export async function generateMetadata() {
       title: "Best Rolling Trays for Sale | The Smoking Bee",
       description: "Elevate your rolling game with premium trays from The Smoking Bee. Shop top-quality rolling trays and accessories.",
       images: ["https://thesmokingbee.com/images/about/1.JPG"]
+    },
+    other: {
+      "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Best Rolling Trays for Sale | The Smoking Bee", "item": "https://thesmokingbee.com/best-rolling-trays"}]}`
     }
   };
 }
@@ -41,24 +44,12 @@ export default async function best_rolling_trays_Page() {
 
   return (
     <>
-      <Head>
-        <title>Best Rolling Trays for Sale | The Smoking Bee</title>
-        <meta name="description" content="Elevate your rolling game with premium trays from The Smoking Bee. Shop top-quality rolling trays and accessories." />
-        <meta name="keywords" content="best rolling trays, rolling trays for sale, premium smoking accessories, head shop" />
-        <meta name="author" content="The Smoking Bee" />
-
-        <meta property="og:title" content="Best Rolling Trays for Sale | The Smoking Bee" />
-        <meta property="og:description" content="Elevate your rolling game with premium trays from The Smoking Bee. Shop top-quality rolling trays and accessories." />
-        <meta property="og:image" content="https://thesmokingbee.com/images/about/1.JPG" />
-        <meta property="og:url" content="https://thesmokingbee.com/best-rolling-trays" />
-        <meta property="og:type" content="website" />
-
-        <meta name="twitter:title" content="Best Rolling Trays for Sale | The Smoking Bee" />
-        <meta name="twitter:description" content="Elevate your rolling game with premium trays from The Smoking Bee. Shop top-quality rolling trays and accessories." />
-        <meta name="twitter:image" content="https://thesmokingbee.com/images/about/1.JPG" />
-        <meta name="twitter:card" content="summary_large_image" />
-      </Head>
-
+       <BreadcrumbClientWrapper
+        crumbs={[
+          { "name": "Home", "path": "/" },
+          { "name": "Best Rolling Trays for Sale | The Smoking Bee", "path": "/best-rolling-trays" }
+        ]}
+      />
       <HeroSection />
       <AnimatedCategorySection categories={safeCategories} />
       <GeoMapWrapper />

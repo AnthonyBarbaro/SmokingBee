@@ -3,8 +3,8 @@ import Testimonials from "@/components/Testimonials";
 import AnimatedCategorySection from "@/components/AnimatedCategorySection";
 import CTASection from "@/components/CTASection";
 import { getCollections, getAllProducts } from "@/lib/shopify";
-import Head from "next/head";
 import GeoMapWrapper from "@/components/GeoMapWrapper";
+import BreadcrumbClientWrapper from "@/components/SEO/BreadcrumbClientWrapper";
 
 export async function generateMetadata() {
   return {
@@ -27,6 +27,9 @@ export async function generateMetadata() {
       title: "Smoke Shop 92149 | Paradise Valley",
       description: "In 92149? The Smoking Bee offers top-level kratom, glass pipes, and vape supplies for local smokers.",
       images: ["https://thesmokingbee.com/images/about/1.JPG"]
+    },
+    other: {
+      "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Smoke Shop 92149 | Paradise Valley", "item": "https://thesmokingbee.com/smoke-shop-92149-san-diego"}]}`
     }
   };
 }
@@ -41,24 +44,12 @@ export default async function smoke_shop_92149_san_diego_Page() {
 
   return (
     <>
-      <Head>
-        <title>Smoke Shop 92149 | Paradise Valley</title>
-        <meta name="description" content="In 92149? The Smoking Bee offers top-level kratom, glass pipes, and vape supplies for local smokers." />
-        <meta name="keywords" content="smoke shop 92149, paradise valley, kratom, glass pipes, vape supplies" />
-        <meta name="author" content="The Smoking Bee" />
-
-        <meta property="og:title" content="Smoke Shop 92149 | Paradise Valley" />
-        <meta property="og:description" content="In 92149? The Smoking Bee offers top-level kratom, glass pipes, and vape supplies for local smokers." />
-        <meta property="og:image" content="https://thesmokingbee.com/images/about/1.JPG" />
-        <meta property="og:url" content="https://thesmokingbee.com/smoke-shop-92149-san-diego" />
-        <meta property="og:type" content="website" />
-
-        <meta name="twitter:title" content="Smoke Shop 92149 | Paradise Valley" />
-        <meta name="twitter:description" content="In 92149? The Smoking Bee offers top-level kratom, glass pipes, and vape supplies for local smokers." />
-        <meta name="twitter:image" content="https://thesmokingbee.com/images/about/1.JPG" />
-        <meta name="twitter:card" content="summary_large_image" />
-      </Head>
-
+       <BreadcrumbClientWrapper
+        crumbs={[
+          { "name": "Home", "path": "/" },
+          { "name": "Smoke Shop 92149 | Paradise Valley", "path": "/smoke-shop-92149-san-diego" }
+        ]}
+      />
       <HeroSection />
       <AnimatedCategorySection categories={safeCategories} />
       <GeoMapWrapper />

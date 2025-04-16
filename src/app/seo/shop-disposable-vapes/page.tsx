@@ -3,8 +3,8 @@ import Testimonials from "@/components/Testimonials";
 import AnimatedCategorySection from "@/components/AnimatedCategorySection";
 import CTASection from "@/components/CTASection";
 import { getCollections, getAllProducts } from "@/lib/shopify";
-import Head from "next/head";
 import GeoMapWrapper from "@/components/GeoMapWrapper";
+import BreadcrumbClientWrapper from "@/components/SEO/BreadcrumbClientWrapper";
 
 export async function generateMetadata() {
   return {
@@ -27,6 +27,9 @@ export async function generateMetadata() {
       title: "Shop Disposable Vapes | The Smoking Bee",
       description: "Find a wide range of top-brand disposable vapes at The Smoking Bee. Enjoy flavorful hits and premium convenience.",
       images: ["https://thesmokingbee.com/images/about/1.JPG"]
+    },
+    other: {
+      "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Shop Disposable Vapes | The Smoking Bee", "item": "https://thesmokingbee.com/shop-disposable-vapes"}]}`
     }
   };
 }
@@ -41,24 +44,12 @@ export default async function shop_disposable_vapes_Page() {
 
   return (
     <>
-      <Head>
-        <title>Shop Disposable Vapes | The Smoking Bee</title>
-        <meta name="description" content="Find a wide range of top-brand disposable vapes at The Smoking Bee. Enjoy flavorful hits and premium convenience." />
-        <meta name="keywords" content="shop disposable vapes, best disposable vapes, vape shop, vapes near me" />
-        <meta name="author" content="The Smoking Bee" />
-
-        <meta property="og:title" content="Shop Disposable Vapes | The Smoking Bee" />
-        <meta property="og:description" content="Find a wide range of top-brand disposable vapes at The Smoking Bee. Enjoy flavorful hits and premium convenience." />
-        <meta property="og:image" content="https://thesmokingbee.com/images/about/1.JPG" />
-        <meta property="og:url" content="https://thesmokingbee.com/shop-disposable-vapes" />
-        <meta property="og:type" content="website" />
-
-        <meta name="twitter:title" content="Shop Disposable Vapes | The Smoking Bee" />
-        <meta name="twitter:description" content="Find a wide range of top-brand disposable vapes at The Smoking Bee. Enjoy flavorful hits and premium convenience." />
-        <meta name="twitter:image" content="https://thesmokingbee.com/images/about/1.JPG" />
-        <meta name="twitter:card" content="summary_large_image" />
-      </Head>
-
+       <BreadcrumbClientWrapper
+        crumbs={[
+          { "name": "Home", "path": "/" },
+          { "name": "Shop Disposable Vapes | The Smoking Bee", "path": "/shop-disposable-vapes" }
+        ]}
+      />
       <HeroSection />
       <AnimatedCategorySection categories={safeCategories} />
       <GeoMapWrapper />

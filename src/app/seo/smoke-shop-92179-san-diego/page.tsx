@@ -3,8 +3,8 @@ import Testimonials from "@/components/Testimonials";
 import AnimatedCategorySection from "@/components/AnimatedCategorySection";
 import CTASection from "@/components/CTASection";
 import { getCollections, getAllProducts } from "@/lib/shopify";
-import Head from "next/head";
 import GeoMapWrapper from "@/components/GeoMapWrapper";
+import BreadcrumbClientWrapper from "@/components/SEO/BreadcrumbClientWrapper";
 
 export async function generateMetadata() {
   return {
@@ -27,6 +27,9 @@ export async function generateMetadata() {
       title: "Smoke Shop 92179 | Skyline/Jamacha",
       description: "In 92179? The Smoking Bee offers rolling papers, hookah tobacco, and great kratom deals in Skyline area.",
       images: ["https://thesmokingbee.com/images/about/1.JPG"]
+    },
+    other: {
+      "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Smoke Shop 92179 | Skyline/Jamacha", "item": "https://thesmokingbee.com/smoke-shop-92179-san-diego"}]}`
     }
   };
 }
@@ -41,24 +44,12 @@ export default async function smoke_shop_92179_san_diego_Page() {
 
   return (
     <>
-      <Head>
-        <title>Smoke Shop 92179 | Skyline/Jamacha</title>
-        <meta name="description" content="In 92179? The Smoking Bee offers rolling papers, hookah tobacco, and great kratom deals in Skyline area." />
-        <meta name="keywords" content="smoke shop 92179, skyline, hookah tobacco, kratom, rolling papers" />
-        <meta name="author" content="The Smoking Bee" />
-
-        <meta property="og:title" content="Smoke Shop 92179 | Skyline/Jamacha" />
-        <meta property="og:description" content="In 92179? The Smoking Bee offers rolling papers, hookah tobacco, and great kratom deals in Skyline area." />
-        <meta property="og:image" content="https://thesmokingbee.com/images/about/1.JPG" />
-        <meta property="og:url" content="https://thesmokingbee.com/smoke-shop-92179-san-diego" />
-        <meta property="og:type" content="website" />
-
-        <meta name="twitter:title" content="Smoke Shop 92179 | Skyline/Jamacha" />
-        <meta name="twitter:description" content="In 92179? The Smoking Bee offers rolling papers, hookah tobacco, and great kratom deals in Skyline area." />
-        <meta name="twitter:image" content="https://thesmokingbee.com/images/about/1.JPG" />
-        <meta name="twitter:card" content="summary_large_image" />
-      </Head>
-
+       <BreadcrumbClientWrapper
+        crumbs={[
+          { "name": "Home", "path": "/" },
+          { "name": "Smoke Shop 92179 | Skyline/Jamacha", "path": "/smoke-shop-92179-san-diego" }
+        ]}
+      />
       <HeroSection />
       <AnimatedCategorySection categories={safeCategories} />
       <GeoMapWrapper />

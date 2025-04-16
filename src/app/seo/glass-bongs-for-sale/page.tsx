@@ -3,8 +3,8 @@ import Testimonials from "@/components/Testimonials";
 import AnimatedCategorySection from "@/components/AnimatedCategorySection";
 import CTASection from "@/components/CTASection";
 import { getCollections, getAllProducts } from "@/lib/shopify";
-import Head from "next/head";
 import GeoMapWrapper from "@/components/GeoMapWrapper";
+import BreadcrumbClientWrapper from "@/components/SEO/BreadcrumbClientWrapper";
 
 export async function generateMetadata() {
   return {
@@ -27,6 +27,9 @@ export async function generateMetadata() {
       title: "Glass Bongs for Sale | The Smoking Bee",
       description: "Shop premium glass bongs, water pipes, and dab rigs at The Smoking Bee. Elevate your smoking setup today.",
       images: ["https://thesmokingbee.com/images/about/1.JPG"]
+    },
+    other: {
+      "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Glass Bongs for Sale | The Smoking Bee", "item": "https://thesmokingbee.com/glass-bongs-for-sale"}]}`
     }
   };
 }
@@ -41,24 +44,12 @@ export default async function glass_bongs_for_sale_Page() {
 
   return (
     <>
-      <Head>
-        <title>Glass Bongs for Sale | The Smoking Bee</title>
-        <meta name="description" content="Shop premium glass bongs, water pipes, and dab rigs at The Smoking Bee. Elevate your smoking setup today." />
-        <meta name="keywords" content="glass bongs for sale, water pipes, dab rigs, head shop, premium bongs" />
-        <meta name="author" content="The Smoking Bee" />
-
-        <meta property="og:title" content="Glass Bongs for Sale | The Smoking Bee" />
-        <meta property="og:description" content="Shop premium glass bongs, water pipes, and dab rigs at The Smoking Bee. Elevate your smoking setup today." />
-        <meta property="og:image" content="https://thesmokingbee.com/images/about/1.JPG" />
-        <meta property="og:url" content="https://thesmokingbee.com/glass-bongs-for-sale" />
-        <meta property="og:type" content="website" />
-
-        <meta name="twitter:title" content="Glass Bongs for Sale | The Smoking Bee" />
-        <meta name="twitter:description" content="Shop premium glass bongs, water pipes, and dab rigs at The Smoking Bee. Elevate your smoking setup today." />
-        <meta name="twitter:image" content="https://thesmokingbee.com/images/about/1.JPG" />
-        <meta name="twitter:card" content="summary_large_image" />
-      </Head>
-
+       <BreadcrumbClientWrapper
+        crumbs={[
+          { "name": "Home", "path": "/" },
+          { "name": "Glass Bongs for Sale | The Smoking Bee", "path": "/glass-bongs-for-sale" }
+        ]}
+      />
       <HeroSection />
       <AnimatedCategorySection categories={safeCategories} />
       <GeoMapWrapper />
