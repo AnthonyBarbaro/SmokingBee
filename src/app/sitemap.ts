@@ -47,7 +47,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // ✅ Shopify Product URLs
   const productUrls: MetadataRoute.Sitemap = productHandles.map((handle) => ({
-    url: `${baseUrl}/products/${handle}`,
+    url: `${baseUrl}/product/${handle}`,
     lastModified: new Date().toISOString(),
     changeFrequency: "monthly" as const,
     priority: 0.7
