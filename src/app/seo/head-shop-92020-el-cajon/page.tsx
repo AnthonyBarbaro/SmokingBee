@@ -7,30 +7,50 @@ import GeoMapWrapper from "@/components/GeoMapWrapper";
 import BreadcrumbClientWrapper from "@/components/SEO/BreadcrumbClientWrapper";
 
 export async function generateMetadata() {
+  const title = "Head Shop 92020 | El Cajon’s Finest";
+  const description =
+    "El Cajon’s top head shop for glass pipes, vapes, and rolling trays. Explore the 92020 area’s best smoking selection at The Smoking Bee.";
+  const url = "https://thesmokingbee.com/head-shop-92020-el-cajon";
+  const image = "https://thesmokingbee.com/images/about/1.JPG";
   return {
-    title: "Head Shop 92020 | El Cajon’s Finest",
-    description: "El Cajon’s top head shop for glass pipes, vapes, and rolling trays. Explore the 92020 area’s best smoking selection at The Smoking Bee.",
-    keywords: "head shop 92020, el cajon, rolling trays, glass pipes, vapes",
+    title,
+    description,
+    keywords:
+      "smoke shop El Cajon, head shop El Cajon, 92020 smoke shop, glass pipes El Cajon, vapes El Cajon",
     openGraph: {
-      title: "Head Shop 92020 | El Cajon’s Finest",
-      description: "El Cajon’s top head shop for glass pipes, vapes, and rolling trays. Explore the 92020 area’s best smoking selection at The Smoking Bee.",
-      url: "https://thesmokingbee.com/head-shop-92020-el-cajon",
-      images: [
-        {
-          url: "https://thesmokingbee.com/images/about/1.JPG",
-          alt: "Head Shop 92020 | El Cajon’s Finest"
-        }
-      ]
+      title,
+      description,
+      url,
+      images: [{ url: image, alt: title }],
+      type: "website",
     },
     twitter: {
       card: "summary_large_image",
-      title: "Head Shop 92020 | El Cajon’s Finest",
-      description: "El Cajon’s top head shop for glass pipes, vapes, and rolling trays. Explore the 92020 area’s best smoking selection at The Smoking Bee.",
-      images: ["https://thesmokingbee.com/images/about/1.JPG"]
+      title,
+      description,
+      images: [image],
     },
     other: {
-      "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Head Shop 92020 | El Cajon\u2019s Finest", "item": "https://thesmokingbee.com/head-shop-92020-el-cajon"}]}`
-    }
+      // BreadcrumbList schema
+      "application/ld+json": `{
+        "@context":"https://schema.org",
+        "@type":"BreadcrumbList",
+        "itemListElement":[
+          {
+            "@type":"ListItem",
+            "position":1,
+            "name":"Home",
+            "item":"https://thesmokingbee.com/"
+          },
+          {
+            "@type":"ListItem",
+            "position":2,
+            "name":"${title}",
+            "item":"${url}"
+          }
+        ]
+      }`,
+    },
   };
 }
 
@@ -54,12 +74,16 @@ export default async function head_shop_92020_el_cajon_Page() {
       <AnimatedCategorySection categories={safeCategories} />
       <GeoMapWrapper />
 
-      <section className="py-8 px-6">
-        <div style={{ maxWidth: "800px", margin: "auto" }}>
-          <p>
-            Proudly serving El Cajon’s 92020 zip code with an extensive range of glass pipes, rolling trays, and more. We specialize in locally blown glass and premium vape options for those seeking high performance. Whether you’re restocking essentials or exploring new styles, our head shop has it all.
-          </p>
-        </div>
+      <section className="py-8 px-6 max-w-3xl mx-auto">
+      <h1 className="text-2xl md:text-3xl font-bold text-gold mb-4 text-center">Find a Smoke Shop Near You in El Cajon</h1>
+        <p>
+          Welcome to <strong>The Smoking Bee</strong>, the premier <em>smoke shop in El Cajon’s 92020</em>. 
+          As your local <em>head shop</em>, we carry an extensive selection of 
+          <strong> glass pipes</strong>, <strong>rolling trays</strong>, high‑performance <strong>vapes</strong>, 
+          Delta‑8 products, and more. Whether you’re hunting for artisan‑blown glass pieces or the 
+          latest disposable vape pen, our knowledgeable team is here to guide you. 
+          Stop by today to experience why we’re El Cajon’s #1 smoke shop and head shop. Check out the best smoke shop near you.
+        </p>
       </section>
 
       <section className="py-16 px-6 bg-white">

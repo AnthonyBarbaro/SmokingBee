@@ -9,11 +9,14 @@ import BreadcrumbClientWrapper from "@/components/SEO/BreadcrumbClientWrapper";
 export async function generateMetadata() {
   return {
     title: "San Diego’s Premier Smoke Shop | The Smoking Bee",
-    description: "The Smoking Bee in San Diego offers top-tier glass pipes, vapes, Delta-8, and more. Experience premium smoking accessories today.",
-    keywords: "smoke shop san diego, best smoke shop, glass pipes, delta-8, smoking accessories",
+    description:
+      "Discover The Smoking Bee’s San Diego flagship store: an exceptional selection of artisanal glass, cutting‑edge vapes, Delta‑8, and more. Elevate your experience today.",
+    keywords:
+      "smoke shop san diego, premium glass pipes, vape shop san diego, delta-8, smoke accessories, head shop",
     openGraph: {
       title: "San Diego’s Premier Smoke Shop | The Smoking Bee",
-      description: "The Smoking Bee in San Diego offers top-tier glass pipes, vapes, Delta-8, and more. Experience premium smoking accessories today.",
+      description:
+        "Discover The Smoking Bee’s San Diego flagship store: an exceptional selection of artisanal glass, cutting‑edge vapes, Delta‑8, and more. Elevate your experience today.",
       url: "https://thesmokingbee.com/smoke-shop-san-diego",
       images: [
         {
@@ -25,11 +28,29 @@ export async function generateMetadata() {
     twitter: {
       card: "summary_large_image",
       title: "San Diego’s Premier Smoke Shop | The Smoking Bee",
-      description: "The Smoking Bee in San Diego offers top-tier glass pipes, vapes, Delta-8, and more. Experience premium smoking accessories today.",
+      description:
+        "Discover The Smoking Bee’s San Diego flagship store: an exceptional selection of artisanal glass, cutting‑edge vapes, Delta‑8, and more. Elevate your experience today.",
       images: ["https://thesmokingbee.com/images/about/1.JPG"]
     },
     other: {
-      "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "San Diego\u2019s Premier Smoke Shop | The Smoking Bee", "item": "https://thesmokingbee.com/smoke-shop-san-diego"}]}`
+      "application/ld+json": `{
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://thesmokingbee.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "San Diego’s Premier Smoke Shop | The Smoking Bee",
+            "item": "https://thesmokingbee.com/smoke-shop-san-diego"
+          }
+        ]
+      }`
     }
   };
 }
@@ -56,8 +77,15 @@ export default async function smoke_shop_san_diego_Page() {
 
       <section className="py-8 px-6">
         <div style={{ maxWidth: "800px", margin: "auto" }}>
-          <p>
-            In vibrant San Diego, The Smoking Bee curates a wide range of glass pipes, potent Delta-8, and premium vape brands. Stop by to explore local glass blowers’ art or discover new rolling options. Located within easy reach of downtown, we’re dedicated to elevating each customer’s smoking experience with quality and expertise.
+          <h2 className="text-2xl md:text-3xl font-bold text-gold mb-4 text-center">
+            Why Visit Our San Diego Flagship?
+          </h2>
+          <p className="text-white">
+            From Gaslamp Quarter to Pacific Beach, The Smoking Bee in San Diego
+            brings you an unrivaled collection of premium glassware, avant‑garde
+            vaping devices, and Delta‑8 innovations. Whether you’re a collector
+            seeking handcrafted pieces or a newcomer exploring fresh flavors,
+            our knowledgeable team is here to guide you every step of the way.
           </p>
         </div>
       </section>

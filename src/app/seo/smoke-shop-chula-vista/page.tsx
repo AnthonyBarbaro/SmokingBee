@@ -56,6 +56,7 @@ export default async function smoke_shop_chula_vista_Page() {
 
       <section className="py-8 px-6">
         <div style={{ maxWidth: "800px", margin: "auto" }}>
+        <h1 className="text-2xl md:text-3xl font-bold text-gold mb-4 text-center">Smoke Shop Near Chula Vista</h1>
           <p>
             Serving Chula Vista with a vast range of glass pipes, kratom, and vapes, The Smoking Bee is your one-stop shop for top-tier smoking needs. Discover our selection of local and popular brand products, from unique rolling trays to flavorful e-liquids. We’re located near major thoroughfares, making it easy to swing by.
           </p>
