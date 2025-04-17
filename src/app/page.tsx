@@ -9,6 +9,7 @@ import GeoMapWrapper from "@/components/GeoMapWrapper";
 import BreadcrumbClientWrapper from "@/components/SEO/BreadcrumbClientWrapper";
 import type { Metadata } from "next";
 import PopupImageModal from "@/components/PopupImageModal";
+import Head from "next/head";
 // metadata export here
 export const metadata: Metadata = {
   title: "The Smoking Bee | La Mesa's Premier Smoke Shop",
@@ -41,6 +42,11 @@ export default async function HomePage() {
 
   return (
     <>
+    <Head>
+      <link rel="canonical" href="https://thesmokingbee.com/" />
+      <meta name="robots" content="index, follow" />
+      <html lang="en" />
+    </Head>
       {/* ✅ Breadcrumb JSON-LD */}
       <BreadcrumbClientWrapper
           crumbs={[{ name: "Home", path: "/" }]}
