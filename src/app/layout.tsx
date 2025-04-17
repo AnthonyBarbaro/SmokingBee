@@ -94,7 +94,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           }}
         />
       </head>
-      <body className="flex flex-col min-h-screen">
+      <body suppressHydrationWarning className="flex flex-col min-h-screen">
         <CartProvider>
           <ClientMetadata /> {/* ✅ Handles SpeedInsights in the client */}
           <Navbar />

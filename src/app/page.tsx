@@ -8,7 +8,7 @@ import { getCollections, getAllProducts } from "@/lib/shopify";
 import GeoMapWrapper from "@/components/GeoMapWrapper";
 import BreadcrumbClientWrapper from "@/components/SEO/BreadcrumbClientWrapper";
 import type { Metadata } from "next";
-
+import PopupImageModal from "@/components/PopupImageModal";
 // metadata export here
 export const metadata: Metadata = {
   title: "The Smoking Bee | La Mesa's Premier Smoke Shop",
@@ -46,7 +46,7 @@ export default async function HomePage() {
           crumbs={[{ name: "Home", path: "/" }]}
         />
       <HeroSection />
-
+      <PopupImageModal />
       {/* Animated Categories */}
       <AnimatedCategorySection categories={categories} />
 
