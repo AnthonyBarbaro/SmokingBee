@@ -84,7 +84,7 @@ export async function GET() {
   return new NextResponse(xml, {
     headers: {
       // switch from text/xml to application/xml
-      "Content-Type": "application/xml; charset=UTF-8",
+      "Content-Type": "application/xml",
       "Cache-Control": "public, max-age=0, must-revalidate",
     },
   });
