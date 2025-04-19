@@ -2,67 +2,83 @@
 import HeroSection from "@/components/HeroSection";
 import Testimonials from "@/components/Testimonials";
 import AnimatedCategorySection from "@/components/AnimatedCategorySection";
-//import AnimatedProductSection from "@/components/AnimatedProductSection";
+// import AnimatedProductSection from "@/components/AnimatedProductSection";
 import CTASection from "@/components/CTASection";
-import { getCollections, getAllProducts } from "@/lib/shopify";
 import GeoMapWrapper from "@/components/GeoMapWrapper";
 import BreadcrumbClientWrapper from "@/components/SEO/BreadcrumbClientWrapper";
-import type { Metadata } from "next";
 import PopupImageModal from "@/components/PopupImageModal";
-// metadata export here
+
+import { getCollections, getAllProductHandles } from "@/lib/shopify";
+import path from "path";
+import fsPromises from "fs/promises";
+import type { Metadata } from "next";
+
 export const metadata: Metadata = {
   title: "The Smoking Bee | La Mesa's Premier Smoke Shop",
   description:
-    "Looking for the best smoke shop near you? The Smoking Bee, also known as Smoking Bee, offers premium vapes, glass pipes, Puffco, and smoking accessories in La Mesa & San Diego.",
-  keywords:
-    "The Smoking Bee, Smoking Bee, smoke shop near me, smoke shop La Mesa, best smoke shop San Diego, vapes, glass pipes, smoking accessories, head shop near me, premium glassware, Puffco Peak Pro, Puffco Proxy, dab rigs, rolling papers, bongs, hookahs",
-  openGraph: {
-    title: "The Smoking Bee - La Mesa's Best Smoke Shop",
-    description:
-      "Visit The Smoking Bee, the best smoke shop in La Mesa & San Diego, offering premium vapes, glass pipes, and accessories.",
-    images: ["https://thesmokingbee.com/images/about/1.JPG"],
-    url: "https://thesmokingbee.com",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "The Smoking Bee | La Mesa's Best Smoke Shop",
-    description:
-      "Find high-quality smoking accessories, glassware, and vapes at The Smoking Bee. The best smoke shop in La Mesa and San Diego!",
-    images: ["https://thesmokingbee.com/images/about/1.JPG"],
-  },
-  authors: [{ name: "The Smoking Bee" }],
+    "Looking for the best smoke shop near you? The Smoking Bee offers premium vapes, glass pipes, Puffco, and accessories in La Mesa & San Diego.",
+  // … your other metadata …
 };
+
 export default async function HomePage() {
-  const [categories, products] = await Promise.all([
-    getCollections(),
-    getAllProducts(),
+  // 1) Fetch collections and product handles
+  const [collections, productHandles] = await Promise.all([
+    getCollections(),           // returns Array<{ node: { handle: string, … } }>
+    getAllProductHandles(),     // returns Array<string>
   ]);
+
+  // 2) Static routes
+  const staticPaths = ["/", "/shop", "/about", "/contact", "/locations"];
+
+  // 3) SEO slugs from seoPages.json
+  let seoSlugs: string[] = [];
+  try {
+    const raw = await fsPromises.readFile(
+      path.join(process.cwd(), "seoPages.json"),
+      "utf8"
+    );
+    seoSlugs = Object.keys(JSON.parse(raw) as Record<string, unknown>);
+  } catch {
+    // no seoPages.json → skip
+  }
+
+  // 4) Build allPaths
+  const allPaths = [
+    ...staticPaths,
+    ...seoSlugs.map((s) => `/${s}`),
+    ...productHandles.map((h) => `/product/${h}`),
+    ...collections.map((c) => `/shop/${c.node.handle}`),
+  ];
 
   return (
     <>
-      {/* ✅ Breadcrumb JSON-LD */}
-      <BreadcrumbClientWrapper
-          crumbs={[{ name: "Home", path: "/" }]}
-        />
+      {/* Breadcrumb JSON‑LD */}
+      <BreadcrumbClientWrapper crumbs={[{ name: "Home", path: "/" }]} />
+
+      {/* Your page content */}
       <HeroSection />
       <PopupImageModal />
-      {/* Animated Categories */}
-      <AnimatedCategorySection categories={categories} />
-
-      {/* Animated Products 
-      <AnimatedProductSection products={products} />
-      */}
-      {/* Google Map Section */}
+      <AnimatedCategorySection categories={collections} />
+      {/* <AnimatedProductSection products={products} /> */}
       <GeoMapWrapper />
-      {/* Testimonials Section */}
       <section className="py-16 px-6 bg-white">
         <Testimonials />
       </section>
-
-      {/* About & Contact CTA Section */}
       <CTASection />
 
+      {/* HIDDEN HTML SITEMAP for HTML‑only crawlers */}
+      <nav
+        aria-hidden="true"
+        style={{ display: "none", opacity: 0, height: 0, width: 0 }}
+      >
+        <ul>
+          {allPaths.map((p) => (
+            <li key={p}>
+              <a href={`https://thesmokingbee.com${p}`}>{p}</a>
+            </li>
+          ))}
+        </ul>
+      </nav>
     </>
   );
 }
