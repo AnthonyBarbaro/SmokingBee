@@ -34,9 +34,15 @@ export default function Footer() {
         {/* Our new Link Bag Section */}
         <div className="sm:col-span-3">
           <FooterLinks />
+          <a
+            href="/sitemap.html"
+            className="text-sm text-gray-300 hover:text-gold transition"
+          >
+            HTML Sitemap
+          </a>
         </div>
       </div>
-
+      
       <div className="border-t border-white/20 pt-4 text-center text-sm">
         <p>© {currentYear} The Smoking Bee. All rights reserved.</p>
       </div>
