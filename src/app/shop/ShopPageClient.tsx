@@ -12,8 +12,9 @@ import ProductCard from "@/components/ProductCard";
 const heroImages = [
   "/images/about/23.JPG",
   "/images/about/1.JPG",
-  "/images/about/12.JPG",
+  "/images/about/2.JPG",
   "/images/about/16.JPG",
+  "/images/about/14.JPG",
   "/images/about/4.JPG",
 ];
 

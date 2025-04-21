@@ -16,8 +16,26 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "The Smoking Bee | La Mesa's Premier Smoke Shop",
   description:
-    "Looking for the best smoke shop near you? The Smoking Bee offers premium vapes, glass pipes, Puffco, and accessories in La Mesa & San Diego.",
-  // … your other metadata …
+    "Looking for the best smoke shop in La Mesa, San Diego, Chula Vista & El Cajon? The Smoking Bee offers premium vapes, glass pipes, Puffco accessories & expert service. Shop now!",
+  keywords:
+    "The Smoking Bee, smoke shop near me, smoke shop La Mesa, best smoke shop San Diego, vapes, glass pipes, smoking accessories, head shop near me, premium glassware, Puffco Peak Pro, Puffco Proxy, dab rigs, rolling papers, bongs, hookahs",
+  robots: "index, follow",
+  openGraph: {
+    title: "The Smoking Bee | La Mesa's Premier Smoke Shop",
+    description:
+      "Looking for the best smoke shop in La Mesa, San Diego, Chula Vista & El Cajon? The Smoking Bee offers premium vapes, glass pipes, Puffco accessories & expert service. Shop now!",
+    url: "https://thesmokingbee.com",
+    images: ["https://thesmokingbee.com/images/about/1.JPG"],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "The Smoking Bee | La Mesa's Premier Smoke Shop",
+    description:
+      "Looking for the best smoke shop in La Mesa, San Diego, Chula Vista & El Cajon? The Smoking Bee offers premium vapes, glass pipes, Puffco accessories & expert service. Shop now!",
+    images: ["https://thesmokingbee.com/images/about/1.JPG"],
+  },
+  authors: [{ name: "The Smoking Bee" }],
 };
 
 export default async function HomePage() {
