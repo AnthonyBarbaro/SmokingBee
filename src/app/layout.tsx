@@ -46,6 +46,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           name="viewport"
           content="width=device-width, initial-scale=1"
         />
+         <meta name="robots" content="index, follow" />
+
         <link rel="icon" href="/favicon.ico" />
         <link
           rel="canonical"
@@ -143,6 +145,21 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                   "https://thesmokingbee.com/search?query={search_term_string}",
                 "query-input": "required name=search_term_string",
               },
+            }),
+          }}
+        />
+        <Script
+          id="webpage-schema"
+          type="application/ld+json"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebPage",
+              name: "The Smoking Bee",
+              url: "https://thesmokingbee.com",
+              description:
+                "La Mesa’s premier smoke shop offering premium glassware, vapes, and accessories. Smoke Shop Near me, Bongs, Glass, Smoke Shop La Mesa",
             }),
           }}
         />
