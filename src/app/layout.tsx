@@ -1,38 +1,37 @@
 // src/app/layout.tsx
-
 import "./globals.css";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import Script from "next/script"; // <-- Add next/script for injecting JSON-LD
+import Script from "next/script";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { CartProvider } from "@/context/CartContext";
-import ClientMetadata from "@/components/ClientMetadata"; // ✅ Import Client Component
+import ClientMetadata from "@/components/ClientMetadata";
 
 export const metadata: Metadata = {
   title: "The Smoking Bee | Best Smoke Shop in La Mesa & San Diego",
   description:
     "Looking for the best smoke shop near you? The Smoking Bee, also known as Smoking Bee, offers premium vapes, glass pipes, Puffco, and smoking accessories in La Mesa & San Diego.",
   keywords:
-    "The Smoking Bee, Smoking Bee, smoke shop near me, smoke shop La Mesa, best smoke shop San Diego, vapes, glass pipes, smoking accessories, head shop near me, premium glassware, Puffco Peak Pro, Puffco Proxy, dab rigs, rolling papers, bongs, hookahs",
+    "smoke shop, La Mesa, San Diego, vapes, glass pipes, smoking accessories, Puffco",
   alternates: {
-      canonical: "https://thesmokingbee.com",
-    },
-    robots: "index, follow",
-    openGraph: {
+    canonical: "https://thesmokingbee.com",
+  },
+  robots: "index, follow",
+  openGraph: {
     title: "The Smoking Bee - La Mesa's Best Smoke Shop",
     description:
-      "Visit The Smoking Bee, the best smoke shop in La Mesa & San Diego, offering premium vapes, glass pipes, and accessories.",
-    images: "https://thesmokingbee.com/images/about/1.JPG",
+      "Visit The Smoking Bee for premium vapes, glass pipes, and smoking accessories in La Mesa & San Diego.",
     url: "https://thesmokingbee.com",
+    images: ["https://thesmokingbee.com/images/about/1.JPG"],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "The Smoking Bee | La Mesa's #1 Smoke Shop",
     description:
-      "Find high-quality smoking accessories, glassware, and vapes at The Smoking Bee. The best smoke shop in La Mesa and San Diego!",
-    images: "https://thesmokingbee.com/images/about/1.JPG",
+      "Find high-quality smoking accessories, glassware, and vapes at The Smoking Bee.",
+    images: ["https://thesmokingbee.com/images/about/1.JPG"],
   },
 
 };
@@ -41,10 +40,19 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* 
-          Inject LocalBusiness JSON-LD via a <script> tag so Google can parse it properly.
-          The openingHoursSpecification array ensures each day is listed. 
-        */}
+        {/* 1) Core meta tags */}
+        <meta charSet="UTF-8" />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1"
+        />
+        <link rel="icon" href="/favicon.ico" />
+        <link
+          rel="canonical"
+          href="https://thesmokingbee.com"
+        />
+
+        {/* 2) LocalBusiness (you already have this) */}
         <Script
           id="localbusiness-schema"
           type="application/ld+json"
@@ -58,7 +66,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
               url: "https://thesmokingbee.com",
               image: "https://thesmokingbee.com/images/about/1.JPG",
               description:
-                "The Smoking Bee, also known as Smoking Bee, is La Mesa's top smoke shop for premium glassware, vapes, and smoking accessories.",
+                "La Mesa’s top smoke shop for premium glassware, vapes, and accessories.",
               telephone: "(619) 467-7055",
               priceRange: "$$",
               address: {
@@ -81,7 +89,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
               openingHoursSpecification: [
                 {
                   "@type": "OpeningHoursSpecification",
-                  "dayOfWeek": [
+                  dayOfWeek: [
                     "Monday",
                     "Tuesday",
                     "Wednesday",
@@ -90,17 +98,59 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                     "Saturday",
                     "Sunday",
                   ],
-                  "opens": "09:00",
-                  "closes": "21:00",
+                  opens: "09:00",
+                  closes: "21:00",
                 },
               ],
             }),
           }}
         />
+
+        {/* 3) Organization schema */}
+        <Script
+          id="organization-schema"
+          type="application/ld+json"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "The Smoking Bee",
+              url: "https://thesmokingbee.com",
+              logo: "https://thesmokingbee.com/favicon.ico",
+              sameAs: [
+                "https://www.instagram.com/thesmokingbee",
+                "https://www.facebook.com/thesmokingbee",
+              ],
+            }),
+          }}
+        />
+
+        {/* 4) WebSite + SearchAction schema (enables a “search box” rich result) */}
+        <Script
+          id="website-schema"
+          type="application/ld+json"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              name: "The Smoking Bee",
+              url: "https://thesmokingbee.com",
+              potentialAction: {
+                "@type": "SearchAction",
+                target:
+                  "https://thesmokingbee.com/search?query={search_term_string}",
+                "query-input": "required name=search_term_string",
+              },
+            }),
+          }}
+        />
       </head>
-      <body suppressHydrationWarning className="flex flex-col min-h-screen">
+
+      <body className="flex flex-col min-h-screen" suppressHydrationWarning>
         <CartProvider>
-          <ClientMetadata /> {/* ✅ Handles SpeedInsights in the client */}
+          <ClientMetadata />
           <Navbar />
           <main className="flex-grow">{children}</main>
           <Footer />

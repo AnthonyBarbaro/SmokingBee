@@ -1,9 +1,19 @@
+// src/app/sitemap.html/page.tsx
 import { getCollections, getAllProductHandles } from "@/lib/shopify";
 import fs from "fs/promises";
 import path from "path";
 
 export const dynamic = "force-static";
 
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'HTML Sitemap – The Smoking Bee',
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
 export default async function SitemapHTMLPage() {
   const baseUrl = "https://thesmokingbee.com";
 
