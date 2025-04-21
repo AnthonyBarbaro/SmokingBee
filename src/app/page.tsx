@@ -6,7 +6,7 @@ import AnimatedCategorySection from "@/components/AnimatedCategorySection";
 import CTASection from "@/components/CTASection";
 import GeoMapWrapper from "@/components/GeoMapWrapper";
 import BreadcrumbClientWrapper from "@/components/SEO/BreadcrumbClientWrapper";
-import PopupImageModal from "@/components/PopupImageModal";
+
 
 import { getCollections, getAllProductHandles } from "@/lib/shopify";
 import path from "path";
@@ -57,7 +57,7 @@ export default async function HomePage() {
 
       {/* Your page content */}
       <HeroSection />
-      <PopupImageModal />
+
       <AnimatedCategorySection categories={collections} />
       {/* <AnimatedProductSection products={products} /> */}
       <GeoMapWrapper />
