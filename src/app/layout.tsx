@@ -1,5 +1,7 @@
 // src/app/layout.tsx
 import "./globals.css";
+import fs from "fs/promises";
+import path from "path";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import Script from "next/script";
@@ -33,7 +35,13 @@ export const metadata: Metadata = {
 
 };
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+export default async  function RootLayout({ children }: { children: ReactNode }) {
+  let seoPages: { slug: string; title: string }[] = []
+  try {
+    const raw = await fs.readFile(path.join(process.cwd(), "seoPages.json"), "utf8")
+    const data: Record<string,{title:string}> = JSON.parse(raw)
+    seoPages = Object.entries(data).map(([slug,{title}]) => ({slug,title}))
+  } catch {}
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -167,7 +175,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <ClientMetadata />
           <Navbar />
           <main className="flex-grow">{children}</main>
-          <Footer />
+          <Footer seoPages={seoPages} />
           {/* <FloatingCartButton /> */}
         </CartProvider>
       </body>
