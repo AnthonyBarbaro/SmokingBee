@@ -16,7 +16,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "The Smoking Bee | La Mesa's Premier Smoke Shop",
   description:
-    "Looking for the best smoke shop in La Mesa, San Diego, Chula Vista & El Cajon? The Smoking Bee offers premium vapes, glass pipes, Puffco accessories & expert service. Shop now!",
+    "Looking for the best smoke shop in La Mesa, San Diego, Chula Vista & El Cajon? The Smoking Bee offers premium vapes, glass pipes, Puffco accessories & expert service.",
   keywords:
     "The Smoking Bee, smoke shop near me, smoke shop La Mesa, best smoke shop San Diego, vapes, glass pipes, smoking accessories, head shop near me, premium glassware, Puffco Peak Pro, Puffco Proxy, dab rigs, rolling papers, bongs, hookahs",
   robots: "index, follow",
@@ -72,7 +72,7 @@ export default async function HomePage() {
     <>
       {/* Breadcrumb JSON‑LD */}
       <BreadcrumbClientWrapper crumbs={[{ name: "Home", path: "/" }]} />
-
+      <h1 className="sr-only">Premium Smoke Shop in La Mesa, CA</h1>
       {/* Your page content */}
       <HeroSection />
 
