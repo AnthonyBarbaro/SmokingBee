@@ -55,10 +55,7 @@ export default async  function RootLayout({ children }: { children: ReactNode })
          <meta name="robots" content="index, follow" />
 
         <link rel="icon" href="/favicon.ico" />
-        <link
-          rel="canonical"
-          href="https://thesmokingbee.com"
-        />
+
 
         {/* 2) LocalBusiness (you already have this) */}
         <Script
