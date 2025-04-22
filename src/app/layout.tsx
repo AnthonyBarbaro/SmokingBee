@@ -11,6 +11,7 @@ import { CartProvider } from "@/context/CartContext";
 import ClientMetadata from "@/components/ClientMetadata";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://thesmokingbee.com"),
   title: "The Smoking Bee | Best Smoke Shop in La Mesa & San Diego",
   description:
     "Looking for the best smoke shop near you? The Smoking Bee, also known as Smoking Bee, offers premium vapes, glass pipes, Puffco, and smoking accessories in La Mesa & San Diego.",

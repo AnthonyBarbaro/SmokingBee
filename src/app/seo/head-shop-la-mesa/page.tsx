@@ -8,101 +8,80 @@ import BreadcrumbClientWrapper from "@/components/SEO/BreadcrumbClientWrapper";
 
 export async function generateMetadata() {
   return {
-    title: "Smoke Shop La Mesa | The Smoking Bee – La Mesa’s Top Head Shop",
-    description:
-      "The Smoking Bee is La Mesa’s #1 smoke shop, offering premium glass bongs, rolling trays, vapes, Delta‑8 and more. Visit us at 7584 University Ave.",
-    keywords:
-      "smoke shop La Mesa, head shop La Mesa, La Mesa smoke shop, glass bongs La Mesa, rolling trays La Mesa, vapes La Mesa",
+    title: "La Mesa’s #1 Head Shop | The Smoking Bee",
+    description: "Explore premium glass bongs, rolling trays, and smoking accessories at The Smoking Bee—La Mesa’s top head shop.",
+    keywords: "head shop la mesa, glass bongs, rolling trays, smoking accessories, smoke shop, head shop near me, smoke shop open now, 420 shop in la mesa, cheap glass pipes la mesa",
     openGraph: {
-      title: "Smoke Shop La Mesa | The Smoking Bee",
-      description:
-        "Your go‑to head shop in La Mesa: glass bongs, rolling trays, vapes, Delta‑8 and more at The Smoking Bee.",
+      title: "La Mesa’s #1 Head Shop | The Smoking Bee",
+      description: "Explore premium glass bongs, rolling trays, and smoking accessories at The Smoking Bee—La Mesa’s top head shop.",
       url: "https://thesmokingbee.com/head-shop-la-mesa",
-      images: [
-        {
-          url: "https://thesmokingbee.com/images/about/1.JPG",
-          alt: "Smoke Shop La Mesa | The Smoking Bee",
-        },
-      ],
+      images: [{ url: "/images/about/1.JPG", alt: "La Mesa’s #1 Head Shop | The Smoking Bee" }]
     },
     twitter: {
       card: "summary_large_image",
-      title: "Smoke Shop La Mesa | The Smoking Bee",
-      description:
-        "The Smoking Bee is La Mesa’s #1 smoke shop for glass bongs, rolling trays, and vapes. Visit 7584 University Ave.",
-      images: ["https://thesmokingbee.com/images/about/1.JPG"],
+      title: "La Mesa’s #1 Head Shop | The Smoking Bee",
+      description: "Explore premium glass bongs, rolling trays, and smoking accessories at The Smoking Bee—La Mesa’s top head shop.",
+      images: ["/images/about/1.JPG"]
     },
     other: {
-      // Breadcrumb
-      "application/ld+json": `{
-        "@context":"https://schema.org",
-        "@type":"BreadcrumbList",
-        "itemListElement":[
-          {"@type":"ListItem","position":1,"name":"Home","item":"https://thesmokingbee.com/"},
-          {"@type":"ListItem","position":2,"name":"Smoke Shop La Mesa","item":"https://thesmokingbee.com/head-shop-la-mesa"}
-        ]
-      }`,
-      // LocalBusiness
-      "application/ld+json-2": `{
-        "@context":"https://schema.org",
-        "@type":"SmokeShop",
-        "name":"The Smoking Bee",
-        "image":"https://thesmokingbee.com/images/about/1.JPG",
-        "address":{
-          "@type":"PostalAddress",
-          "streetAddress":"7584 University Ave Suite B",
-          "addressLocality":"La Mesa",
-          "addressRegion":"CA",
-          "postalCode":"91942",
-          "addressCountry":"US"
-        },
-        "geo":{
-          "@type":"GeoCoordinates",
-          "latitude":32.7601,
-          "longitude":-117.0222
-        },
-        "telephone":"+1-619-555-1234",
-        "url":"https://thesmokingbee.com/head-shop-la-mesa",
-        "openingHours":"Mo–Sa 10:00–20:00",
-        "priceRange":"$"
-      }`,
-    },
+      "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "La Mesa\u2019s #1 Head Shop | The Smoking Bee", "item": "https://thesmokingbee.com/head-shop-la-mesa"}]}`
+    }
   };
 }
+
 export default async function head_shop_la_mesa_Page() {
   const [categories, products] = await Promise.all([
     getCollections(),
     getAllProducts(),
   ]);
+  const safeCategories = (categories ?? []).filter(c => c?.node?.id);
 
-  const safeCategories = (categories ?? []).filter(cat => cat?.node?.id);
+  const heroTag = `Elevate Your Experience at The Smoking Bee!`;
+  const htmlContent = `<h2>Welcome to La Mesa’s Premier Head Shop</h2><p>At <strong>The Smoking Bee</strong>, we pride ourselves on being La Mesa’s top destination for all your smoking needs. Whether you’re searching for high-quality bongs, unique rolling trays, or an assortment of smoking accessories, we have everything you need to enhance your smoking experience.</p><h2>Our Quality Offerings</h2><p>We specialize in premium glass bongs that not only provide a smooth smoking experience but also serve as beautiful pieces of art. Our collection includes handcrafted pieces made by skilled artisans, ensuring you get the best quality available. Additionally, we stock modern vape hardware for those looking for a different kind of experience, along with the finest rolling papers to suit all preferences.</p><h2>Conveniently Located</h2><p>The Smoking Bee is conveniently situated just off major bus routes, making it easy for local smokers to stop by and explore our extensive range of products. We’re dedicated to providing a welcoming atmosphere where you can browse and find exactly what you need without any pressure.</p><h2>Why Choose Us?</h2><ul><li><strong>Expert Knowledge:</strong> Our friendly staff are knowledgeable and ready to assist you in finding the perfect item.</li><li><strong>Quality Products:</strong> We only stock items that meet our high standards of quality and functionality.</li><li><strong>Community Focused:</strong> We love being part of the La Mesa community and strive to support our local customers.</li></ul><p>Visit <strong>The Smoking Bee</strong> today and discover why we are La Mesa’s favorite head shop. We’re here to help you elevate your smoking game!</p>`;
+  const faqItems = [{"q": "What types of products do you offer?", "a": "We offer a variety of glass bongs, rolling trays, vape hardware, and smoking accessories."}, {"q": "Is The Smoking Bee located near public transportation?", "a": "Yes, we are conveniently located just off major bus routes for easy access."}, {"q": "Do you have knowledgeable staff to assist customers?", "a": "Absolutely! Our friendly staff are always ready to help you find the right products."}, {"q": "Can I find handcrafted glass pieces at your shop?", "a": "Yes, we specialize in premium handcrafted glass bongs that are both functional and artistic."}, {"q": "What makes The Smoking Bee different from other head shops?", "a": "We focus on quality products, expert knowledge, and a welcoming community atmosphere."}];
 
   return (
     <>
-       <BreadcrumbClientWrapper
+      <BreadcrumbClientWrapper
         crumbs={[
-          { "name": "Home", "path": "/" },
-          { "name": "La Mesa’s #1 Head Shop | The Smoking Bee", "path": "/head-shop-la-mesa" }
+          { name: "Home", path: "/" },
+          { name: "La Mesa’s #1 Head Shop | The Smoking Bee", path: "/head-shop-la-mesa" }
         ]}
       />
-      <HeroSection />
+
+      <HeroSection tagline={heroTag} imageSrc="/images/about/1.JPG" />
       <AnimatedCategorySection categories={safeCategories} />
+      <section
+        className="prose prose-lg max-w-4xl mx-auto my-12 px-6 py-10 bg-black text-white shadow-xl rounded-2xl border border-gold"
+        style={{
+          borderColor: "#FFD700",
+        }}
+        dangerouslySetInnerHTML={{ __html: htmlContent }}
+      />
       <GeoMapWrapper />
+      {faqItems.length > 0 && (
+        <section className="my-16">
+          <section className="max-w-3xl mx-auto py-10 px-6 bg-black text-white rounded-2xl border border-gold shadow-lg">
+            <h2 className="text-3xl font-extrabold mb-6 text-gold">FAQ</h2>
+            {faqItems.map((item, i) => (
+              <details
+                key={i}
+                className="border border-white/20 rounded-lg p-4 mb-4 transition duration-300 hover:border-gold"
+              >
+                <summary className="cursor-pointer font-semibold text-white">
+                  {item.q}
+                </summary>
+                <p className="mt-2 text-white">{item.a}</p>
+              </details>
+            ))}
+          </section>
+        </section>
+      )}
 
-      <section className="py-8 px-6 max-w-3xl mx-auto">
-      <h1 className="text-2xl md:text-3xl font-bold text-gold mb-4 text-center">Head Shop La Mesa</h1>
-        <p>
-          Welcome to <strong>The Smoking Bee</strong>, La Mesa’s premier smoke shop located at 7584 University Ave Suite B. 
-          We specialize in handcrafted glass bongs, premium rolling trays, high‑performance vapes, Delta‑8 cartridges, 
-          and more. Whether you’re restocking essentials or exploring new styles, our friendly staff is here to help 
-          you find the perfect piece. We have a wide selection and great deals, check us out.
-        </p>
-      </section>
-
-      <section className="py-16 px-6 bg-white">
-        <Testimonials />
-      </section>
-
+      
+      
+      
+      <Testimonials />
       <CTASection />
     </>
   );
