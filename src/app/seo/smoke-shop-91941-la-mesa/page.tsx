@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "Discover The Smoking Bee in 91941 La Mesa for vapes, glass pipes, Delta-8, and premium smoking accessories.",
       images: ["/images/about/20.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/smoke-shop-91941-la-mesa",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Smoke Shop 91941 | La Mesa\u2019s Best", "item": "https://thesmokingbee.com/smoke-shop-91941-la-mesa"}]}`
     }

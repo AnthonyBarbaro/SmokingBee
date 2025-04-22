@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "Kensington (92165) relies on The Smoking Bee for top-tier bongs, e-liquids, and Delta-8 products.",
       images: ["/images/about/19.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/smoke-shop-92165-san-diego",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Smoke Shop 92165 | Kensington", "item": "https://thesmokingbee.com/smoke-shop-92165-san-diego"}]}`
     }

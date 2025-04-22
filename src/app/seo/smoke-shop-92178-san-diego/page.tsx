@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "Coronado Island (92178) counts on The Smoking Bee for top vape juices, glass bongs, and more.",
       images: ["/images/about/22.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/smoke-shop-92178-san-diego",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Smoke Shop 92178 | Coronado Island", "item": "https://thesmokingbee.com/smoke-shop-92178-san-diego"}]}`
     }

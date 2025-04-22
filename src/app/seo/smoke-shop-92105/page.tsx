@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "City Heights’ best smoke shop for rolling papers, kratom, and more in 92105. Discover premium products at The Smoking Bee.",
       images: ["/images/about/10.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/smoke-shop-92105",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Smoke Shop 92105 | City Heights", "item": "https://thesmokingbee.com/smoke-shop-92105"}]}`
     }

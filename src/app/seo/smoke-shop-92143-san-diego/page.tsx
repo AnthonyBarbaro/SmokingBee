@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "Between San Diego and Chula Vista? Swing by The Smoking Bee (92143) for vapes, kratom, and glass pipes.",
       images: ["/images/about/6.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/smoke-shop-92143-san-diego",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Smoke Shop 92143 | Border Area", "item": "https://thesmokingbee.com/smoke-shop-92143-san-diego"}]}`
     }

@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "Rancho Santa Fe (92150) smokers enjoy premium Delta-8, smoking accessories, and more at The Smoking Bee.",
       images: ["/images/about/11.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/smoke-shop-92150-san-diego",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Smoke Shop 92150 | Rancho Santa Fe", "item": "https://thesmokingbee.com/smoke-shop-92150-san-diego"}]}`
     }

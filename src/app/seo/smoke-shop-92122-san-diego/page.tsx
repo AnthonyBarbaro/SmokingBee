@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "In 92122 near UTC? Get top-tier rolling papers, kratom, and glass bongs at The Smoking Bee.",
       images: ["/images/about/11.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/smoke-shop-92122-san-diego",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Smoke Shop 92122 | Near UTC", "item": "https://thesmokingbee.com/smoke-shop-92122-san-diego"}]}`
     }

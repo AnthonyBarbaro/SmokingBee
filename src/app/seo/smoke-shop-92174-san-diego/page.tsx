@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "Southeastern SD (92174) finds disposable vapes, glass bongs, and premium smoking gear at The Smoking Bee.",
       images: ["/images/about/11.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/smoke-shop-92174-san-diego",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Smoke Shop 92174 | Southeastern SD", "item": "https://thesmokingbee.com/smoke-shop-92174-san-diego"}]}`
     }

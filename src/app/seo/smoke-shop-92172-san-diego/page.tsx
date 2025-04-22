@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "Near Poway? The Smoking Bee at 92172 stocks premium glass, e-liquids, and smoking accessories for locals.",
       images: ["/images/about/13.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/smoke-shop-92172-san-diego",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Smoke Shop 92172 | Poway Vicinity", "item": "https://thesmokingbee.com/smoke-shop-92172-san-diego"}]}`
     }

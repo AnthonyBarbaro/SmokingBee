@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "Elevate your rolling game with premium trays from The Smoking Bee. Shop top-quality rolling trays and accessories.",
       images: ["/images/about/19.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/best-rolling-trays",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Best Rolling Trays for Sale | The Smoking Bee", "item": "https://thesmokingbee.com/best-rolling-trays"}]}`
     }

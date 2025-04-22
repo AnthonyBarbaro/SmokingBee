@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "Mira Mesa’s 92126 smoke shop for Delta-8, glass pipes, and more. Experience quality products at The Smoking Bee.",
       images: ["/images/about/13.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/smoke-shop-92126-san-diego",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Smoke Shop 92126 | Mira Mesa", "item": "https://thesmokingbee.com/smoke-shop-92126-san-diego"}]}`
     }

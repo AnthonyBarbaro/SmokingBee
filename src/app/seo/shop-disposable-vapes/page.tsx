@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "Find a wide range of top-brand disposable vapes at The Smoking Bee. Enjoy flavorful hits and premium convenience.",
       images: ["/images/about/3.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/shop-disposable-vapes",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Shop Disposable Vapes | The Smoking Bee", "item": "https://thesmokingbee.com/shop-disposable-vapes"}]}`
     }

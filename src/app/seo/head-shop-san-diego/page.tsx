@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "Looking for a top head shop in San Diego? Visit The Smoking Bee for quality bongs, grinders, trays, and more.",
       images: ["/images/about/11.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/head-shop-san-diego",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "San Diego\u2019s Best Head Shop | The Smoking Bee", "item": "https://thesmokingbee.com/head-shop-san-diego"}]}`
     }

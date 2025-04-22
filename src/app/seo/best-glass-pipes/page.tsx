@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "Shop handcrafted glass pipes and water bongs at The Smoking Bee. Experience the highest quality in smoking glassware.",
       images: ["/images/about/14.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/best-glass-pipes",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Best Glass Pipes for Sale | The Smoking Bee", "item": "https://thesmokingbee.com/best-glass-pipes"}]}`
     }

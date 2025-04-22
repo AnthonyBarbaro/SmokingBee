@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "Near Southeastern Encanto (92183)? The Smoking Bee has top hookah flavors, Delta-8, and glass pipes.",
       images: ["/images/about/4.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/smoke-shop-92183-san-diego",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Smoke Shop 92183 | Southeastern Encanto", "item": "https://thesmokingbee.com/smoke-shop-92183-san-diego"}]}`
     }

@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "Discover premium smoking accessories in 92123 Serra Mesa. The Smoking Bee offers glass, vapes, and more.",
       images: ["/images/about/10.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/smoke-shop-92123-san-diego",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Smoke Shop 92123 | Serra Mesa\u2019s Best", "item": "https://thesmokingbee.com/smoke-shop-92123-san-diego"}]}`
     }

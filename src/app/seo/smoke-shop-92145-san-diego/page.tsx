@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "Serving 92145 near MCAS Miramar with quality hookah, glass bongs, and disposable vapes at The Smoking Bee.",
       images: ["/images/about/18.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/smoke-shop-92145-san-diego",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Smoke Shop 92145 | Miramar Air Base", "item": "https://thesmokingbee.com/smoke-shop-92145-san-diego"}]}`
     }

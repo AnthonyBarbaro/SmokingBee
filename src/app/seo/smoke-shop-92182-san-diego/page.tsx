@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "SDSU students in 92182 trust The Smoking Bee for rolling papers, kratom, and vape pods near campus.",
       images: ["/images/about/16.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/smoke-shop-92182-san-diego",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Smoke Shop 92182 | SDSU Area", "item": "https://thesmokingbee.com/smoke-shop-92182-san-diego"}]}`
     }

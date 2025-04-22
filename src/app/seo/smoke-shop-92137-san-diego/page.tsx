@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "Bay Park’s top spot for rolling papers, glass bongs, and kratom. Visit The Smoking Bee at 92137 today.",
       images: ["/images/about/2.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/smoke-shop-92137-san-diego",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Smoke Shop 92137 | Clairemont/Bay Park", "item": "https://thesmokingbee.com/smoke-shop-92137-san-diego"}]}`
     }

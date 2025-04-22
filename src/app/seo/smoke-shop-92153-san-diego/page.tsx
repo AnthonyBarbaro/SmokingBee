@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "Otay Mesa (92153) smokers trust The Smoking Bee for rolling papers, disposable vapes, and more.",
       images: ["/images/about/2.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/smoke-shop-92153-san-diego",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Smoke Shop 92153 | Otay Mesa", "item": "https://thesmokingbee.com/smoke-shop-92153-san-diego"}]}`
     }

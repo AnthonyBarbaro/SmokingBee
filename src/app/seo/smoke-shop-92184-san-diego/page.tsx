@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "Serra Mesa smokers (92184) get vaping mods, kratom capsules, and more from The Smoking Bee.",
       images: ["/images/about/17.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/smoke-shop-92184-san-diego",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Smoke Shop 92184 | Serra Mesa / Mission Heights", "item": "https://thesmokingbee.com/smoke-shop-92184-san-diego"}]}`
     }

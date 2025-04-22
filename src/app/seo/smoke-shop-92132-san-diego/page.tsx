@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "Visit The Smoking Bee in 92132 for premium glass pipes, Delta-8, and top-tier smoking supplies in central SD.",
       images: ["/images/about/16.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/smoke-shop-92132-san-diego",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Smoke Shop 92132 | Central San Diego", "item": "https://thesmokingbee.com/smoke-shop-92132-san-diego"}]}`
     }

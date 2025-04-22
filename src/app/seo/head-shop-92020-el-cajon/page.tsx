@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "El Cajon’s top head shop for glass pipes, vapes, and rolling trays. Explore the 92020 area’s best smoking selection at The Smoking Bee.",
       images: ["/images/about/2.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/head-shop-92020-el-cajon",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Head Shop 92020 | El Cajon\u2019s Finest", "item": "https://thesmokingbee.com/head-shop-92020-el-cajon"}]}`
     }

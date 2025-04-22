@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "Find top-tier grinders, trays, bongs, and more at The Smoking Bee. Upgrade your smoking experience today.",
       images: ["/images/about/8.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/premium-smoking-accessories",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Premium Smoking Accessories | The Smoking Bee", "item": "https://thesmokingbee.com/premium-smoking-accessories"}]}`
     }

@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "Need kratom near 91910? The Smoking Bee provides top-quality kratom, plus vapes and glass accessories in Chula Vista.",
       images: ["/images/about/14.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/kratom-shop-91910-chula-vista",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Kratom Shop 91910 | Premium in Chula Vista", "item": "https://thesmokingbee.com/kratom-shop-91910-chula-vista"}]}`
     }

@@ -20,7 +20,6 @@ export const metadata: Metadata = {
   keywords:
     "The Smoking Bee, smoke shop near me, smoke shop La Mesa, best smoke shop San Diego, vapes, glass pipes, smoking accessories, head shop near me, premium glassware, Puffco Peak Pro, Puffco Proxy, dab rigs, rolling papers, bongs, hookahs",
   robots: "index, follow",
-  
   openGraph: {
     title: "The Smoking Bee | La Mesa's Premier Smoke Shop",
     description:
@@ -35,6 +34,9 @@ export const metadata: Metadata = {
     description:
       "Looking for the best smoke shop in La Mesa, San Diego, Chula Vista & El Cajon? The Smoking Bee offers premium vapes, glass pipes, Puffco accessories & expert service. Shop now!",
     images: ["https://thesmokingbee.com/images/about/1.JPG"],
+  },
+  alternates: {
+    canonical: "https://thesmokingbee.com/",
   },
   authors: [{ name: "The Smoking Bee" }],
 };

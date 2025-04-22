@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "Serving 92134 near the naval base with premium vapes, glass pipes, and rolling papers at The Smoking Bee.",
       images: ["/images/about/9.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/smoke-shop-92134-san-diego",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Smoke Shop 92134 | Near Naval Base", "item": "https://thesmokingbee.com/smoke-shop-92134-san-diego"}]}`
     }

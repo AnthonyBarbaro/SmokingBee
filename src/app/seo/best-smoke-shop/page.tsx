@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "Visit The Smoking Bee for top-quality glass bongs, vapes, Delta-8, and premium accessories—your best local smoke shop.",
       images: ["/images/about/19.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/best-smoke-shop",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Best Smoke Shop Near You | The Smoking Bee", "item": "https://thesmokingbee.com/best-smoke-shop"}]}`
     }

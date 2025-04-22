@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "Need rolling papers? The Smoking Bee offers top brands of papers, cones, and wraps to elevate your smoking experience.",
       images: ["/images/about/2.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/rolling-papers-near-me",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Find Rolling Papers Near You | The Smoking Bee", "item": "https://thesmokingbee.com/rolling-papers-near-me"}]}`
     }

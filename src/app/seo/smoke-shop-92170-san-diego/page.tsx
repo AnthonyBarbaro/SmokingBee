@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "Serving 92170 near Naval Base with premium bongs, vapes, and Delta-8. Stop by The Smoking Bee today.",
       images: ["/images/about/5.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/smoke-shop-92170-san-diego",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Smoke Shop 92170 | Naval Base SD", "item": "https://thesmokingbee.com/smoke-shop-92170-san-diego"}]}`
     }

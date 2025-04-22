@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "Skyline Hills (92189) relies on The Smoking Bee for rolling papers, kratom, and quality vape mods.",
       images: ["/images/about/5.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/smoke-shop-92189-san-diego",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Smoke Shop 92189 | Skyline Hills", "item": "https://thesmokingbee.com/smoke-shop-92189-san-diego"}]}`
     }

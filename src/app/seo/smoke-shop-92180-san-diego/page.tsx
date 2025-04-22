@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "Check out The Smoking Bee (92180) for e-liquids, rolling trays, and glass accessories in Kearny Mesa.",
       images: ["/images/about/9.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/smoke-shop-92180-san-diego",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Smoke Shop 92180 | Kearny Mesa", "item": "https://thesmokingbee.com/smoke-shop-92180-san-diego"}]}`
     }

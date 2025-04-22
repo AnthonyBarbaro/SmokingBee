@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "The Smoking Bee serves 92115 with top-tier glass bongs, vapes, and Delta-8. Perfect for SDSU students and locals.",
       images: ["/images/about/23.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/smoke-shop-92115",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Smoke Shop 92115 | Near SDSU", "item": "https://thesmokingbee.com/smoke-shop-92115"}]}`
     }

@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "In 92128 near Carmel Mountain? Shop rolling papers, glass bongs, and more at The Smoking Bee.",
       images: ["/images/about/10.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/smoke-shop-92128-san-diego",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Smoke Shop 92128 | Carmel Mountain", "item": "https://thesmokingbee.com/smoke-shop-92128-san-diego"}]}`
     }

@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "In 92193 near MCAS Miramar? Grab premium glass pipes, Delta-8 carts, and more from The Smoking Bee.",
       images: ["/images/about/19.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/smoke-shop-92193-san-diego",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Smoke Shop 92193 | MCAS Miramar Region", "item": "https://thesmokingbee.com/smoke-shop-92193-san-diego"}]}`
     }

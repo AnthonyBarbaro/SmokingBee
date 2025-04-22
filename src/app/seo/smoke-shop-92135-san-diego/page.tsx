@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "In 92135 near Coronado? The Smoking Bee has premium glass, kratom, and essentials for all your smoking needs.",
       images: ["/images/about/12.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/smoke-shop-92135-san-diego",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Smoke Shop 92135 | Coronado Naval Area", "item": "https://thesmokingbee.com/smoke-shop-92135-san-diego"}]}`
     }

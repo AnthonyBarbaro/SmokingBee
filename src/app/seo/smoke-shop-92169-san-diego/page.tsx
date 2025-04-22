@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "PB (92169) locals rely on The Smoking Bee for disposable vapes, glass accessories, and premium hookah supplies.",
       images: ["/images/about/23.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/smoke-shop-92169-san-diego",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Smoke Shop 92169 | Pacific Beach", "item": "https://thesmokingbee.com/smoke-shop-92169-san-diego"}]}`
     }

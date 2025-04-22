@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "Scripps Ranch (92131) relies on The Smoking Bee for premium rolling trays, vape products, and Delta-8.",
       images: ["/images/about/7.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/smoke-shop-92131-san-diego",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Smoke Shop 92131 | Scripps Ranch", "item": "https://thesmokingbee.com/smoke-shop-92131-san-diego"}]}`
     }

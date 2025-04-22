@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "South SD’s top smoke shop for glass pipes, kratom, and premium accessories in 92154. Visit The Smoking Bee.",
       images: ["/images/about/16.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/smoke-shop-92154-san-diego",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Smoke Shop 92154 | South San Diego", "item": "https://thesmokingbee.com/smoke-shop-92154-san-diego"}]}`
     }

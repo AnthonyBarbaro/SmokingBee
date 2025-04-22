@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "Imperial Beach (92158) smokers find the best hookah flavors, glass pipes, and more at The Smoking Bee.",
       images: ["/images/about/11.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/smoke-shop-92158-san-diego",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Smoke Shop 92158 | Imperial Beach", "item": "https://thesmokingbee.com/smoke-shop-92158-san-diego"}]}`
     }

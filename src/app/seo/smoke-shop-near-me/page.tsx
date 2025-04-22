@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "Searching for a great smoke shop near you? Explore The Smoking Bee for premium vapes, glass pipes, and smoking essentials in San Diego.",
       images: ["/images/about/6.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/smoke-shop-near-me",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Find a Smoke Shop Near You | The Smoking Bee", "item": "https://thesmokingbee.com/smoke-shop-near-me"}]}`
     }

@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "In 92160? The Smoking Bee provides premium smoking supplies—vapes, kratom, glass, and more for central San Diego.",
       images: ["/images/about/15.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/smoke-shop-92160-san-diego",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Smoke Shop 92160 | Central SD", "item": "https://thesmokingbee.com/smoke-shop-92160-san-diego"}]}`
     }

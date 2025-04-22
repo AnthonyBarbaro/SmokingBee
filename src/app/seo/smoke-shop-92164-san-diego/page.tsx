@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "Mission Valley’s choice for glass pipes, premium vapes, and hookah supplies at The Smoking Bee (92164).",
       images: ["/images/about/8.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/smoke-shop-92164-san-diego",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Smoke Shop 92164 | Mission Valley", "item": "https://thesmokingbee.com/smoke-shop-92164-san-diego"}]}`
     }

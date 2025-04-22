@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "Between Normal Heights and Kensington? The Smoking Bee (92176) has the best glass, vapes, and kratom for your needs.",
       images: ["/images/about/12.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/smoke-shop-92176-san-diego",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Smoke Shop 92176 | Normal Heights / Kensington", "item": "https://thesmokingbee.com/smoke-shop-92176-san-diego"}]}`
     }

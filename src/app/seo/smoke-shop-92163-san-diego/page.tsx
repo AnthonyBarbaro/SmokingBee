@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "Serving 92163 with premium rolling papers, Delta-8, and vape gear in Hillcrest and University Heights.",
       images: ["/images/about/4.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/smoke-shop-92163-san-diego",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Smoke Shop 92163 | University Heights / Hillcrest", "item": "https://thesmokingbee.com/smoke-shop-92163-san-diego"}]}`
     }

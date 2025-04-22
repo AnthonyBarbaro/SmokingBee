@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "Serving 92185 near Naval Medical Center with bongs, e-juices, and Delta-8 at The Smoking Bee.",
       images: ["/images/about/5.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/smoke-shop-92185-san-diego",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Smoke Shop 92185 | Naval Medical Center", "item": "https://thesmokingbee.com/smoke-shop-92185-san-diego"}]}`
     }

@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "Rancho Bernardo (92127) gets premium vapes and smoking accessories at The Smoking Bee. Explore top-tier products today.",
       images: ["/images/about/13.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/smoke-shop-92127-san-diego",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Smoke Shop 92127 | Rancho Bernardo", "item": "https://thesmokingbee.com/smoke-shop-92127-san-diego"}]}`
     }

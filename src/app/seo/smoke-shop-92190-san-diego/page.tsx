@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "Serving 92190 with top-level vape devices, Delta-8 edibles, and more at The Smoking Bee. Experience premium smoking.",
       images: ["/images/about/21.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/smoke-shop-92190-san-diego",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Smoke Shop 92190 | Central Coast SD", "item": "https://thesmokingbee.com/smoke-shop-92190-san-diego"}]}`
     }

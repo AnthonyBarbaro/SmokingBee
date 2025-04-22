@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "Shop premium glass bongs, water pipes, and dab rigs at The Smoking Bee. Elevate your smoking setup today.",
       images: ["/images/about/13.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/glass-bongs-for-sale",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Glass Bongs for Sale | The Smoking Bee", "item": "https://thesmokingbee.com/glass-bongs-for-sale"}]}`
     }

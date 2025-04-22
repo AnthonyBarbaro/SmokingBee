@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "North City (92191) smokers choose The Smoking Bee for premium glass bongs, e-juices, and rolling trays.",
       images: ["/images/about/23.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/smoke-shop-92191-san-diego",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Smoke Shop 92191 | North City", "item": "https://thesmokingbee.com/smoke-shop-92191-san-diego"}]}`
     }

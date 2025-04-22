@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "Near 92155? The Smoking Bee offers top-tier vapes, Delta-8, and smoking accessories for Naval Air Station communities.",
       images: ["/images/about/19.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/smoke-shop-92155-san-diego",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Smoke Shop 92155 | North Island NAS", "item": "https://thesmokingbee.com/smoke-shop-92155-san-diego"}]}`
     }

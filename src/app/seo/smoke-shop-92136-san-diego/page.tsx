@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "Barrio Logan (92136) smokers find hookah, Delta-8, and top-tier vapes at The Smoking Bee. Explore our selection now.",
       images: ["/images/about/2.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/smoke-shop-92136-san-diego",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Smoke Shop 92136 | Barrio Logan", "item": "https://thesmokingbee.com/smoke-shop-92136-san-diego"}]}`
     }

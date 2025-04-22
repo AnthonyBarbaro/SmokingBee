@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "Rancho Peñasquitos (92129) smokers find hookah tobacco, disposable vapes, and more at The Smoking Bee.",
       images: ["/images/about/3.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/smoke-shop-92129-san-diego",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Smoke Shop 92129 | Rancho Pe\u00f1asquitos", "item": "https://thesmokingbee.com/smoke-shop-92129-san-diego"}]}`
     }

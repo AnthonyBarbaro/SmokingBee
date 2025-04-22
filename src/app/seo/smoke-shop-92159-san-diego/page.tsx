@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "Allied Gardens (92159) count on The Smoking Bee for vapes, glass bongs, and quality rolling trays.",
       images: ["/images/about/18.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/smoke-shop-92159-san-diego",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Smoke Shop 92159 | Allied Gardens", "item": "https://thesmokingbee.com/smoke-shop-92159-san-diego"}]}`
     }

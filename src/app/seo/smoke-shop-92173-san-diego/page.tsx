@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "San Ysidro (92173) trusts The Smoking Bee for top-quality vape pens, Delta-8, and more. Discover premium products.",
       images: ["/images/about/13.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/smoke-shop-92173-san-diego",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Smoke Shop 92173 | San Ysidro", "item": "https://thesmokingbee.com/smoke-shop-92173-san-diego"}]}`
     }

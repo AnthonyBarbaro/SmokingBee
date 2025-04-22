@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "Chula Vista’s go-to smoke shop for vapes, glass, kratom, and rolling accessories. Visit The Smoking Bee for quality smoking products.",
       images: ["/images/about/11.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/smoke-shop-chula-vista",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Top Smoke Shop in Chula Vista | The Smoking Bee", "item": "https://thesmokingbee.com/smoke-shop-chula-vista"}]}`
     }

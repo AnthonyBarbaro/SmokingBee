@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "Midway District’s top shop for rolling trays, Delta-8, and glass bongs. Visit The Smoking Bee at 92168.",
       images: ["/images/about/9.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/smoke-shop-92168-san-diego",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Smoke Shop 92168 | Midway District", "item": "https://thesmokingbee.com/smoke-shop-92168-san-diego"}]}`
     }

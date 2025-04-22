@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "Roseville/Fleetridge (92166) smokers find top-tier accessories at The Smoking Bee. Shop glass, vapes, and more.",
       images: ["/images/about/18.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/smoke-shop-92166-san-diego",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Smoke Shop 92166 | Roseville/Fleetridge", "item": "https://thesmokingbee.com/smoke-shop-92166-san-diego"}]}`
     }

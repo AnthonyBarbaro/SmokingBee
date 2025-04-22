@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "Serving 92121 Sorrento Valley with premium glass, Delta-8, and vapes at The Smoking Bee. Elevate your smoking experience.",
       images: ["/images/about/7.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/smoke-shop-92121-san-diego",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Smoke Shop 92121 | Sorrento Valley", "item": "https://thesmokingbee.com/smoke-shop-92121-san-diego"}]}`
     }

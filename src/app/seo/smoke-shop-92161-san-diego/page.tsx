@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "Find Delta-8, rolling papers, and hookah tobacco in 92161 at The Smoking Bee, your north SD smoke shop.",
       images: ["/images/about/16.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/smoke-shop-92161-san-diego",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Smoke Shop 92161 | North San Diego", "item": "https://thesmokingbee.com/smoke-shop-92161-san-diego"}]}`
     }

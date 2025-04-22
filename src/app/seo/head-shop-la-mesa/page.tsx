@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "Explore premium glass bongs, rolling trays, and smoking accessories at The Smoking Bee—La Mesa’s top head shop.",
       images: ["/images/about/1.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/head-shop-la-mesa",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "La Mesa\u2019s #1 Head Shop | The Smoking Bee", "item": "https://thesmokingbee.com/head-shop-la-mesa"}]}`
     }

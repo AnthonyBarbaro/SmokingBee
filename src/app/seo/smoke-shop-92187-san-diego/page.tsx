@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "In 92187? The Smoking Bee provides disposable vapes, premium Delta-8, and glass pieces for local smokers.",
       images: ["/images/about/21.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/smoke-shop-92187-san-diego",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Smoke Shop 92187 | Southeastern San Diego", "item": "https://thesmokingbee.com/smoke-shop-92187-san-diego"}]}`
     }

@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "In 92181? The Smoking Bee features a huge selection of disposable vapes, glass bongs, and Delta-8 products.",
       images: ["/images/about/21.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/smoke-shop-92181-san-diego",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Smoke Shop 92181 | Premium Vapes & Glass", "item": "https://thesmokingbee.com/smoke-shop-92181-san-diego"}]}`
     }

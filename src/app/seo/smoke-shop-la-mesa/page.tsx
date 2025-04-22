@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "Discover La Mesa's best smoke shop at The Smoking Bee. Shop premium glass, vapes, Delta-8, kratom, and more.",
       images: ["/images/about/17.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/smoke-shop-la-mesa",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Best Smoke Shop in La Mesa | The Smoking Bee", "item": "https://thesmokingbee.com/smoke-shop-la-mesa"}]}`
     }

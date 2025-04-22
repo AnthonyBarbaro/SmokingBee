@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "Get premium smoking accessories near 92138 in Old Town. The Smoking Bee has your vapes, glass pipes, and more.",
       images: ["/images/about/16.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/smoke-shop-92138-san-diego",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Smoke Shop 92138 | Old Town San Diego", "item": "https://thesmokingbee.com/smoke-shop-92138-san-diego"}]}`
     }

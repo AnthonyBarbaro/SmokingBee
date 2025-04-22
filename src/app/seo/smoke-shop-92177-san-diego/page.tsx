@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "Linda Vista’s smoke shop for Delta-8, disposable vapes, and water pipes. Visit The Smoking Bee in 92177.",
       images: ["/images/about/3.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/smoke-shop-92177-san-diego",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Smoke Shop 92177 | Linda Vista", "item": "https://thesmokingbee.com/smoke-shop-92177-san-diego"}]}`
     }

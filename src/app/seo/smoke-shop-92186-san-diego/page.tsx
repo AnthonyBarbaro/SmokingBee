@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "Close to Escondido at 92186? The Smoking Bee has rolling trays, glass pipes, and top kratom products.",
       images: ["/images/about/8.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/smoke-shop-92186-san-diego",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Smoke Shop 92186 | Escondido Area", "item": "https://thesmokingbee.com/smoke-shop-92186-san-diego"}]}`
     }

@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "Point Loma (92147) smokers choose The Smoking Bee for premium Delta-8, rolling trays, and more.",
       images: ["/images/about/12.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/smoke-shop-92147-san-diego",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Smoke Shop 92147 | Point Loma Naval", "item": "https://thesmokingbee.com/smoke-shop-92147-san-diego"}]}`
     }

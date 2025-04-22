@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "Find top smoking gear near 92142. The Smoking Bee offers glass pipes, rolling papers, and more in San Diego.",
       images: ["/images/about/4.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/smoke-shop-92142-san-diego",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Smoke Shop 92142 | Residential SD Area", "item": "https://thesmokingbee.com/smoke-shop-92142-san-diego"}]}`
     }

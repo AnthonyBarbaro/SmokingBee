@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "Visit The Smoking Bee in 92101 for premium Delta-8, rolling papers, and more. Downtown’s best smoke shop awaits.",
       images: ["/images/about/22.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/smoke-shop-92101-san-diego",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Smoke Shop 92101 | Downtown San Diego", "item": "https://thesmokingbee.com/smoke-shop-92101-san-diego"}]}`
     }

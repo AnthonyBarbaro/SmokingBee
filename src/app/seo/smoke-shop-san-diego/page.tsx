@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "The Smoking Bee in San Diego offers top-tier glass pipes, vapes, Delta-8, and more. Experience premium smoking accessories today.",
       images: ["/images/about/11.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/smoke-shop-san-diego",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "San Diego\u2019s Premier Smoke Shop | The Smoking Bee", "item": "https://thesmokingbee.com/smoke-shop-san-diego"}]}`
     }

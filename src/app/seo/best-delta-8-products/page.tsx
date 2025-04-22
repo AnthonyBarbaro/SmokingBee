@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "Shop Delta-8 edibles, vapes, and tinctures at The Smoking Bee. Discover why we’re your go-to for quality Delta-8.",
       images: ["/images/about/1.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/best-delta-8-products",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Best Delta-8 Products | The Smoking Bee", "item": "https://thesmokingbee.com/best-delta-8-products"}]}`
     }

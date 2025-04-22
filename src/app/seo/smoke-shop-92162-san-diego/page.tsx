@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "In 92162? The Smoking Bee offers glass bongs, premium kratom, and more near Normal Heights.",
       images: ["/images/about/5.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/smoke-shop-92162-san-diego",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Smoke Shop 92162 | Normal Heights", "item": "https://thesmokingbee.com/smoke-shop-92162-san-diego"}]}`
     }

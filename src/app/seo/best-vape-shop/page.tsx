@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "Get premium disposable vapes, e-liquids, and accessories at The Smoking Bee, your best local vape shop.",
       images: ["/images/about/14.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/best-vape-shop",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Best Vape Shop Near You | The Smoking Bee", "item": "https://thesmokingbee.com/best-vape-shop"}]}`
     }

@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "Looking for top-quality kratom powders or capsules? Discover The Smoking Bee for premium kratom solutions.",
       images: ["/images/about/15.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/kratom-shop-near-me",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Find Kratom Near You | The Smoking Bee", "item": "https://thesmokingbee.com/kratom-shop-near-me"}]}`
     }

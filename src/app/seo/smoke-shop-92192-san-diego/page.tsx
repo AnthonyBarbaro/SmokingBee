@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "Torrey Pines (92192) finds quality vaping gear, kratom powders, and hookah flavors at The Smoking Bee.",
       images: ["/images/about/21.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/smoke-shop-92192-san-diego",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Smoke Shop 92192 | Torrey Pines", "item": "https://thesmokingbee.com/smoke-shop-92192-san-diego"}]}`
     }

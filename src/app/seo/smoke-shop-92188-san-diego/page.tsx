@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "Sorrento Mesa (92188) trusts The Smoking Bee for e-liquids, hookah flavors, and more. Elevate your session.",
       images: ["/images/about/19.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/smoke-shop-92188-san-diego",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Smoke Shop 92188 | Sorrento Mesa / Qualcomm", "item": "https://thesmokingbee.com/smoke-shop-92188-san-diego"}]}`
     }

@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "Serving 92140 near MCRD with top-tier vape products, glass pipes, and rolling trays at The Smoking Bee.",
       images: ["/images/about/20.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/smoke-shop-92140-san-diego",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Smoke Shop 92140 | MCRD Area", "item": "https://thesmokingbee.com/smoke-shop-92140-san-diego"}]}`
     }

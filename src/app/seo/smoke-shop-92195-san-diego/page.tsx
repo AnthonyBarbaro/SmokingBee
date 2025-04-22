@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "College area (92195) smokers head to The Smoking Bee for hookah, glass bongs, and premium e-liquids.",
       images: ["/images/about/16.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/smoke-shop-92195-san-diego",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Smoke Shop 92195 | College Area", "item": "https://thesmokingbee.com/smoke-shop-92195-san-diego"}]}`
     }

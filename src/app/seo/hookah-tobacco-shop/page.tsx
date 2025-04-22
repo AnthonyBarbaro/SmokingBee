@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "Experience premium hookahs and flavored tobacco at The Smoking Bee. Your go-to source for shisha and hookah accessories.",
       images: ["/images/about/6.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/hookah-tobacco-shop",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Best Hookah & Tobacco Shop | The Smoking Bee", "item": "https://thesmokingbee.com/hookah-tobacco-shop"}]}`
     }

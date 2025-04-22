@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "In 91942? The Smoking Bee is your go-to shop for quality kratom, glass pipes, and smoking accessories in La Mesa.",
       images: ["/images/about/11.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/smoke-shop-91942-la-mesa",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Smoke Shop 91942 | Top La Mesa Essentials", "item": "https://thesmokingbee.com/smoke-shop-91942-la-mesa"}]}`
     }

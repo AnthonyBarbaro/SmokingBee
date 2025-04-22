@@ -23,6 +23,9 @@ export async function generateMetadata() {
       description: "Kearny Mesa’s #1 smoke shop for Delta-8, vape refills, and premium glass bongs. Check out The Smoking Bee.",
       images: ["/images/about/17.JPG"]
     },
+    alternates: {
+      canonical: "https://thesmokingbee.com/smoke-shop-92141-san-diego",
+    },
     other: {
       "application/ld+json": `{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thesmokingbee.com/"}, {"@type": "ListItem", "position": 2, "name": "Smoke Shop 92141 | Kearny Mesa", "item": "https://thesmokingbee.com/smoke-shop-92141-san-diego"}]}`
     }
