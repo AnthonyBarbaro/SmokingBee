@@ -16,6 +16,7 @@ export async function GET() {
     { loc: "/about",     changefreq: "monthly", priority: 0.6 },
     { loc: "/contact",   changefreq: "monthly", priority: 0.6 },
     { loc: "/locations", changefreq: "monthly", priority: 0.6 },
+    { loc: "/review", changefreq: "monthly", priority: 0.6 },
   ].map(({ loc, changefreq, priority }) => ({
     url:       `${baseUrl}${loc}`,
     lastmod:   new Date().toISOString(),

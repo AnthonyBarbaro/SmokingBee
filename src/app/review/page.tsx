@@ -1,5 +1,6 @@
 // app/review/page.tsx
 "use client";
+import Head from "next/head";
 import { useState } from "react";
 import { CheckCircleIcon, StarIcon } from "@heroicons/react/24/solid";
 
@@ -40,6 +41,9 @@ export default function ReviewPage() {
 
   return (
     <main className="min-h-screen bg-gray-100 flex items-center justify-center px-4">
+       <Head>
+        <link rel="canonical" href="https://thesmokingbee.com/review" />
+      </Head>
       <div className="w-full max-w-md bg-white p-6 rounded-2xl shadow-xl text-center">
         <h1 className="text-2xl font-bold mb-4 text-gray-800">
           How was your experience at <span className="text-gold">The Smoking Bee</span>?

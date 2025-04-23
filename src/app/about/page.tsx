@@ -1,6 +1,6 @@
 //src/app/about/page.tsx
 "use client";
-
+import Head from "next/head";
 import { motion } from "framer-motion";
 import AboutSlideshow from "@/components/AboutSlideshow";
 import BreadcrumbClientWrapper from "@/components/SEO/BreadcrumbClientWrapper";
@@ -8,6 +8,9 @@ import BreadcrumbClientWrapper from "@/components/SEO/BreadcrumbClientWrapper";
 export default function AboutPage() {
   return (
     <section className="bg-white text-gray-900 min-h-screen py-16 px-6">
+      <Head>
+        <link rel="canonical" href="https://thesmokingbee.com/about" />
+      </Head>
       <BreadcrumbClientWrapper
         crumbs={[
           { name: "Home", path: "/" },
