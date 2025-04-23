@@ -29,13 +29,57 @@ export default function ProductPageClient({ product }: { product: any }) {
         ? "https://schema.org/InStock"
         : "https://schema.org/OutOfStock",
       itemCondition: "https://schema.org/NewCondition",
-      priceValidUntil: "2030-12-31" 
-    },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.9", 
-      reviewCount: "531"   
-    },
+      priceValidUntil: "2030-12-31",
+    
+      // ✅ Add shippingDetails
+      shippingDetails: {
+        "@type": "OfferShippingDetails",
+        deliveryTime: {
+          "@type": "ShippingDeliveryTime",
+          businessDays: {
+            "@type": "OpeningHoursSpecification",
+            dayOfWeek: [
+              "https://schema.org/Monday",
+              "https://schema.org/Tuesday",
+              "https://schema.org/Wednesday",
+              "https://schema.org/Thursday",
+              "https://schema.org/Friday"
+            ]
+          },
+          handlingTime: {
+            "@type": "QuantitativeValue",
+            minValue: 0,
+            maxValue: 1,
+            unitCode: "d" // days
+          },
+          transitTime: {
+            "@type": "QuantitativeValue",
+            minValue: 1,
+            maxValue: 5,
+            unitCode: "d"
+          }
+        },
+        shippingRate: {
+          "@type": "MonetaryAmount",
+          value: "5.00",
+          currency: "USD"
+        },
+        shippingDestination: {
+          "@type": "DefinedRegion",
+          addressCountry: "US"
+        }
+      },
+    
+      // ✅ Add return policy
+      hasMerchantReturnPolicy: {
+        "@type": "MerchantReturnPolicy",
+        applicableCountry: "US",
+        returnPolicyCategory: "https://schema.org/MerchantReturnFiniteReturnWindow",
+        merchantReturnDays: 30,
+        returnMethod: "https://schema.org/ReturnByMail",
+        returnFees: "https://schema.org/FreeReturn"
+      }
+    },    
     review: [
       {
         "@type": "Review",
