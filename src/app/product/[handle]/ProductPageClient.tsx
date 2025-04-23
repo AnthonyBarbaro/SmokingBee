@@ -1,6 +1,6 @@
 //src/app/product/[handle]/ProductPageClient.tsx
 "use client";
-
+import Head from "next/head";
 import Image from "next/image";
 import AddToCartButton from "@/components/AddToCartButton";
 
@@ -100,6 +100,9 @@ export default function ProductPageClient({ product }: { product: any }) {
   };
   return (
     <section className="bg-white text-gray-900 min-h-screen p-8">
+      <Head>
+        <link rel="canonical" href={`https://thesmokingbee.com/product/${product.handle}`} />
+      </Head>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

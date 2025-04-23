@@ -1,6 +1,5 @@
 // src/app/product/[handle]/page.tsx
 export const dynamic = "force-dynamic";
-import Head from "next/head";
 import { getProductByHandle } from "@/lib/shopify";
 import ProductPageClient from "./ProductPageClient";
 import BreadcrumbClientWrapper from "@/components/SEO/BreadcrumbClientWrapper";
@@ -20,9 +19,7 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
 
   return (
     <main>
-      <Head>
-        <link rel="canonical" href={`https://thesmokingbee.com/product/${handle}`} />
-      </Head>
+
       <BreadcrumbClientWrapper
         crumbs={[
           { name: "Home", path: "/" },

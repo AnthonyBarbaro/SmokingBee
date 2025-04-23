@@ -7,10 +7,12 @@ import BreadcrumbClientWrapper from "@/components/SEO/BreadcrumbClientWrapper";
 
 export default function AboutPage() {
   return (
+    <>
+    <Head>
+    <link rel="canonical" href="https://thesmokingbee.com/about" />
+   </Head>
     <section className="bg-white text-gray-900 min-h-screen py-16 px-6">
-      <Head>
-        <link rel="canonical" href="https://thesmokingbee.com/about" />
-      </Head>
+
       <BreadcrumbClientWrapper
         crumbs={[
           { name: "Home", path: "/" },
@@ -83,5 +85,6 @@ export default function AboutPage() {
         </motion.div>
       </div>
     </section>
+    </>
   );
 }
