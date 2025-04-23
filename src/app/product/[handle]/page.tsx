@@ -19,6 +19,7 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
 
   return (
     <main>
+
       <BreadcrumbClientWrapper
         crumbs={[
           { name: "Home", path: "/" },

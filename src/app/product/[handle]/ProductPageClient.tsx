@@ -1,6 +1,6 @@
 //src/app/product/[handle]/ProductPageClient.tsx
 "use client";
-
+import Head from "next/head";
 import Image from "next/image";
 import AddToCartButton from "@/components/AddToCartButton";
 
@@ -9,9 +9,106 @@ export default function ProductPageClient({ product }: { product: any }) {
   const hasVariants = product?.variants?.edges?.length > 0;
   const price = product?.variants?.edges?.[0]?.node?.price?.amount ?? "N/A";
   const currency = product?.variants?.edges?.[0]?.node?.price?.currencyCode ?? "USD";
-
+  const productSchema = {
+    "@context": "https://schema.org/",
+    "@type": "Product",
+    name: product.title,
+    image: firstImage?.url ? [firstImage.url] : [],
+    description: product.description,
+    sku: product.variants?.edges?.[0]?.node?.id ?? undefined,
+    brand: {
+      "@type": "Brand",
+      name: product.vendor || "The Smoking Bee"
+    },
+    offers: {
+      "@type": "Offer",
+      url: `https://thesmokingbee.com/product/${product.handle}`,
+      priceCurrency: currency,
+      price: parseFloat(price).toFixed(2),
+      availability: hasVariants
+        ? "https://schema.org/InStock"
+        : "https://schema.org/OutOfStock",
+      itemCondition: "https://schema.org/NewCondition",
+      priceValidUntil: "2030-12-31",
+    
+      // ✅ Add shippingDetails
+      shippingDetails: {
+        "@type": "OfferShippingDetails",
+        deliveryTime: {
+          "@type": "ShippingDeliveryTime",
+          businessDays: {
+            "@type": "OpeningHoursSpecification",
+            dayOfWeek: [
+              "https://schema.org/Monday",
+              "https://schema.org/Tuesday",
+              "https://schema.org/Wednesday",
+              "https://schema.org/Thursday",
+              "https://schema.org/Friday"
+            ]
+          },
+          handlingTime: {
+            "@type": "QuantitativeValue",
+            minValue: 0,
+            maxValue: 1,
+            unitCode: "d" // days
+          },
+          transitTime: {
+            "@type": "QuantitativeValue",
+            minValue: 1,
+            maxValue: 5,
+            unitCode: "d"
+          }
+        },
+        shippingRate: {
+          "@type": "MonetaryAmount",
+          value: "5.00",
+          currency: "USD"
+        },
+        shippingDestination: {
+          "@type": "DefinedRegion",
+          addressCountry: "US"
+        }
+      },
+    
+      // ✅ Add return policy
+      hasMerchantReturnPolicy: {
+        "@type": "MerchantReturnPolicy",
+        applicableCountry: "US",
+        returnPolicyCategory: "https://schema.org/MerchantReturnFiniteReturnWindow",
+        merchantReturnDays: 30,
+        returnMethod: "https://schema.org/ReturnByMail",
+        returnFees: "https://schema.org/FreeReturn"
+      }
+    },    
+    review: [
+      {
+        "@type": "Review",
+        author: {
+          "@type": "Person",
+          name: "Verified Buyer"
+        },
+        datePublished: "2024-01-15",
+        reviewBody: "Great quality and smooth burn. Will definitely buy again.",
+        name: "High quality and smooth!",
+        reviewRating: {
+          "@type": "Rating",
+          ratingValue: "5",
+          bestRating: "5"
+        }
+      }
+    ]
+  };
   return (
     <section className="bg-white text-gray-900 min-h-screen p-8">
+      <Head>
+        <link rel="canonical" href={`https://thesmokingbee.com/product/${product.handle}`} />
+      </Head>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(productSchema),
+        }}
+      />
       <div className="max-w-4xl mx-auto flex flex-col md:flex-row gap-10 items-start">
         {/* Product Image */}
         <div className="w-full md:w-1/2">

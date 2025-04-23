@@ -48,7 +48,7 @@ export default function Navbar() {
 
         {/* Menu Items */}
         <ul className="flex flex-col items-center mt-16 space-y-6 md:flex-row md:space-y-0 md:space-x-8 md:mt-0 text-lg">
-          {["Home", "About", "Shop", "Contact"].map((item) => (
+          {["Home", "About", "Shop", "Contact","Review"].map((item) => (
             <li key={item}>
               <Link
                 href={item === "Home" ? "/" : `/${item.toLowerCase()}`}

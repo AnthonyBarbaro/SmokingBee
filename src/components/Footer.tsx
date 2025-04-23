@@ -1,5 +1,6 @@
-import FooterLinks from "@/components/FooterLinks";
-export default function Footer() {
+//src/components/Footer.tsx
+import Link from "next/link"
+export default function Footer({ seoPages }: { seoPages: { slug: string; title: string }[] }) {
   const currentYear = new Date().getFullYear();
 
   return (
@@ -33,10 +34,24 @@ export default function Footer() {
 
         {/* Our new Link Bag Section */}
         <div className="sm:col-span-3">
-          <FooterLinks />
+        <ul className="space-y-1 text-sm">
+          {seoPages.slice(0,4).map(({ slug, title }) => (
+            <li key={slug}>
+              <Link href={`/${slug}`} className="text-gray-300 hover:text-gold">
+                {title}
+              </Link>
+            </li>
+          ))}
+        </ul>
+          <a
+            href="/sitemap.html"
+            className="text-sm text-gray-300 hover:text-gold transition"
+          >
+            HTML Sitemap
+          </a>
         </div>
       </div>
-
+      
       <div className="border-t border-white/20 pt-4 text-center text-sm">
         <p>© {currentYear} The Smoking Bee. All rights reserved.</p>
       </div>

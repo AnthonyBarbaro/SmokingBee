@@ -1,4 +1,5 @@
 // src/app/shop/[handle]/page.tsx
+import Head from "next/head";
 import { getCollectionByHandle } from "@/lib/shopify";
 import Image from "next/image";
 import BreadcrumbClientWrapper from "@/components/SEO/BreadcrumbClientWrapper";
@@ -21,6 +22,9 @@ export default async function CollectionPage({ params }: any) {
 
   return (
     <section className="w-full min-h-screen p-8 bg-white flex flex-col items-center">
+      <Head>
+        <link rel="canonical" href={`https://thesmokingbee.com/shop/${handle}`} />
+      </Head>
       <BreadcrumbClientWrapper
         crumbs={[
           { name: "Home", path: "/" },
