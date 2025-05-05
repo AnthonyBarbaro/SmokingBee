@@ -80,23 +80,6 @@ export default function ProductPageClient({ product }: { product: any }) {
         returnFees: "https://schema.org/FreeReturn"
       }
     },    
-    review: [
-      {
-        "@type": "Review",
-        author: {
-          "@type": "Person",
-          name: "Verified Buyer"
-        },
-        datePublished: "2024-01-15",
-        reviewBody: "Great quality and smooth burn. Will definitely buy again.",
-        name: "High quality and smooth!",
-        reviewRating: {
-          "@type": "Rating",
-          ratingValue: "5",
-          bestRating: "5"
-        }
-      }
-    ]
   };
   return (
     <section className="bg-white text-gray-900 min-h-screen p-8">
