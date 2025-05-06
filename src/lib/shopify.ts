@@ -52,6 +52,8 @@ export async function getProductByHandle(handle: string) {
         variants(first: 5) {
           edges {
             node {
+              sku
+              barcode
               id
               title
               price {

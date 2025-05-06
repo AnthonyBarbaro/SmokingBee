@@ -4,7 +4,20 @@ import Head from "next/head";
 import Image from "next/image";
 import AddToCartButton from "@/components/AddToCartButton";
 
+function addGlobalId(schema: any, rawSku: string | null) {
+  if (!rawSku) return;
+
+  const digits = rawSku.replace(/\D/g, ""); // strip letters/hyphens just in case
+  schema.sku = rawSku;                      // always safe to expose SKU
+
+  if (/^\d{8}$/.test(digits))  schema.gtin8  = digits;
+  else if (/^\d{12}$/.test(digits)) schema.gtin12 = digits;
+  else if (/^\d{13}$/.test(digits)) schema.gtin13 = digits;
+  else if (/^\d{14}$/.test(digits)) schema.gtin14 = digits;
+  else schema.mpn = rawSku;                // fallback if alphanumeric
+}
 export default function ProductPageClient({ product }: { product: any }) {
+  const variant = product.variants.edges[0]?.node;
   const firstImage = product?.images?.edges?.[0]?.node;
   const hasVariants = product?.variants?.edges?.length > 0;
   const price = product?.variants?.edges?.[0]?.node?.price?.amount ?? "N/A";
@@ -30,7 +43,7 @@ export default function ProductPageClient({ product }: { product: any }) {
         : "https://schema.org/OutOfStock",
       itemCondition: "https://schema.org/NewCondition",
       priceValidUntil: "2030-12-31",
-    
+      
       // ✅ Add shippingDetails
       shippingDetails: {
         "@type": "OfferShippingDetails",
@@ -81,6 +94,7 @@ export default function ProductPageClient({ product }: { product: any }) {
       }
     },    
   };
+  addGlobalId(productSchema, variant?.barcode || variant?.sku);
   return (
     <section className="bg-white text-gray-900 min-h-screen p-8">
       <Head>
