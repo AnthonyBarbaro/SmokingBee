@@ -39,6 +39,7 @@ export async function getProductByHandle(handle: string) {
     query getProductByHandle($handle: String!) {
       product(handle: $handle) {
         id
+        handle
         title
         description
         images(first: 5) {
