@@ -3,7 +3,17 @@
 import Head from "next/head";
 import Image from "next/image";
 import AddToCartButton from "@/components/AddToCartButton";
+import type { Metadata } from "next";
 
+export async function generateMetadata(
+  { params }: { params: { handle: string } }
+): Promise<Metadata> {
+  return {
+    alternates: {
+      canonical: `https://thesmokingbee.com/product/${params.handle}`,
+    },
+  };
+}
 function addGlobalId(schema: any, rawSku: string | null) {
   if (!rawSku) return;
 
