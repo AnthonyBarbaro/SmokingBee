@@ -4,8 +4,11 @@ import ContactContent from "./ContactContent";
 import BreadcrumbClientWrapper from "@/components/SEO/BreadcrumbClientWrapper";
 
 export const metadata = {
-  title: "Contact | The Smoking Bee",
-  description: "Contact The Smoking Bee for premium smoking accessories in La Mesa.",
+  title: "Contact | The Smoking Bee, Smoke Shop near La Mesa",
+  description: "Contact The Smoking Bee for premium smoking accessories in La Mesa. Vapes, Bongs, Glass, Puffco",
+  alternates: {
+    canonical: "https://thesmokingbee.com/contact",
+  },
 };
 
 export default function ContactPage() {
