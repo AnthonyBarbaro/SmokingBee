@@ -1,9 +1,16 @@
 // src/app/shop/page.tsx
-import Head from "next/head"
 import { getCollections, getAllProducts } from "@/lib/shopify";
 import ShopPageClient from "./ShopPageClient";
 import BreadcrumbClientWrapper from "@/components/SEO/BreadcrumbClientWrapper";
+import type { Metadata } from "next";
 
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    alternates: {
+      canonical: "https://thesmokingbee.com/shop",
+    },
+  };
+}
 
 export default async function ShopPage() {
   const [categories, products] = await Promise.all([
@@ -13,9 +20,6 @@ export default async function ShopPage() {
 
   return (
     <div className="min-h-screen bg-white text-gray-900 py-10 px-6 text-center">
-      <Head>
-        <link rel="canonical" href="https://thesmokingbee.com/shop" />
-      </Head>
       {/* ✅ Client-rendered breadcrumb schema */}
       <BreadcrumbClientWrapper
         crumbs={[
