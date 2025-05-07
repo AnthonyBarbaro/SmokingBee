@@ -1,25 +1,39 @@
 // src/app/product/[handle]/page.tsx
-export const dynamic = "force-dynamic";
-import { getProductByHandle } from "@/lib/shopify";
-import ProductPageClient from "./ProductPageClient";
-import BreadcrumbClientWrapper from "@/components/SEO/BreadcrumbClientWrapper";
+//export const dynamic = "force-dynamic";
 
-export default async function ProductPage({ params }: { params: Promise<{ handle: string }> }) {
-  const { handle } = await params;
+import type { Metadata } from "next";
+import BreadcrumbClientWrapper from "@/components/SEO/BreadcrumbClientWrapper";
+import ProductPageClient from "./ProductPageClient";
+import { getProductByHandle } from "@/lib/shopify";
+
+
+export async function generateMetadata(
+  { params }: { params: Promise<{ handle: string }> }
+): Promise<Metadata> {
+  const { handle } = await params;         
+  return {
+    alternates: {
+      canonical: `https://thesmokingbee.com/product/${handle}`,
+    },
+  };
+}
+
+export default async function ProductPage(
+  { params }: { params: Promise<{ handle: string }> }
+) {
+  const { handle } = await params;          
   const product = await getProductByHandle(handle);
 
   if (!product) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center text-center p-8">
-        <h1 className="text-3xl font-bold text-gold mb-4">Product Not Found</h1>
-        <p className="text-gray-600">We couldn’t find the product you’re looking for.</p>
+      <div className="min-h-screen flex items-center justify-center">
+        <h1 className="text-3xl font-bold">Product Not Found</h1>
       </div>
     );
   }
 
   return (
     <main>
-
       <BreadcrumbClientWrapper
         crumbs={[
           { name: "Home", path: "/" },

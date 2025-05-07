@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://thesmokingbee.com"),
   title: "The Smoking Bee | Best Smoke Shop in La Mesa & San Diego",
   description:
-    "Looking for the best smoke shop near you? The Smoking Bee, also known as Smoking Bee, offers premium vapes, glass pipes, Puffco, and smoking accessories in La Mesa & San Diego.",
+    "Best smoke shop near you! The Smoking Bee, aka Smoking Bee, offers vapes, glass pipes, bongs, Puffco, and smoking accessories in La Mesa & San Diego.",
   keywords:
     "smoke shop, La Mesa, San Diego, vapes, glass pipes, smoking accessories, Puffco",
   robots: "index, follow",
