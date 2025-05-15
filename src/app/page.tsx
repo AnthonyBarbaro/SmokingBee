@@ -6,8 +6,7 @@ import AnimatedCategorySection from "@/components/AnimatedCategorySection";
 import CTASection from "@/components/CTASection";
 import GeoMapWrapper from "@/components/GeoMapWrapper";
 import BreadcrumbClientWrapper from "@/components/SEO/BreadcrumbClientWrapper";
-
-
+import InStoreFeatures from '@/components/InStoreFeatures'
 import { getCollections, getAllProductHandles } from "@/lib/shopify";
 import path from "path";
 import fsPromises from "fs/promises";
@@ -78,10 +77,12 @@ export default async function HomePage() {
       <h1 className="sr-only">Premium Smoke Shop in La Mesa, CA</h1>
       {/* Your page content */}
       <HeroSection />
-
+      
       <AnimatedCategorySection categories={collections} />
       {/* <AnimatedProductSection products={products} /> */}
+      
       <GeoMapWrapper />
+      <InStoreFeatures />
       <section className="py-16 px-6 bg-white">
         <Testimonials />
       </section>
