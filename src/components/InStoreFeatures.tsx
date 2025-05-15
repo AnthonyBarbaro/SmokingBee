@@ -54,9 +54,8 @@ const InStoreFeatures: FC = () => (
           const href = `/shop/${slug}`
           const Icon = f.icon
           return (
-            <a
+            <div
               key={f.name}
-              href={href}
               className="flex flex-col items-center text-center p-6 bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition"
             >
               <Icon
@@ -67,7 +66,7 @@ const InStoreFeatures: FC = () => (
                 {f.name}
               </h3>
               <p className="mt-2 text-gray-600">{f.description}</p>
-            </a>
+            </div>
           )
         })}
       </div>
