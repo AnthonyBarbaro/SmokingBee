@@ -55,6 +55,9 @@ export default async  function RootLayout({ children }: { children: ReactNode })
          <meta name="robots" content="index, follow" />
 
         <link rel="icon" href="/favicon.ico" />
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" href="/favicon.ico" />
+        <meta name="theme-color" content="#ffffff" />
 
 
         {/* 2) LocalBusiness (you already have this) */}
