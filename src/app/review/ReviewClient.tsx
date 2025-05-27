@@ -4,7 +4,7 @@ import Head from "next/head";
 import { useState } from "react";
 import { CheckCircleIcon, StarIcon } from "@heroicons/react/24/solid";
 
-const googleReviewLink = "https://www.google.com/search?sca_esv=2dc50acae51cd50b&rlz=1C1VDKB_enUS1086US1086&sxsrf=AHTn8zrdNfI29mtpDV9TdJQKk3olhzG6gw:1744920886025&si=APYL9bs7Hg2KMLB-4tSoTdxuOx8BdRvHbByC_AuVpNyh0x2KzcosJG0xFpVDYeAWuKUIw5dXPboC75pQm3WCkDVDOkQA7OXZyQAlsHTj8VVvnMIS9Yr40cH2nZTtz-sUJ43B9X84Oa3q&q=The+Smoking+Bee+Reviews&sa=X&ved=2ahUKEwiBlcrs8N-MAxUZRDABHQAbJAMQ0bkNegQIOxAE&biw=1920&bih=911"; // Replace this with your real link
+const googleReviewLink = "https://g.page/r/CfDhjJ7fKcmOEBM/review"; // Replace this with your real link
 
 export default function ReviewPage() {
   const [rating, setRating] = useState<number | null>(null);
