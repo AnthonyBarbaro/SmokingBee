@@ -14,11 +14,11 @@ export default function PromoBanner() {
         <div className="max-w-3xl">
           <Link href="/review" className="hover:text-yellow-700">
             <div>
-              🎉 <strong>25% off</strong> (excluding tobacco products) on all{" "}
-              <strong>5-star reviews</strong> for the month of <strong>June</strong>!
+              🎉 <strong>25% off</strong> (excluding tobacco products) for all{" "}
+              <strong>Reviews</strong> for the month of <strong>June</strong>!
             </div>
             <div className="mt-1 text-xs sm:text-sm">
-              Must show offer and review at checkout.
+             <strong>Must show review at checkout.</strong>
             </div>
           </Link>
         </div>
