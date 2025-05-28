@@ -54,7 +54,13 @@ export default function ReviewPage() {
             {[1, 2, 3, 4, 5].map((star) => (
               <button
                 key={star}
-                onClick={() => setRating(star)}
+                onClick={() => {
+                  if (star === 5) {
+                    window.open(googleReviewLink, "_blank");
+                  } else {
+                    setRating(star);
+                  }
+                }}
                 className="text-yellow-500 hover:scale-110 transition transform text-4xl focus:outline-none"
               >
                 <StarIcon className="w-8 h-8" />
