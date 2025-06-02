@@ -9,7 +9,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { CartProvider } from "@/context/CartContext";
 import ClientMetadata from "@/components/ClientMetadata";
-
+import PromoBanner from "@/components/PromoBanner";
 export const metadata: Metadata = {
   metadataBase: new URL("https://thesmokingbee.com"),
   title: "The Smoking Bee | Best Smoke Shop in La Mesa & San Diego",
@@ -174,7 +174,9 @@ export default async  function RootLayout({ children }: { children: ReactNode })
       <body className="flex flex-col min-h-screen" suppressHydrationWarning>
         <CartProvider>
           <ClientMetadata />
+          
           <Navbar />
+          <PromoBanner />
           <main className="flex-grow">{children}</main>
           <Footer seoPages={seoPages} />
           {/* <FloatingCartButton /> */}
