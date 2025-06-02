@@ -17,11 +17,31 @@ export default function Footer({ seoPages }: { seoPages: { slug: string; title: 
         {/* Contact */}
         <div>
           <h4 className="font-semibold mb-2">Contact</h4>
+
           <p className="text-sm text-gray-300">
             7584 University Ave Suite B, La Mesa, CA 91942
           </p>
-          <p className="text-sm text-gray-300">Phone: (619) 467-7055</p>
-          <p className="text-sm text-gray-300">Email: info@thesmokingbee.com</p>
+
+          <p className="text-sm text-gray-300">
+            Phone:&nbsp;
+            <a
+              href="tel:+16194677055"
+              aria-label="Call The Smoking Bee at (619) 467-7055"
+              className="hover:underline focus:outline-none focus:ring-2 focus:ring-green-600"
+            >
+              (619) 467-7055
+            </a>
+          </p>
+
+          <p className="text-sm text-gray-300">
+            Email:&nbsp;
+            <a
+              href="mailto:info@thesmokingbee.com"
+              className="hover:underline focus:outline-none focus:ring-2 focus:ring-green-600"
+            >
+              info@thesmokingbee.com
+            </a>
+          </p>
         </div>
 
         {/* Social or Additional Info */}
