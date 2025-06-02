@@ -44,13 +44,15 @@ export default function GeoMap() {
       </p>
       <p className="mt-2 text-lg">
         <Link
-          href="https://www.google.com/maps?q=7584+University+Ave+Suite+B,+La+Mesa,+CA+91942"
+          href="https://www.google.com/maps/search/?api=1&query=The+Smoking+Bee+La+Mesa&query_place_id=ChIJ1wp1kNtX2YAR8OGMnt8pyY4"
           target="_blank"
-          className="text-gold font-bold underline hover:text-yellow-600"
+          rel="noopener noreferrer"
+          className="text-gold font-bold underline hover:text-yellow-600 focus:outline-none focus:ring-2 focus:ring-green-600"
         >
           Open in Google Maps
         </Link>
       </p>
+
     </section>
   );
 }
