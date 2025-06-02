@@ -28,7 +28,22 @@ export default function Footer({ seoPages }: { seoPages: { slug: string; title: 
         <div>
           <h4 className="font-semibold mb-2">Follow Us</h4>
           <div className="flex space-x-4">
-            <a href="#" className="hover:text-gold transition">Social Media Coming Soon</a>
+            <a
+              href="https://www.instagram.com/smokingbeelamesa"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-gold transition"
+            >
+              Instagram
+            </a>
+            <a
+              href="https://www.facebook.com/profile.php?id=61576696784984"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-gold transition"
+            >
+              Facebook
+            </a>
           </div>
         </div>
 
