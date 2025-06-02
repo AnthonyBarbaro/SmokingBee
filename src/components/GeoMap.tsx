@@ -6,8 +6,8 @@ import Image from "next/image";
 export default function GeoMap() {
   const googleApiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
   const mapUrl = googleApiKey
-    ? `https://www.google.com/maps/embed/v1/place?q=7584+University+Ave+Suite+B,+La+Mesa,+CA+91942&key=${googleApiKey}`
-    : null;
+  ? `https://www.google.com/maps/embed/v1/place?key=${googleApiKey}&q=place_id:ChIJ1wp1kNtX2YAR8OGMnt8pyY4`
+  : null;
 
   return (
     <section className="py-16 px-6 bg-gray-100 text-center">
