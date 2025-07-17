@@ -176,7 +176,7 @@ export default async  function RootLayout({ children }: { children: ReactNode })
           <ClientMetadata />
           
           <Navbar />
-          <PromoBanner />
+          {/*<PromoBanner />*/}
           <main className="flex-grow">{children}</main>
           <Footer seoPages={seoPages} />
           {/* <FloatingCartButton /> */}
