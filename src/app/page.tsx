@@ -10,7 +10,7 @@ import InStoreFeatures from '@/components/InStoreFeatures'
 import { getCollections, getAllProductHandles } from "@/lib/shopify";
 import path from "path";
 import fsPromises from "fs/promises";
-import DealsPopup from "@/components/DealsPopup";    
+// import DealsPopup from "@/components/DealsPopup";    
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -73,7 +73,7 @@ export default async function HomePage() {
 
   return (
     <>
-      <DealsPopup />
+      {/* <DealsPopup /> */}
       {/* Breadcrumb JSON‑LD */}
       <BreadcrumbClientWrapper crumbs={[{ name: "Home", path: "/" }]} />
       <h1 className="sr-only">Premium Smoke Shop in La Mesa, CA</h1>
