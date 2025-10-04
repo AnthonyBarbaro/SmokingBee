@@ -133,9 +133,11 @@ export default function ProductPageClient({ product }: { product: any }) {
 
           {/* Description */}
           {product.description && (
-            <p className="text-base text-gray-700 mb-40">{product.description}</p>
-          )}
-
+          <article className="prose text-gray-700 mb-8">
+            <h2>About {product.title}</h2>
+            <p>{product.description}</p>
+          </article>
+        )}
           {/* Price */}
           <p className="text-3xl font-bold text-black mb-4 flex items-baseline leading-none">
             <span className="text-4xl tracking-tight">

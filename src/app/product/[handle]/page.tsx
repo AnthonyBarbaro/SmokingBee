@@ -1,53 +1,66 @@
 // src/app/product/[handle]/page.tsx
-//export const dynamic = "force-dynamic";
+// export const dynamic = "force-dynamic"; // optional
 
 import type { Metadata } from "next";
 import BreadcrumbClientWrapper from "@/components/SEO/BreadcrumbClientWrapper";
 import ProductPageClient from "./ProductPageClient";
 import { getProductByHandle } from "@/lib/shopify";
 
+type ProductPageParams = { handle: string };
+
+function trimDescription(raw?: string): string {
+  return (raw ?? "")
+    .replace(/\s+/g, " ")
+    .trim()
+    .slice(0, 155);
+}
+
+/* -------------------- generateMetadata -------------------- */
 export async function generateMetadata(
-  { params }: { params: Promise<{ handle: string }> }
+  { params }: { params: Promise<ProductPageParams> }
 ): Promise<Metadata> {
   const { handle } = await params;
 
-  /* 1.  Look up the product (you already have this util) */
   const product = await getProductByHandle(handle);
 
-  /* 2.  Fallback in case the handle is invalid */
   if (!product) {
+    const notFound = "The requested product could not be found.";
+    const canonical = `https://thesmokingbee.com/product/${handle}`;
     return {
-      title: "Product not found | The Smoking Bee",
-      alternates: {
-        canonical: `https://thesmokingbee.com/product/${handle}`,
+      title: "Product Not Found | The Smoking Bee",
+      description: notFound,
+      alternates: { canonical },
+      openGraph: {
+        title: "Product Not Found | The Smoking Bee",
+        description: notFound,
+        url: canonical,
+        type: "website", // keep type-safe with Next's Metadata typings
+      },
+      twitter: {
+        card: "summary",
+        title: "Product Not Found | The Smoking Bee",
+        description: notFound,
       },
     };
   }
 
+  const canonical = `https://thesmokingbee.com/product/${handle}`;
   const firstImage = product.images?.edges?.[0]?.node?.url ?? "";
-  const img = product?.images?.edges?.[0]?.node?.url ?? "";
-  const description =
-    (product.description ?? "")
-      .replace(/\s+/g, " ")
-      .trim()
-      .slice(0, 155);
+  const description = trimDescription(product.description);
 
-  /* 3.  Use product.title everywhere you want the real name */
   return {
     title: `${product.title} | The Smoking Bee`,
     description,
-    alternates: {
-      canonical: `https://thesmokingbee.com/product/${handle}`,
-    },
+    alternates: { canonical },
     openGraph: {
       title: `${product.title} | The Smoking Bee`,
       description,
-      url: `https://thesmokingbee.com/product/${handle}`,
-      type: "website",
+      url: canonical,
+      type: "website", // use "website" to satisfy typings
       images: firstImage ? [{ url: firstImage }] : [],
     },
     twitter: {
-      card: img ? "summary_large_image" : "summary",
+      card: firstImage ? "summary_large_image" : "summary",
       title: `${product.title} | The Smoking Bee`,
       description,
       images: firstImage ? [firstImage] : [],
@@ -55,10 +68,12 @@ export async function generateMetadata(
   };
 }
 
+/* -------------------- Page component -------------------- */
 export default async function ProductPage(
-  { params }: { params: Promise<{ handle: string }> }
+  { params }: { params: Promise<ProductPageParams> }
 ) {
-  const { handle } = await params;          
+  const { handle } = await params;
+
   const product = await getProductByHandle(handle);
 
   if (!product) {
