@@ -1,5 +1,4 @@
 //src/app/product/[handle]/ProductPageClient.tsx
-"use client";
 import Head from "next/head";
 import Image from "next/image";
 import AddToCartButton from "@/components/AddToCartButton";
