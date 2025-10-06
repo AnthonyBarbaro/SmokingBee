@@ -1,3 +1,4 @@
+//src/app/seo/best-delta-8-products/page.tsx
 import HeroSection from "@/components/HeroSection";
 import Testimonials from "@/components/Testimonials";
 import AnimatedCategorySection from "@/components/AnimatedCategorySection";
