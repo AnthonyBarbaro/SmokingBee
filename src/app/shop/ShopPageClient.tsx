@@ -215,9 +215,16 @@ export default function ShopPageClient({ categories, products }: any) {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="grid grid-cols-1 sm:grid-cols-3 gap-6"
           >
-            {products.map((product: any) => (
-              <ProductCard key={product.node.id} product={product} />
-            ))}
+          {products.map((product: any) => {
+            const node = product?.node ?? product; // cope with either shape
+            const handle = node?.handle;
+            if (!handle) return null;
+            return (
+              <Link key={node.id} href={`/product/${handle}`} className="block">
+                <ProductCard product={product} />
+              </Link>
+            );
+          })}
           </motion.div>
         </section>    
       </div>
