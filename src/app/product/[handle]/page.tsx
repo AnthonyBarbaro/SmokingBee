@@ -1,52 +1,51 @@
 // src/app/product/[handle]/page.tsx
-// export const dynamic = "force-dynamic"; // optional
-
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import BreadcrumbClientWrapper from "@/components/SEO/BreadcrumbClientWrapper";
 import ProductPageClient from "./ProductPageClient";
-import { getProductByHandle } from "@/lib/shopify";
+import { getProductByHandle, getAllProducts } from "@/lib/shopify";
 
-type ProductPageParams = { handle: string };
+// ❶ Pre-render the route and revalidate (ISR)
+export const dynamic = "force-static";   // force SSG
+export const revalidate = 86400;         // 24 hours
 
-function trimDescription(raw?: string): string {
-  return (raw ?? "")
-    .replace(/\s+/g, " ")
-    .trim()
-    .slice(0, 155);
+type Params = { handle: string };
+
+function trim(raw?: string) {
+  return (raw ?? "").replace(/\s+/g, " ").trim().slice(0, 155);
 }
 
-/* -------------------- generateMetadata -------------------- */
+// ❷ Generate all product paths so Next can bake head tags
+export async function generateStaticParams(): Promise<Params[]> {
+  const all = await getAllProducts();
+  const edges = Array.isArray(all) ? all : (all as any)?.edges ?? [];
+  return edges
+    .map((e: any) => e?.node?.handle)
+    .filter(Boolean)
+    .map((handle: string) => ({ handle }));
+}
+
+// ❸ Metadata API (typed); now it’s evaluated at build → literal tags
 export async function generateMetadata(
-  { params }: { params: Promise<ProductPageParams> }
+  { params }: { params: Promise<Params> }
 ): Promise<Metadata> {
   const { handle } = await params;
-
   const product = await getProductByHandle(handle);
+  const canonical = `https://thesmokingbee.com/product/${handle}`;
 
   if (!product) {
-    const notFound = "The requested product could not be found.";
-    const canonical = `https://thesmokingbee.com/product/${handle}`;
+    const desc = "The requested product could not be found.";
     return {
       title: "Product Not Found | The Smoking Bee",
-      description: notFound,
+      description: desc,
       alternates: { canonical },
-      openGraph: {
-        title: "Product Not Found | The Smoking Bee",
-        description: notFound,
-        url: canonical,
-        type: "website", // keep type-safe with Next's Metadata typings
-      },
-      twitter: {
-        card: "summary",
-        title: "Product Not Found | The Smoking Bee",
-        description: notFound,
-      },
+      openGraph: { title: "Product Not Found | The Smoking Bee", description: desc, url: canonical, type: "website" },
+      twitter: { card: "summary", title: "Product Not Found | The Smoking Bee", description: desc },
     };
   }
 
-  const canonical = `https://thesmokingbee.com/product/${handle}`;
-  const firstImage = product.images?.edges?.[0]?.node?.url ?? "";
-  const description = trimDescription(product.description);
+  const image = product.images?.edges?.[0]?.node?.url ?? "";
+  const description = trim(product.description);
 
   return {
     title: `${product.title} | The Smoking Bee`,
@@ -56,33 +55,22 @@ export async function generateMetadata(
       title: `${product.title} | The Smoking Bee`,
       description,
       url: canonical,
-      type: "website", // use "website" to satisfy typings
-      images: firstImage ? [{ url: firstImage }] : [],
+      type: "website",              // keep typesafe here
+      images: image ? [{ url: image }] : [],
     },
     twitter: {
-      card: firstImage ? "summary_large_image" : "summary",
+      card: image ? "summary_large_image" : "summary",
       title: `${product.title} | The Smoking Bee`,
       description,
-      images: firstImage ? [firstImage] : [],
+      images: image ? [image] : [],
     },
   };
 }
 
-/* -------------------- Page component -------------------- */
-export default async function ProductPage(
-  { params }: { params: Promise<ProductPageParams> }
-) {
+export default async function ProductPage({ params }: { params: Promise<Params> }) {
   const { handle } = await params;
-
   const product = await getProductByHandle(handle);
-
-  if (!product) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <h1 className="text-3xl font-bold">Product Not Found</h1>
-      </div>
-    );
-  }
+  if (!product) notFound();
 
   return (
     <main>
