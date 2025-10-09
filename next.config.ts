@@ -53,7 +53,7 @@ const nextConfig = {
         destination: "/api/sitemap",
       },
       {
-        source: "/:slug",
+        source: "/seo/:slug*",
         destination: "/seo/:slug",
       },
     ];
