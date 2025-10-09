@@ -220,9 +220,7 @@ export default function ShopPageClient({ categories, products }: any) {
             const handle = node?.handle;
             if (!handle) return null;
             return (
-              <Link key={node.id} href={`/product/${handle}`} className="block">
-                <ProductCard product={product} />
-              </Link>
+            <ProductCard key={node.id} product={product} />
             );
           })}
           </motion.div>

@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import BreadcrumbClientWrapper from "@/components/SEO/BreadcrumbClientWrapper";
 import ProductPageClient from "./ProductPageClient";
 import { getProductByHandle, getAllProducts } from "@/lib/shopify";
-
+import RelatedProducts from "./RelatedProducts";
 // ❶ Pre-render the route and revalidate (ISR)
 export const dynamic = "force-static";   // force SSG
 export const revalidate = 86400;         // 24 hours
@@ -73,7 +73,7 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
   if (!product) notFound();
 
   return (
-    <main>
+    <main className="bg-white">
       <BreadcrumbClientWrapper
         crumbs={[
           { name: "Home", path: "/" },
@@ -82,6 +82,7 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
         ]}
       />
       <ProductPageClient product={product} />
+      <RelatedProducts handle={handle} /> 
     </main>
   );
 }
