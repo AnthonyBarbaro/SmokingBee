@@ -176,6 +176,11 @@ export default async  function RootLayout({ children }: { children: ReactNode })
           <ClientMetadata />
           
           <Navbar />
+          <div className="w-full bg-gradient-to-r from-red-600 to-red-700 text-white py-6 px-4 text-center shadow-md">
+          <h1 className="text-2xl md:text-3xl font-bold tracking-wide">
+            This Location Is Permanently Closed
+          </h1>
+        </div>
           {/*<PromoBanner />*/}
           <main className="flex-grow">{children}</main>
           <Footer seoPages={seoPages} />
